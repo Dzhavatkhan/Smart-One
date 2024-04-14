@@ -115,4 +115,8 @@ async function registration (){
 
 
 
-</sc
+</script>
+
+<style scoped>
+
+</style>

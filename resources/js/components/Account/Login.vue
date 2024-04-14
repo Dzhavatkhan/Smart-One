@@ -16,7 +16,7 @@
                         <div  class="api-element-name text-[16px] max-sm:hidden">Google</div>
                         <div  class="div hidden max-sm:flex items-center justify-center w-full h-full"><p>Google</p></div>
                     </div>
-                    <div class="api-element max-sm:h-[60px] duration-100 hover:scale-110 rounded-md cursor-pointer px-2 gap-6  w-[210px] max-sm:w-full h-9 shadow-md flex items-center max-sm:gap-0">
+                    <div @click="loginWithYandex" class="api-element max-sm:h-[60px] duration-100 hover:scale-110 rounded-md cursor-pointer px-2 gap-6  w-[210px] max-sm:w-full h-9 shadow-md flex items-center max-sm:gap-0">
                         <img src="../../../../public/img/auth-components/reg/vk.svg" class="vk" alt=""><img src="" alt="">
                         <div class="api-element-name text-[16px] max-sm:hidden">Вконтакте</div>
                         <div class="div hidden max-sm:flex items-center justify-center w-full h-full"><p>Вконтакте</p></div>
@@ -59,23 +59,17 @@ const reg = () => {
 }
 const loginWithGoogle = async () => {
       try {
-        const response = await axios.get('/api/auth/google', {
-            headers: {
-            "Access-Control-Allow-Origin": "http://127.0.0.1:8000"
-            },
-        });
-        alert("hello u")
-        localStorage.setItem('token', response.data.token);
-        console.log(response.data);
+        window.location = '/api/auth/google';
       } catch (error) {
         console.error(error);
       }
 }
-const callback = (response) => {
-  // This callback will be triggered when the user selects or login to
-  // his Google account from the popup
-  console.log("Handle the response", response)
-  console.log(decodeCredential(response.credential));
+const loginWithYandex = async () => {
+      try {
+        window.location = '/api/auth/yandex';
+      } catch (error) {
+        console.error(error);
+      }
 }
 let openCheck = ref(false)
 let hiddenInput = ref(false);

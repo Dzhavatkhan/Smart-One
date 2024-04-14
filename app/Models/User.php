@@ -23,6 +23,8 @@ class User extends Authenticatable
         'avatar',
         'role_id',
         'password',
+        'yandex_auth_id',
+        'yandex_auth_type',
         'google_auth_id',
         'google_auth_type'
     ];

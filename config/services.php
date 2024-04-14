@@ -30,15 +30,15 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
-    'vkontakte' => [
-        'client_id' => env('VKONTAKTE_CLIENT_ID'),
-        'client_secret' => env('VKONTAKTE_CLIENT_SECRET'),
-        'redirect' => env('VKONTAKTE_REDIRECT_URI')
+    'yandex' => [
+        'client_id' => "6f76063291ab498c9042a5cf1249fa24",
+        'client_secret' => "60dc5848ee2f40ad82251427c47a4761",
+        'redirect' => "http://127.0.0.1:8000/api/auth/yandex/callback"
       ],
-      'google' => [
-        'client_id' => env('GOOGLE_CLIENT_ID'),
-        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => env('GOOGLE_REDIRECT_URI')
+    'google' => [
+        'client_id' => "201230619040-bgjrehc87gl6atvd9q8kj8mpj44on8h0.apps.googleusercontent.com",
+        'client_secret' => "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",
+        'redirect' => "http://127.0.0.1:8000/api/auth/google/callback"
        ],
 
 ];

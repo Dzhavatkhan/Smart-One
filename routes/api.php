@@ -4,6 +4,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\GoogleController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\YandexController;
+use App\Http\Middleware\Cors;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,8 +24,12 @@ Route::get("getCaptcha", [AuthController::class, "getCaptcha"])->name("getCaptch
 
 
 Route::post("registration", [AuthController::class, "registration"]);
+Route::get('auth/yandex', [YandexController::class, 'signInwithYandex']);
+Route::get('auth/yandex/callback', [YandexController::class, 'callbackToYandex']);
 Route::get('auth/google', [GoogleController::class, 'signInwithGoogle']);
-Route::get('auth/callback/google', [GoogleController::class, 'callbackToGoogle']);
+Route::get('auth/google/callback', [GoogleController::class, 'callbackToGoogle']);
+
+
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::get("getInfo", [AdminController::class, "index"]);
