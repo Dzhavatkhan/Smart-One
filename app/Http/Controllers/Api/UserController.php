@@ -14,9 +14,14 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function getUserStore()
     {
-
+        $user =  User::findOrFail(Auth::id());
+        $token = $user->createToken("user_token")->plainTextToken;
+        return response()->json([
+            "user" => $user,
+            "token" => $token
+        ]);
     }
 
     /**
@@ -31,15 +36,21 @@ class UserController extends Controller
     {
         //
     }
-    public function updateAvatar(Request $request)
+    public function updateAvatar(Request $request, User $user)
     {
+        dd(bcrypt("Dzhavatkhan"), encrypt("Dzhavatkhan"));
         $avatar = $request->file("avatar")->getClientOriginalName();
-        User::findOrFail(Auth::id())
-            ->update([
+        if (file_exists(public_path("img/avatars/$user->avatar"))) {
+            $lastAvatar = public_path("img/avatars/$user->avatar");
+            unlink($lastAvatar);
+        }
+        $user->update([
                 "avatar" => $avatar
             ]);
         $request->file("avatar")->move(public_path("img/avatars"), $avatar);
-
+        return response()->json([
+            "message" => "Ваш аватар изменен!"
+        ]);
 
     }
 
@@ -52,7 +63,7 @@ class UserController extends Controller
         Favorite::where("userId", Auth::id())->delete();
         Cart::where("userId", Auth::id())->delete();
 
-        $user->delete();
+        // $user->delete();
         return response()->json([
             "message" => "$user->name, Вы удалены"
         ]);

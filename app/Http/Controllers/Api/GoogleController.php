@@ -26,7 +26,6 @@ class GoogleController extends Controller
             if($finduser){
 
                 Auth::login($finduser);
-                $token = $finduser->createToken('user_token')->plainTextToken;
                 return redirect('/profile');
 
             }else{
@@ -42,7 +41,6 @@ class GoogleController extends Controller
 
                 Auth::login($newUser);
 
-                $token = $newUser->createToken('user_token')->plainTextToken;
                 return redirect('/profile');
             }
 

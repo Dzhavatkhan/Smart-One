@@ -22,8 +22,9 @@ class YandexController extends Controller
 
             if($finduser){
 
+                // Аутентификация пользователя
                 Auth::login($finduser);
-                $token = $finduser->createToken('user_token')->plainTextToken;
+
                 return redirect('/profile');
 
             }else{
@@ -40,9 +41,11 @@ class YandexController extends Controller
                     'password' => bcrypt("$user->name")
                 ]);
 
+
+                // Аутентификация пользователя
                 Auth::login($newUser);
 
-                $token = $newUser->createToken('user_token')->plainTextToken;
+                // $token = Auth::user()->createToken('user_token')->plainTextToken;
                 return redirect('/profile');
             }
 

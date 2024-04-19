@@ -1,5 +1,6 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import Home from "../components/Home/Home.vue"
+import Admin from "../components/Admin/Index.vue"
 import Registration from "../components//Account/Registration.vue"
 import Google from "../components//Account/GoogleCallback.vue"
 import Profile from "../components//Account/Profile.vue"
@@ -21,6 +22,11 @@ let routes = [
         path: "/login",
         component: Login,
         name: 'login'
+    },
+    {
+        path: "/admin",
+        component: Admin,
+        name: 'admin'
     },
     {
         path: "/api/auth/google/callback",
