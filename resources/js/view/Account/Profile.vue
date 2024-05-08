@@ -1,27 +1,31 @@
 <template>
     <div>
-        <img :src="userStore.avatar" alt="" srcset="">
-        <button @click="modalUpdateAvatar" >Обновить</button>
-        <updateAvatar v-bind:open="updateAvatarModal" v-bind:close="!updateAvatarModal"></updateAvatar>
+        <img :src="userStore.avatar" class="h-48" alt="" srcset="">
+        <updateAvatar></updateAvatar>
+        <router-link to="/profile/me" >Личный кабинет</router-link>
+        <router-link to="/profile/favorite">Избранное</router-link>
+        <router-link to="/profile/cart">Корзина</router-link>
         <button @click="logout">Выйти</button>
         <button @click="deleteAccount" class="deleteAccount">Удалить аккаунт</button>
+    </div>
+    <div id="ProfileView">
+        <router-view></router-view>
     </div>
 </template>
 
 <script setup>
     import { useUserStore } from '@/store/user-store';
     import eventBus from '@/eventBus';
-    import UpdateAvatar from '../modals/profile/UpdateAvatar.vue'
+    import UpdateAvatar from '../../components/modals/profile/UpdateAvatar.vue'
     import { useRouter } from 'vue-router';
     import Swal from 'sweetalert2';
     import { ref } from 'vue';
 
     const userStore = useUserStore();
     const router = useRouter();
-    console.log(userStore.token);
     let updateAvatarModal = ref(false);
+    let avatar = `../../../../public/img/avatars/${userStore.avatar}`
 
-    console.log(userStore, userStore.name, userStore.avatar, userStore.email);
     function notUserStore(){
         if (userStore.id == null) {
             let response = axios.get("/api/getUserStore", {
@@ -37,25 +41,6 @@
                 console.log(err);
             });
         }
-    }
-    function notAvatar(){
-        if (userStore.avatar == null) {
-            console.log(userStore.avatar == null);
-            userStore.avatar = "http://127.0.0.1:8000/img/avatars/default.png"
-        }
-    }
-    function modalUpdateAvatar(){
-        switch (updateAvatarModal.value) {
-            case false:
-                updateAvatarModal.value = true
-                break;
-            case true:
-                updateAvatarModal.value = false
-                break;
-
-
-        }
-        console.log(updateAvatarModal.value);
     }
     async function deleteAccount(){
         Swal.fire({
@@ -75,6 +60,7 @@
                     }
                 })
                 .then((result) => {
+                    userStore.clearUser();
                     router.push("/")
                     Swal.fire({
                         title: result.data.message,
@@ -125,7 +111,13 @@
     }
 
 
-    notAvatar();
     notUserStore();
 </script>
 
+<style scoped>
+.router-link-active {
+    background-color: white;
+    border-top: 2px solid white;
+    color: #535353;
+}
+</style>

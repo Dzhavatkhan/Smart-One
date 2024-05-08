@@ -1,10 +1,24 @@
 <template>
-    <div class="fixed hidden inset-0 m-auto bg-black bg-opacity-60 z-10">
-        <div class="w-max h-max fixed inset-0 m-auto z-20">
-            <div class="bg-white shadow-md w-[695px] h-[967px]">
-                <form>
-                    <input type="file" name="avatar" id="">
-                    <button @click="updateAvatar">
+    <button @click="updateAvatarModal = !updateAvatarModal" >Обновить</button>
+
+    <div v-if="updateAvatarModal" class="fixed inset-0 m-auto bg-black bg-opacity-60 z-10">
+        <div class="w-max fixed inset-0 m-auto z-20 flex justify-center items-center">
+            <div class="bg-white shadow-md w-[695px] h-[600px] px-5 py-5 flex flex-col just gap-6">
+                <div class="img flex w-full justify-end">
+                    <img class="close text-right cursor-pointer w-[20px]" @click="updateAvatarModal = !updateAvatarModal" src="../../../../../public/img/admin/Multiply.svg">
+                </div>
+                <form  class="flex flex-col h-full items-center justify-between gap-3">
+                    <div class="hero w-full">
+                        <label for="input-file" ref="inputFile" id="drop-area" @drop.prevent="onDrop">
+                            <input @change="getAvatar" type="file" name="avatar" id="input-file" hidden>
+                            <div ref="view" class="img-view py-5 cursor-pointer flex flex-col bg-white duration-200 hover:bg-[#DEFCFF] items-center w-full h-full rounded-md border border-[#151528]">
+                                <img src="../../../../../public/img/profile/Upload to the Cloud.svg" class="w-24" alt="">
+                                <p class="text-center">Перетащите файл сюда или кликните <br>чтобы загрузить изображение</p>
+                                <span class="duration-100">Загружайте изображение с рабочего стола</span>
+                            </div>
+                        </label>
+                    </div>
+                    <button class="h-[70px] w-1/2 text-white rounded-md text-[24px] duration-300 bg-[#151528] hover:text-[#151528] hover:border hover:border-[#151528] hover:bg-white" @click="updateAvatar">
                         Отправить
                     </button>
                 </form>
@@ -12,24 +26,96 @@
         </div>
     </div>
 </template>
+<style scoped>
 
+    .hero:hover span{
+        color: #151528;
+        font-weight: 700;
+    }
+</style>
 <script setup>
-    import { useRouter } from 'vue-router';
+    import { ref, onMounted, onUnmounted } from 'vue';
+    import eventBus from '@/eventBus';
+    import { useUserStore } from '@/store/user-store';
 
-    async function updateAvatar(){
+    let userStore = useUserStore();
+    let updateAvatarModal = ref(false);
+    let avatar = ref(null);
+    const view = ref(null)
+
+
+
+
+    function getAvatar(e){
+        avatar.value = e.target.files[0]
+        const blob = new Blob([`${e.target.files[0]}`], { type: 'text/plain' });
+
+        let background = URL.createObjectURL(e.target.files[0])
+        view.value.style.backgroundRepeat = "no-repeat"
+        view.value.style.width = "100%";
+        view.value.style.backgroundSize = "100%";
+        view.value.style.backgroundImage = `url(${background})`
+        view.value.style.height = "400px";
+        view.value.textContent= ''
+        console.log(background);
+        console.log(avatar.value);
+    }
+
+    async function updateAvatar(e){
+        e.preventDefault();
+        let formData = new FormData();
         console.log(userStore.token);
-        let response = await axios.put(`/api/updateUserAvatar/id${userStore.id}`, {
+        formData.append("avatar", avatar.value)
+        console.log(avatar.value);
+        let response = await axios.post(`/api/updateUserAvatar/id${userStore.id}`, formData,
+        {
             headers:
                 {
                     Authorization: `Bearer ${userStore.token}`,
                 }
-    })
+        }
+)
         .then((result) => {
             console.log(result);
+            userStore.setUserDetails(result)
+            eventBus.emit('updateAvatar', '')
         }).catch((err) => {
             console.log(err);
         });
 
     }
+
+    const emit = defineEmits(['files-dropped'])
+
+    function onDrop(e) {
+        emit('files-dropped', [...e.dataTransfer.files])
+        const blob = new Blob([`${e.dataTransfer.files[0]}`], { type: 'text/plain' });
+
+        let background = URL.createObjectURL(e.dataTransfer.files[0])
+        avatar.value = e.dataTransfer.files[0];
+        view.value.style.backgroundImage = `url(${background})`
+        view.value.style.height = "400px";
+        view.value.textContent= ''
+        console.log(avatar.value);
+        console.log(background);
+    }
+
+    function preventDefaults(e) {
+        e.preventDefault()
+    }
+
+    const events = ['dragenter', 'dragover', 'dragleave', 'drop']
+
+    onMounted(() => {
+        events.forEach((eventName) => {
+            document.body.addEventListener(eventName, preventDefaults)
+        })
+    })
+
+    onUnmounted(() => {
+        events.forEach((eventName) => {
+            document.body.removeEventListener(eventName, preventDefaults)
+        })
+    })
 </script>
 

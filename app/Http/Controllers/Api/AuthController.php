@@ -62,10 +62,15 @@ class AuthController extends Controller
 
             } else {
 
-                $token = $user->createToken('user_token')->plainTextToken;
+                if ($user->role_id == 2) {
+                    $token = $user->createToken('user_token')->plainTextToken;
+                }
+                else{
+                    $token = $user->createToken('admin_token')->plainTextToken;
+                }
                 $password = Hash::needsRehash($user->password);
                 return response()->json([
-                    'user' => $user,
+                    'user' => $user,                    
                     "token" => $token
                 ], 200);
 

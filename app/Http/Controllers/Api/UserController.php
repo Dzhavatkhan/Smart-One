@@ -36,19 +36,21 @@ class UserController extends Controller
     {
         //
     }
-    public function updateAvatar(Request $request, User $user)
+    public function updateAvatar(Request $request, $id)
     {
-        dd(bcrypt("Dzhavatkhan"), encrypt("Dzhavatkhan"));
         $avatar = $request->file("avatar")->getClientOriginalName();
-        if (file_exists(public_path("img/avatars/$user->avatar"))) {
-            $lastAvatar = public_path("img/avatars/$user->avatar");
-            unlink($lastAvatar);
-        }
-        $user->update([
+        // if (file_exists(public_path("img/avatars/$user->avatar"))) {
+        //     $lastAvatar = public_path("img/avatars/$user->avatar");
+        //     unlink($lastAvatar);
+        // }
+        $avatar = "http://127.0.0.1:8000/img/avatars/$avatar";
+        User::findOrFail($id)
+        ->update([
                 "avatar" => $avatar
-            ]);
+        ]);
         $request->file("avatar")->move(public_path("img/avatars"), $avatar);
         return response()->json([
+            "user" => User::findOrFail($id),
             "message" => "Ваш аватар изменен!"
         ]);
 

@@ -15,15 +15,27 @@ export const useUserStore = defineStore('user', {
   // state: () => ({ count: 0 })
   actions: {
     async setUserDetails(res, noImage) {
-        this.$state.token = res.data.token
-        console.log("token: ", res.data.token);
-        this.$state.id = res.data.user.id
-        this.$state.name = res.data.user.name
-        this.$state.email = res.data.user.email
-        this.$state.role_id = res.data.user.role_id
-        this.$state.password = res.data.password
+        if (res.data.user.id != null) {
+            this.$state.id = res.data.user.id
+        }
+        if (res.data.user.name != null) {
+            this.$state.name = res.data.user.name
+        }
+        if (res.data.user.email != null) {
+            this.$state.email = res.data.user.email
+        }
+        if (res.data.user.role_id != null) {
+            this.$state.role_id = res.data.user.role_id
+        }
+        if (res.data.token != null) {
+            this.$state.token = res.data.token
+        }
+        if (res.data.password != null) {
+            this.$state.password = res.data.password
+        }
 
-        if (res.data.user.avatar) {
+        if (res.data.user.avatar != null) {
+
           this.$state.avatar = res.data.user.avatar
         } else if (!noImage) {
           this.$state.avatar = 'http://127.0.0.1:8000/img/avatars/default.png'

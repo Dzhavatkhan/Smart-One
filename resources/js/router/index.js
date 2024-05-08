@@ -1,10 +1,19 @@
 import {createRouter, createWebHistory} from 'vue-router'
-import Home from "../components/Home/Home.vue"
-import Admin from "../components/Admin/Index.vue"
-import Registration from "../components//Account/Registration.vue"
-import Google from "../components//Account/GoogleCallback.vue"
-import Profile from "../components//Account/Profile.vue"
-import Login from "../components//Account/Login.vue"
+import Home from "../view/Home/Home.vue"
+import Admin from "../view/Admin/Index.vue"
+import Registration from "../view//Account/Registration.vue"
+import Profile from "../view//Account/Profile.vue"
+import Login from "../view//Account/Login.vue"
+
+import ProfileSection from "../components/sections/profile/Profile.vue"
+import FavoriteSection from "../components/sections/profile/Favorite.vue"
+import CartSection from "../components/sections/profile/Cart.vue"
+
+import AdminUsersSection from "../components/sections/admin/Users.vue";
+import AdminOrdersSection from "../components/sections/admin/Orders.vue";
+import AdminProductsSection from "../components/sections/admin/Products.vue";
+import AdminCategoriesSection from "../components/sections/admin/Categories.vue";
+
 
 
 let routes = [
@@ -26,18 +35,53 @@ let routes = [
     {
         path: "/admin",
         component: Admin,
-        name: 'admin'
-    },
-    {
-        path: "/api/auth/google/callback",
-        component: Google,
-        name: 'Callback'
+        name: 'admin',
+        children: [
+            {
+                path: "orders",
+                component: AdminOrdersSection,
+                name: 'orders'
+            },
+            {
+                path: "users",
+                component: AdminUsersSection,
+                name: 'users'
+            },
+            {
+                path: "products",
+                component: AdminProductsSection,
+                name: 'products'
+            },
+            {
+                path: "categories",
+                component: AdminCategoriesSection,
+                name: 'categories'
+            },
+        ]
     },
     {
         path: "/profile",
         component: Profile,
-        name: 'Profile'
+        name: 'Profile',
+        children: [
+            {
+                path: "me",
+                component: ProfileSection,
+                name: 'Me'
+            },
+            {
+                path: "favorite",
+                component: FavoriteSection,
+                name: 'Favorite'
+            },
+            {
+                path: "cart",
+                component: CartSection,
+                name: 'Cart'
+            },
+        ]
     },
+
 ]
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CategoryResource;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Favorite;
@@ -13,25 +14,49 @@ use App\Models\Specification;
 use App\Models\TypeProduct;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function getCategories()
     {
-        $users = User::all();
-        $products = Product::all();
-        $orders = Order::all();
-        $categories = Category::all();
-        $typeProducts = TypeProduct::all();
+        $categories = CategoryResource::collection(TypeProduct::all());
 
         return response()->json([
-            "users"    => $users,
-            "products" => $products,
             "categories" => $categories,
-            "typeProducts" => $typeProducts,
+        ]);
+    }
+    public function getAdminToken(){
+        $token = PersonalAccessToken::where("name","admin_token")->first();
+        $token = bcrypt($token->token);
+        return response()->json([
+            "token" => $token
+        ]);
+    }
+    public function getProducts()
+    {
+        $products = Product::all();
+
+        return response()->json([
+            "products" => $products,
+        ]);
+    }
+    public function getUsers()
+    {
+        $users = User::all();
+
+        return response()->json([
+            "users"    => $users
+        ]);
+    }
+    public function getOrders()
+    {
+        $orders = Order::all();
+
+        return response()->json([
             "orders"   => $orders
         ]);
     }
@@ -42,19 +67,20 @@ class AdminController extends Controller
     public function createProduct(Request $request)
     {
         try {
-            $specification = Specification::create([
-                "content" => $request->specification
-            ]);
-            $specificationId = $specification->id;
+
             $data = $request->all([
-                "name", "price", "image", "percent", "typeProductId", "categoryId"
+                "name", "price", "image", "percent", "typeProductId", "categoryId", "colorName"
             ]);
             $product = Product::create([
                 "name" => $data['name'],
                 "price" => $data["price"],
                 "image" => $data["image"],
                 "percent" => $data["percent"],
-                "specificationId" => $specificationId
+            ]);
+            $specification = Specification::create([
+                "productId" => $product->id,
+                "title" => $request->specificationTitle,
+                "content" => $request->specificationContent
             ]);
             $createProductCategories = ProductCategory::create([
                 "productId" => $product->id,
@@ -153,12 +179,24 @@ class AdminController extends Controller
         ]);
     }
 
+    public function searchUser($query){
+        if ($query == '') {
+            $result = User::all();
+        } else{
+            $result = User::where("name", "like", "%".$query."%")->get();
+        }
+        return response()->json([
+            "result" => $result
+        ]);
+    }
+
     /**
      * Remove the specified resource from storage.
      */
     public function deleteProduct(string $id)
     {
         try {
+
             if (Favorite::where("productId", $id)) {
                 Favorite::where("productId", $id)->delete();
             }
@@ -171,6 +209,42 @@ class AdminController extends Controller
             $product = Product::findOrFail($id)->delete();
             return response()->json([
                 "message" => "Товар удален"
+            ]);
+
+        } catch (\ErrorException $error) {
+            return response()->json([
+                "message" => "$error"
+            ], 500);
+        }
+    }
+    public function deleteUser($id)
+    {
+        try {
+            if (Favorite::where("userId", $id)) {
+                Favorite::where("userId", $id)->delete();
+            }
+            if (Cart::where("userId", $id)) {
+                Cart::where("userId", $id)->delete();
+            }
+            $user = User::where("id", $id)->where("role_id", 2)->delete();
+            return response()->json([
+                "message" => "Данный клиент удален"
+            ]);
+
+        } catch (\ErrorException $error) {
+            return response()->json([
+                "message" => "$error"
+            ], 500);
+        }
+    }
+    public function deleteAllUser()
+    {
+        try {
+            Favorite::delete();
+            Cart::delete();
+            $users = User::where("role_id", 2)->delete();
+            return response()->json([
+                "message" => "Все клиенты удалены"
             ]);
 
         } catch (\ErrorException $error) {

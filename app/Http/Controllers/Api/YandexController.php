@@ -25,7 +25,7 @@ class YandexController extends Controller
                 // Аутентификация пользователя
                 Auth::login($finduser);
 
-                return redirect('/profile');
+                return redirect('profile/me');
 
             }else{
                 if ($user->name == null) {
@@ -46,7 +46,7 @@ class YandexController extends Controller
                 Auth::login($newUser);
 
                 // $token = Auth::user()->createToken('user_token')->plainTextToken;
-                return redirect('/profile');
+                return redirect('profile/me');
             }
 
         } catch (\ErrorException $e) {

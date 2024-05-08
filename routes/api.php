@@ -29,11 +29,21 @@ Route::get('auth/yandex/callback', [YandexController::class, 'callbackToYandex']
 Route::get('auth/google', [GoogleController::class, 'signInwithGoogle']);
 Route::get('auth/google/callback', [GoogleController::class, 'callbackToGoogle']);
 Route::get("getUserStore", [UserController::class, "getUserStore"]);
+Route::get("getAdminToken", [AdminController::class, "getAdminToken"]);
+
 
 
 
 Route::middleware('auth:sanctum')->group(function(){
-    Route::get("getInfo", [AdminController::class, "index"]);
+    Route::get("getCategories", [AdminController::class, "getCategories"]);
+    Route::get("getProducts", [AdminController::class, "getProducts"]);
+    Route::get("getUsers", [AdminController::class, "getUsers"]);
+    Route::get("getOrders", [AdminController::class, "getOrders"]);
+
+
+    Route::get("search/user_{query}", [AdminController::class, "searchUser"])->name("searchUser");
+    Route::delete("deleteUser/id{id}", [AdminController::class, "deleteUser"])->name("deleteUser");
+
 
     Route::post("createProduct", [AdminController::class, 'createProduct'])->name("createProduct");
     Route::put("updateProduct/id{id}", [AdminController::class, 'updateProduct']);
@@ -47,7 +57,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::put("updateCategory/id{id}", [AdminController::class, 'updateCategory']);
     Route::delete("deleteCategory/id{id}", [AdminController::class, "deleteCategory"])->name("deleteCategory");
 
-    Route::put("updateUserAvatar/id{id}", [UserController::class, 'updateAvatar']);
+    Route::post("updateUserAvatar/id{id}", [UserController::class, 'updateAvatar']);
     Route::delete("logout", [AuthController::class, "logout"]);
     Route::delete("deleteUser", [UserController::class, "delete"]);
 

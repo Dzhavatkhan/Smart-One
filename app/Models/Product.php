@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "name", "price", "image","percent", "specificationId"
+        "name", "price", "image","percent"
     ];
 
     public function getSpecification(){
