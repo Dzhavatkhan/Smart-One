@@ -8,7 +8,7 @@
             <button class="w-20 h-10 rounded-md duration-300 hover:text-white hover:bg-[#081225] border border-[#081225]">
                 Создать
             </button>
-            <button @click="deleteUser" :class="allSelected ? 'w-20 h-10 rounded-md duration-300 text-[#DE0202] hover:bg-[#FFF0F0]' : 'hidden'">
+            <button @click="deleteUser" v-show="allSelected || checkbox.length>0" class="w-20 h-10 rounded-md duration-300 text-[#DE0202] hover:bg-[#FFF0F0]">
                 Удалить
             </button>
         </div>

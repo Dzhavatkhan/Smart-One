@@ -27,7 +27,13 @@
                     Название
                 </td>
                 <td class="text-center font-bold">
+                    Цвет
+                </td>
+                <td class="text-center font-bold">
                     Категория
+                </td>
+                <td class="text-center font-bold">
+                    Цена
                 </td>
                 <td class="text-center font-bold">
                     Дата
@@ -38,16 +44,46 @@
 
             </thead>
 
-            <tbody class="h-[500px] overflow-auto">
-                <!-- <tr v-for="(user) in users" :key="user.id">
-                    <td class="text-center flex justify-center items-center">
-                        <input type="checkbox" v-model="checkbox" class="w-5 h-5 border border-[#F1F2F4]" name="" id="">
+            <tbody class="h-auto overflow-auto">
+                <tr v-for="product in products" :key="product.id">
+                    <td class="text-center">
+                        <div class="flex p-1 justify-center items-center">
+                            <input type="checkbox" v-model="checkbox" class="w-5 h-5 border border-[#F1F2F4]" name="" id="">
+                        </div>
                     </td>
-                    <td class="text-center">{{ user.name }}</td>
-                    <td class="text-center">{{ user.email }}</td>
-                    <td class="text-center">{{ user.created_at }}</td>
-                    <td class="text-center cursor-pointer text-[#1B7A94] bg-[#EEFBFE]">Edit</td>
-                </tr> -->
+                    <td class="text-center flex justify-center items-center">
+                        <div class="image h-[82px] flex justify-center items-center">
+                            <img :src="'/img/products/' + product.image" class="img h-auto"  alt="">
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        <div class="name p-1 text-center overflow-hidden">
+                            {{ product.name }}
+                        </div>
+                    </td>
+                    <td class="">
+                        <div class="color p-1 text-center">
+                           {{ product.color }}
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        <div class="type p-1 text-center">
+                            {{ product.typeProduct }}
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        <div class="price p-1 text-center">
+                            {{ product.price }}₽
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        <div class="date p-1 text-center">
+                            {{ product.date }}
+                        </div>
+
+                    </td>
+                    <td class="text-center"><editProduct :product="product"></editProduct></td>
+                </tr>
             </tbody>
         </table>
     </div>
@@ -58,20 +94,34 @@
     import { useUserStore } from '@/store/user-store';
     import eventBus from '@/eventBus'
     import createProduct from '../../modals/admin/products/createProduct.vue'
+    import editProduct from "../../modals/admin/products/editProduct/index.vue";
 
     let count = 0;
+    let products = ref([]);
+    let allSelected = ref(false)
+    let checkbox = ref([]);
     const userStore = useUserStore();
     const props = defineProps({
     })
 
+    async function getProducts(){
+        let response = await axios.get("/api/getProducts", {
+            headers: {
+                Authorization: `Bearer ${userStore.token}`,
+            }
+        })
+        products.value = response.data.products
+
+    }
 
 
     onMounted(async() => {
-        eventBus.on('createCategory', async()=>{
-
+        await getProducts();
+        eventBus.on('createProduct', async()=>{
+            await getProducts();
         })
-        eventBus.on('createSubcategory', async()=>{
-
+        eventBus.on('updateProduct', async()=>{
+            await getProducts();
         })
 
     })
@@ -94,5 +144,26 @@
     .fade-enter-from,
     .fade-leave-to {
         opacity: 0;
+    }
+    thead td{
+        padding-top: 10px !important;
+        padding-right: 0;
+        padding-left: 0;
+        padding-bottom: 10px !important;
+    }
+    thead td{
+        border-bottom: #F1F2F4 3px solid;
+        border-top: #F1F2F4 3px solid;
+    }
+    table tr{
+        border-top: thin solid;
+        border-bottom: thin solid;
+    }
+    table{
+        border-collapse:separate;
+        border-spacing:0px 30px;
+    }
+    .price, .name, .color, .type, .date{
+        width: 120px;
     }
 </style>

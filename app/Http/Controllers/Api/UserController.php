@@ -43,7 +43,6 @@ class UserController extends Controller
         //     $lastAvatar = public_path("img/avatars/$user->avatar");
         //     unlink($lastAvatar);
         // }
-        $avatar = "http://127.0.0.1:8000/img/avatars/$avatar";
         User::findOrFail($id)
         ->update([
                 "avatar" => $avatar

@@ -38,7 +38,6 @@
 
 
     async function createSubcategory(id){
-        createSubcategoryModal = !createSubcategoryModal
         console.log(id);
         let response = await axios.post("/api/createCategory", {name: subcategory.value, typeProductId: id}, {
                 headers: {

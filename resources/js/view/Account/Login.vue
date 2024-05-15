@@ -54,8 +54,10 @@
     import Swal from 'sweetalert2'
     import { useUserStore } from '@/store/user-store';
     import eventBus from '@/eventBus'
-    import {useRouter} from 'vue-router'
+    import {useRouter, useRoute} from 'vue-router'
 
+    let route = useRoute();
+    console.log(route.name);
     let hiddenInput = ref(false);
     let email = ref([]);
     let password = ref([]);

@@ -9,6 +9,6 @@ class Specification extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "content"
+        "productId", "title", "content"
     ];
 }

@@ -30,6 +30,7 @@ Route::get('auth/google', [GoogleController::class, 'signInwithGoogle']);
 Route::get('auth/google/callback', [GoogleController::class, 'callbackToGoogle']);
 Route::get("getUserStore", [UserController::class, "getUserStore"]);
 Route::get("getAdminToken", [AdminController::class, "getAdminToken"]);
+Route::get("catalog/category={category}", [AdminController::class, "getCatalogCategory"]);
 
 
 
@@ -37,12 +38,20 @@ Route::get("getAdminToken", [AdminController::class, "getAdminToken"]);
 Route::middleware('auth:sanctum')->group(function(){
     Route::get("getCategories", [AdminController::class, "getCategories"]);
     Route::get("getProducts", [AdminController::class, "getProducts"]);
+    Route::get("getColor/id{id}", [AdminController::class, "getColor"]);
+    Route::get("getSlider/id{id}", [AdminController::class, "getSlider"]);
     Route::get("getUsers", [AdminController::class, "getUsers"]);
     Route::get("getOrders", [AdminController::class, "getOrders"]);
 
 
     Route::get("search/user_{query}", [AdminController::class, "searchUser"])->name("searchUser");
     Route::delete("deleteUser/id{id}", [AdminController::class, "deleteUser"])->name("deleteUser");
+
+    Route::post("createColor", [AdminController::class, "createColor"]);
+    Route::delete("deleteColor/id{id}", [AdminController::class, "deleteColor"]);
+
+    Route::post("createSlider", [AdminController::class, "createSlider"]);
+    Route::delete("deleteSlider/id{id}", [AdminController::class, "deleteSlider"]);
 
 
     Route::post("createProduct", [AdminController::class, 'createProduct'])->name("createProduct");

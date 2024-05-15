@@ -1,15 +1,19 @@
 <template>
-    <div>
-        cart
+    <div class="cont flex h-full w-full flex-wrap gap-[37.73px]">
+        <Product></Product>
+        <Product></Product>
+        <Product></Product>
+        <Product></Product>
+        <Product></Product>
+        <Product></Product>
     </div>
 </template>
 
-<script>
-    export default {
-        
-    }
+<script setup>
+    import Product from '../../sections/home/Product.vue'
+
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>

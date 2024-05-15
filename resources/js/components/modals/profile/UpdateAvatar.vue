@@ -1,36 +1,47 @@
 <template>
-    <button @click="updateAvatarModal = !updateAvatarModal" >Обновить</button>
+    <img @click="updateAvatarModal = !updateAvatarModal" src="/public/img/profile/Edit.svg" alt="" class="edit cursor-pointer">
 
-    <div v-if="updateAvatarModal" class="fixed inset-0 m-auto bg-black bg-opacity-60 z-10">
-        <div class="w-max fixed inset-0 m-auto z-20 flex justify-center items-center">
-            <div class="bg-white shadow-md w-[695px] h-[600px] px-5 py-5 flex flex-col just gap-6">
-                <div class="img flex w-full justify-end">
-                    <img class="close text-right cursor-pointer w-[20px]" @click="updateAvatarModal = !updateAvatarModal" src="../../../../../public/img/admin/Multiply.svg">
-                </div>
-                <form  class="flex flex-col h-full items-center justify-between gap-3">
-                    <div class="hero w-full">
-                        <label for="input-file" ref="inputFile" id="drop-area" @drop.prevent="onDrop">
-                            <input @change="getAvatar" type="file" name="avatar" id="input-file" hidden>
-                            <div ref="view" class="img-view py-5 cursor-pointer flex flex-col bg-white duration-200 hover:bg-[#DEFCFF] items-center w-full h-full rounded-md border border-[#151528]">
-                                <img src="../../../../../public/img/profile/Upload to the Cloud.svg" class="w-24" alt="">
-                                <p class="text-center">Перетащите файл сюда или кликните <br>чтобы загрузить изображение</p>
-                                <span class="duration-100">Загружайте изображение с рабочего стола</span>
-                            </div>
-                        </label>
+    <transition name="fade">
+        <div v-if="updateAvatarModal" class="fixed inset-0 m-auto bg-black bg-opacity-60 z-10">
+            <div class="w-max fixed inset-0 m-auto z-20 flex justify-center items-center">
+                <div class="bg-white shadow-md w-[695px] h-[600px] px-5 py-5 flex flex-col just gap-6">
+                    <div class="img flex w-full justify-end">
+                        <img class="close down text-right cursor-pointer w-[20px]" @click="updateAvatarModal = !updateAvatarModal" src="../../../../../public/img/admin/Multiply.svg">
                     </div>
-                    <button class="h-[70px] w-1/2 text-white rounded-md text-[24px] duration-300 bg-[#151528] hover:text-[#151528] hover:border hover:border-[#151528] hover:bg-white" @click="updateAvatar">
-                        Отправить
-                    </button>
-                </form>
+                    <form  class="flex flex-col h-full items-center justify-between gap-3">
+                        <div class="hero w-full">
+                            <label for="input-file" ref="inputFile" id="drop-area" @drop.prevent="onDrop">
+                                <input @change="getAvatar" type="file" name="avatar" id="input-file" hidden>
+                                <div ref="view" class="img-view py-5 cursor-pointer flex flex-col bg-white duration-200 hover:bg-[#DEFCFF] items-center w-full h-full rounded-md border border-[#151528]">
+                                    <img src="../../../../../public/img/profile/Upload to the Cloud.svg" class="w-24" alt="">
+                                    <p class="text-center">Перетащите файл сюда или кликните <br>чтобы загрузить изображение</p>
+                                    <span class="duration-100">Загружайте изображение с рабочего стола</span>
+                                </div>
+                            </label>
+                        </div>
+                        <button class="h-[70px] w-1/2 text-white rounded-md text-[24px] duration-300 bg-[#151528] hover:text-[#151528] hover:border hover:border-[#151528] hover:bg-white" @click="updateAvatar">
+                            Отправить
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</template>
+        
+    </transition>
+    </template>
 <style scoped>
-
     .hero:hover span{
         color: #151528;
         font-weight: 700;
+    }
+    .fade-enter-active,
+    .fade-leave-active {
+        transition: opacity 0.2s ease;
+    }
+
+    .fade-enter-from,
+    .fade-leave-to {
+        opacity: 0;
     }
 </style>
 <script setup>

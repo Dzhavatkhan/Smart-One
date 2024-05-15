@@ -1,123 +1,48 @@
 <template>
-    <div>
-        <img :src="userStore.avatar" class="h-48" alt="" srcset="">
-        <updateAvatar></updateAvatar>
-        <router-link to="/profile/me" >Личный кабинет</router-link>
-        <router-link to="/profile/favorite">Избранное</router-link>
-        <router-link to="/profile/cart">Корзина</router-link>
-        <button @click="logout">Выйти</button>
-        <button @click="deleteAccount" class="deleteAccount">Удалить аккаунт</button>
+    <Header></Header>
+    <div class="px-[200px] w-full h-full flex gap-[90px] pt-[139px] pb-[93px]">
+
+        <div class="flex flex-col gap-4 h-[133px] w-[247px]">
+            <router-link to="/profile/me" class="flex flex-col gap-[13px] w-full">
+                <div class="route w-full">
+                    Личный кабинет
+                </div>
+                <div class="lane bg-[#A4A4A4] h-[1px] w-full"></div>
+                
+            </router-link>
+            <router-link class="flex flex-col gap-[13px] w-full" to="/profile/favorite">
+                <div class="route w-full">
+                    Избранное
+                </div>
+                <div class="lane bg-[#A4A4A4] h-[1px] w-full"></div>
+            </router-link>
+            <router-link class="flex flex-col gap-[13px] w-full" to="/profile/cart">
+                <div class="route w-full">Корзина</div>
+                <div class="lane bg-[#A4A4A4] h-[1px] w-full"></div>
+            </router-link>
+        </div>
+        <div id="ProfileView">
+            <router-view ></router-view>
+        </div>
     </div>
-    <div id="ProfileView">
-        <router-view></router-view>
-    </div>
+
+    <Footer></Footer>
 </template>
 
 <script setup>
-    import { useUserStore } from '@/store/user-store';
-    import eventBus from '@/eventBus';
-    import UpdateAvatar from '../../components/modals/profile/UpdateAvatar.vue'
-    import { useRouter } from 'vue-router';
-    import Swal from 'sweetalert2';
-    import { ref } from 'vue';
-
-    const userStore = useUserStore();
-    const router = useRouter();
-    let updateAvatarModal = ref(false);
-    let avatar = `../../../../public/img/avatars/${userStore.avatar}`
-
-    function notUserStore(){
-        if (userStore.id == null) {
-            let response = axios.get("/api/getUserStore", {
-                headers: {
-                'Content-Type': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest',
-                }})
-            .then((result) => {
-                console.log(result);
-                userStore.setUserDetails(result)
-                eventBus.emit('notUserStore', '')
-            }).catch((err) => {
-                console.log(err);
-            });
-        }
-    }
-    async function deleteAccount(){
-        Swal.fire({
-                title: 'Вы уверены?',
-                icon: 'warning',
-                position: "center",
-                showCancelButton: true,
-                cancelButtonText: "Нет",
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Да"
-            }).then(async(result) => {
-                let response = await axios.delete("/api/deleteUser", {
-                    headers:
-                    {
-                        Authorization: `Bearer ${userStore.token}`,
-                    }
-                })
-                .then((result) => {
-                    userStore.clearUser();
-                    router.push("/")
-                    Swal.fire({
-                        title: result.data.message,
-                        icon: 'success',
-                        toast: true,
-                        position: "bottom-right",
-                        timer: 3000,
-                        showConfirmButton: false,
-                        confirmButtonText: false
-                    })
-                }).catch((err) => {
-                    console.log(err);
-                });
-            })
-
-    }
-    async function logout(){
-        console.log(userStore.token);
-        let response = await axios.get("api/logout", {
-            headers:
-            {
-                Authorization: `Bearer ${userStore.token}`,
-            }
-        })
-        .then((result) => {
-            userStore.clearUser();
-            router.push("/");
-            Swal.fire({
-                title: 'Вы вышли из аккаунта',
-                icon: 'success',
-                toast: true,
-                position: "bottom-right",
-                timer: 3000,
-                showConfirmButton: false,
-                confirmButtonText: false
-            })
-
-        }).catch((err) => {
-            Swal.fire({
-                title: `${err.response.data}`,
-                icon: 'error',
-                toast: true,
-                position: "bottom-right",
-                showConfirmButton: true,
-                confirmButtonText: "Ок"
-            })
-        });
-    }
+    import Header from './../../components/sections/home/Header.vue';
+    import Footer from './../../components/sections/home/Footer.vue';
 
 
-    notUserStore();
 </script>
 
 <style scoped>
 .router-link-active {
-    background-color: white;
-    border-top: 2px solid white;
-    color: #535353;
+    color: black;
+    font-family: "Roboto";
+    font-weight: 700;
+}
+.router-link-active .lane{
+    background-color: black;
 }
 </style>

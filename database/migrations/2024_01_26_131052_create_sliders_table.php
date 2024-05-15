@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('sliders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("product_id")->constrained("products");
-            $table->string("slider_item");
+            $table->foreignId("productId")->constrained("products")->onDelete('cascade');
+            $table->foreignId("colorId")->constrained("colors")->onDelete('cascade');
+            $table->string("slider");
             $table->timestamps();
         });
     }

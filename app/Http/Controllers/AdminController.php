@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\CategoryResource;
+use App\Http\Resources\ProductResource;
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Color;
 use App\Models\Favorite;
 use App\Models\Order;
 use App\Models\Product;
@@ -38,10 +40,26 @@ class AdminController extends Controller
     }
     public function getProducts()
     {
-        $products = Product::all();
+        $products = ProductResource::collection(Product::all());
 
         return response()->json([
             "products" => $products,
+        ]);
+    }
+    public function getColor($id)
+    {
+        $colors = Product::with("getColor")->where("id", $id)->get();
+
+        return response()->json([
+            "colors" => $colors,
+        ]);
+    }
+    public function getSlider($id)
+    {
+        $sliders = Slider::where("colorId", $id)->get();
+
+        return response()->json([
+            "sliders" => $sliders,
         ]);
     }
     public function getUsers()
@@ -61,49 +79,96 @@ class AdminController extends Controller
         ]);
     }
 
+    public function getCatalogCategory($category){
+        $catalog = TypeProduct::with("lists")->where("name", $category)->get();
+
+        return response()->json([
+            "catalog" => $catalog
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
     public function createProduct(Request $request)
     {
         try {
-
             $data = $request->all([
-                "name", "price", "image", "percent", "typeProductId", "categoryId", "colorName"
+                "name", "price", "image", "percent", "description", "brand", "specification",  "typeProductId", "categoryId", "color"
             ]);
+
+            $image = $data['image']->getClientOriginalName();
             $product = Product::create([
                 "name" => $data['name'],
                 "price" => $data["price"],
-                "image" => $data["image"],
+                "description" => $data["description"],
                 "percent" => $data["percent"],
+                "brand" => $data['brand']
             ]);
-            $specification = Specification::create([
+            Color::create([
                 "productId" => $product->id,
-                "title" => $request->specificationTitle,
-                "content" => $request->specificationContent
+                "color" => $data["color"],
+                "image" => $image
             ]);
+            $specification_arr = json_decode($request->specification);
+            $count = count($specification_arr);
+            for ($item=0; $item < count($specification_arr); $item++) {
+                $title = $specification_arr[$item]->title;
+                $body = $specification_arr[$item]->body;
+                $specification = Specification::create([
+                    "productId" => $product->id,
+                    "title" => "$title",
+                    "content" => "$body"
+                ]);
+            }
             $createProductCategories = ProductCategory::create([
                 "productId" => $product->id,
                 "typeProductId" => $data['typeProductId'],
                 "categoryId" => $data['categoryId']
             ]);
-            //need get photos for slider
-            //$slider = expload(',", $photos)
-            //for $index........{
-                // Slider::create([
-                //     "image" => $slider[$index],
-                //     "productId" => $product->id
-                // ]);
-             //}
+            $data['image']->move(public_path("img/products"), $image);
             return response()->json([
                 "message" => "Товар создан"
             ], 201);
         } catch (\ErrorException $error) {
             return response()->json([
-                "message" => "$error"
+                "message" => $error->getMessage()
             ], 500);
         }
 
+    }
+    public function createColor(Request $request){
+        try {
+            $colorData = $request->all([
+                "color", "image", "productId"
+            ]);
+            $image = $colorData['image']->getClientOriginalName();
+            $colorData['image'] = $image;
+            Color::firstOrCreate($colorData);
+            $request->image->move(public_path("img/products"), $image);
+            return response()->json([
+                "message" => "Цвет добавлен"
+            ]);
+        } catch (\Error $error) {
+            return response()->json([
+                "message" => $error->getMessage()
+            ]);
+        }
+    }
+    public function createSlider(Request $request){
+        try {
+            $sliderData = $request->all([
+                "productId", "slider", "colorId"
+            ]);
+            $image = $sliderData['slider']->getClientOriginalName();
+            $sliderData['slider'] = $image;
+            Slider::firstOrCreate($sliderData);
+            $request->slider->move(public_path("img/products/slider"), $image);
+        } catch (\ErrorException $error) {
+            return response()->json([
+                "message" => $error->getMessage()
+            ]);
+        }
     }
     public function createCategory(Request $request)
     {
@@ -154,7 +219,40 @@ class AdminController extends Controller
      */
     public function updateProduct(Request $request, string $id)
     {
-        //
+        try {
+            $updateProductData = $request->all([
+                "name", "typeProductId", "brand", "categoryId", "description", "price", "percent"
+            ]);
+            $updateImageData = $request->all(["image", "color"]);
+            if ($request->specification) {
+                $specification_arr = json_decode($request->specification);
+                $count = count($specification_arr);
+                for ($item=0; $item < count($specification_arr); $item++) {
+                    $title = $specification_arr[$item]->title;
+                    $body = $specification_arr[$item]->body;
+                    $specification = Specification::where("productId", $id)->update([
+                        "productId" => $id,
+                        "title" => "$title",
+                        "content" => "$body"
+                    ]);
+                }
+             }
+            if ($updateProductData == null) {
+                Product::findOrFail($id)
+                ->update($updateProductData);
+            }
+            if ($updateImageData == null) {
+                Color::where("productId", $id)
+                ->update($updateImageData);
+            }
+            return response()->json([
+                "message" => "Товар обновлен"
+            ]);
+        } catch (\ErrorException $error) {
+            return response()->json([
+                "message" => $error->getMessage()
+            ]);
+        }
     }
     public function updateCategory(Request $request, string $id)
     {
@@ -215,6 +313,40 @@ class AdminController extends Controller
             return response()->json([
                 "message" => "$error"
             ], 500);
+        }
+    }
+    public function deleteColor($id){
+        try {
+            $color = Color::findOrFail($id);
+            if($color){
+                if (file_exists(public_path("img/products/$color->image"))) {
+                    $color->delete();
+                }
+                return response()->json([
+                    "message" => "Цвет удален"
+                ]);
+            }
+        } catch (\ErrorException $error) {
+            return response()->json([
+                "message" => $error->getMessage()
+            ]);
+        }
+    }
+    public function deleteSlider($id){
+        try {
+            $slider = Slider::findOrFail($id);
+            if($slider){
+                if (file_exists(public_path("img/products/slider/$slider->slider"))) {
+                    $slider->delete();
+                }
+                return response()->json([
+                    "message" => "Цвет удален"
+                ]);
+            }
+        } catch (\ErrorException $error) {
+            return response()->json([
+                "message" => $error->getMessage()
+            ]);
         }
     }
     public function deleteUser($id)

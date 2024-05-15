@@ -27,8 +27,9 @@
                     </router-link>
                 </nav>
                 <div class="admin flex flex-col items-center">
-                    <img src="" alt="">
-                    <p>name</p>
+                    <img class="w-[50px] h-[40px] rounded-lg " src="/public/img/avatars/default.png" alt="">
+                    <p>{{userStore.name}}</p>
+                    <p class="text-red-600 cursor-pointer" @click="logout">Выйти</p>
                 </div>
             </div>
 
@@ -40,7 +41,42 @@
 </template>
 
 <script setup>
+    import {useUserStore} from '@/store/user-store'
+    import Swal from 'sweetalert2';
 
+    const userStore = useUserStore();
+    async function logout(){
+        console.log(userStore.token);
+        let response = await axios.get("api/logout", {
+            headers:
+            {
+                Authorization: `Bearer ${userStore.token}`,
+            }
+        })
+        .then((result) => {
+            userStore.clearUser();
+            router.push("/");
+            Swal.fire({
+                title: 'Вы вышли из аккаунта',
+                icon: 'success',
+                toast: true,
+                position: "bottom-right",
+                timer: 3000,
+                showConfirmButton: false,
+                confirmButtonText: false
+            })
+
+        }).catch((err) => {
+            Swal.fire({
+                title: `${err.response.data}`,
+                icon: 'error',
+                toast: true,
+                position: "bottom-right",
+                showConfirmButton: true,
+                confirmButtonText: "Ок"
+            })
+        });
+    }
 </script>
 
 <style scoped>
