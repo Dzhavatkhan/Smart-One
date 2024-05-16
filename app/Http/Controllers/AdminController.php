@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Http\Resources\CategoryResource;
 use App\Http\Resources\ProductResource;
 use App\Models\Cart;
@@ -90,7 +91,7 @@ class AdminController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function createProduct(Request $request)
+    public function createProduct(ProductRequest $request)
     {
         try {
             $data = $request->all([

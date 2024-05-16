@@ -33,6 +33,10 @@
                         Астрахань
                     </div>
                 </div>
+                <div class="user-info flex gap-[57px]">
+                        <button class="text-red-400" @click="logout">Выйти</button>
+                </div>
+
             </div>
         </div>
         <div class="orders flex flex-col gap-[22px] w-[612px] min-h-[186px] max-h-[298px] pb-[54px] px-7 py-[18px] shadow-md border-t border-gray-200 bg-[#FBFBFB]">

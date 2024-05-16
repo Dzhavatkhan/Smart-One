@@ -43,8 +43,10 @@
 <script setup>
     import {useUserStore} from '@/store/user-store'
     import Swal from 'sweetalert2';
+    import { useRouter } from 'vue-router';
 
     const userStore = useUserStore();
+    const router = useRouter();
     async function logout(){
         console.log(userStore.token);
         let response = await axios.get("api/logout", {
