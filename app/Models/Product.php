@@ -19,7 +19,7 @@ class Product extends Model
         return $this->hasMany(Slider::class, "productId");
     }
     public function getReviews(){
-        return $this->hasMany(Review::class);
+        return $this->hasMany(Review::class, "productId");
     }
     public function getColor(){
         return $this->hasMany(Color::class, "productId");

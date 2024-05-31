@@ -21,9 +21,7 @@
                     }
                 var x;
                 image.value = document.querySelectorAll(".slider-item");
-                console.log(image.value);
                 const img = document.querySelectorAll(".slider-item");
-                console.log(image.value.length);
                 for(x = 0; x < image.value.length; x++){
                         image.value[x].style.display = "none";
                     }

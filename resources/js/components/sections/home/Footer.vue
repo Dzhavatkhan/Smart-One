@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full h-[285px] bg-[#2C3238] flex flex-col justify-around">
+    <div class="w-full h-[285px] bg-[#2C3238] flex flex-col justify-around max-sm:hidden">
         <div class="footerInfo  px-[200px] flex justify-between items-center">
             <img src="/public/img/home/header/LogoDark.svg" alt="">
             <div class="info flex gap-[121px]">
@@ -54,6 +54,23 @@
             © 2024 Компания Smart One. Администрация Сайта не несет ответственности за размещаемые Пользователями материалы (в т.ч. информацию и изображения), их содержание и качество.
         </div>
     </div>
+
+    <div class="mobile text-white hidden pl-[23px] pt-[25px] pr-7 w-full h-[245px] bg-[#2C3238]  flex-col gap-[25px] max-sm:flex">
+        <div class="text-start text-[24px] title">
+            Контакты
+        </div>
+        <div class="info font-[Roboto] flex justify-between w-full pb-10 border-b text-[16px] border-[#F4F4F4]">
+            <div class="phone">+79374823</div>
+            <select name="" id="" class="city outline-none bg-transparent w-[99px]">
+                <option selected value="">Астрахань</option>
+            </select>
+        </div>
+        <div class="w-full font-[Roboto] text-white text-center text-[12px] flex flex-col gap-[5px]">
+            <div class="">Политика обработки персональных данных</div>
+            <div>© Smart One, 2020–2024</div>
+        </div>
+    </div>
+
 </template>
 
 <script setup>

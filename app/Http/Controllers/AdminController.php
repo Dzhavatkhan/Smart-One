@@ -193,10 +193,13 @@ class AdminController extends Controller
     public function createTypeProduct(Request $request)
     {
         try {
+            $image = $request->file("image")->getClientOriginalName();
             $typeProduct = $request->name;
             $typeProduct = TypeProduct::create([
-                "name" => $typeProduct
+                "name" => $typeProduct,
+                "image" => $image
             ]);
+            $request->file("image")->move(public_path("img/admin/type"), $image);
             return response()->json([
                 "message" => "Тип продукта создан"
             ], 201);

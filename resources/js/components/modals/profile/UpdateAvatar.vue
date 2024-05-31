@@ -1,18 +1,19 @@
 <template>
-    <img @click="updateAvatarModal = !updateAvatarModal" src="/public/img/profile/Edit.svg" alt="" class="edit cursor-pointer">
+    <img @click="updateAvatarModal = !updateAvatarModal" src="/public/img/profile/Group 17.svg" alt="" class="edit w-[30px] relative left-16 bottom-7 cursor-pointer max-sm:hidden">
+    <img @click="updateAvatarModal = !updateAvatarModal" src="/public/img/profile/Group 16.svg" alt="" class=" hidden edit w-[30px] relative left-8 bottom-5 cursor-pointer max-sm:block">
 
     <transition name="fade">
         <div v-if="updateAvatarModal" class="fixed inset-0 m-auto bg-black bg-opacity-60 z-10">
             <div class="w-max fixed inset-0 m-auto z-20 flex justify-center items-center">
-                <div class="bg-white shadow-md w-[695px] h-[600px] px-5 py-5 flex flex-col just gap-6">
+                <div class="bg-white shadow-md w-[695px] h-[600px] px-5 py-5 flex flex-col just gap-6 max-sm:w-[400px]">
                     <div class="img flex w-full justify-end">
                         <img class="close down text-right cursor-pointer w-[20px]" @click="updateAvatarModal = !updateAvatarModal" src="../../../../../public/img/admin/Multiply.svg">
                     </div>
                     <form  class="flex flex-col h-full items-center justify-between gap-3">
-                        <div class="hero w-full">
-                            <label for="input-file" ref="inputFile" id="drop-area" @drop.prevent="onDrop">
+                        <div class="hero h-full w-full">
+                            <label for="input-file" class="" ref="inputFile" id="drop-area" @drop.prevent="onDrop">
                                 <input @change="getAvatar" type="file" name="avatar" id="input-file" hidden>
-                                <div ref="view" class="img-view py-5 cursor-pointer flex flex-col bg-white duration-200 hover:bg-[#DEFCFF] items-center w-full h-full rounded-md border border-[#151528]">
+                                <div ref="view" class="img-view py-5 cursor-pointer flex flex-col bg-white duration-200 hover:bg-[#DEFCFF] items-center justify-center w-full h-full rounded-md border border-[#151528]">
                                     <img src="../../../../../public/img/profile/Upload to the Cloud.svg" class="w-24" alt="">
                                     <p class="text-center">Перетащите файл сюда или кликните <br>чтобы загрузить изображение</p>
                                     <span class="duration-100">Загружайте изображение с рабочего стола</span>
@@ -26,7 +27,7 @@
                 </div>
             </div>
         </div>
-        
+
     </transition>
     </template>
 <style scoped>
@@ -50,6 +51,8 @@
     import { useUserStore } from '@/store/user-store';
 
     let userStore = useUserStore();
+    const events = ['dragenter', 'dragover', 'dragleave', 'drop']
+    const emit = defineEmits(['files-dropped'])    
     let updateAvatarModal = ref(false);
     let avatar = ref(null);
     const view = ref(null)
@@ -60,13 +63,13 @@
     function getAvatar(e){
         avatar.value = e.target.files[0]
         const blob = new Blob([`${e.target.files[0]}`], { type: 'text/plain' });
-
         let background = URL.createObjectURL(e.target.files[0])
         view.value.style.backgroundRepeat = "no-repeat"
         view.value.style.width = "100%";
         view.value.style.backgroundSize = "100%";
         view.value.style.backgroundImage = `url(${background})`
-        view.value.style.height = "400px";
+        view.value.style.height = "100%";
+        view.value.style.padding = "0";
         view.value.textContent= ''
         console.log(background);
         console.log(avatar.value);
@@ -96,7 +99,6 @@
 
     }
 
-    const emit = defineEmits(['files-dropped'])
 
     function onDrop(e) {
         emit('files-dropped', [...e.dataTransfer.files])
@@ -105,7 +107,8 @@
         let background = URL.createObjectURL(e.dataTransfer.files[0])
         avatar.value = e.dataTransfer.files[0];
         view.value.style.backgroundImage = `url(${background})`
-        view.value.style.height = "400px";
+        view.value.style.height = "100%";
+        view.value.style.padding = "0";
         view.value.textContent= ''
         console.log(avatar.value);
         console.log(background);
@@ -115,7 +118,6 @@
         e.preventDefault()
     }
 
-    const events = ['dragenter', 'dragover', 'dragleave', 'drop']
 
     onMounted(() => {
         events.forEach((eventName) => {

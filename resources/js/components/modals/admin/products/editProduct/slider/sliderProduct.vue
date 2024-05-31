@@ -14,7 +14,7 @@
                     </div>
                     <form class="content h-2/3 flex flex-col justify-between gap-10">
                         <select v-model="selectedColor" @change="getSlider" name="" class="w-full h-[37px] border border-[#151528]">
-                            <option v-for="color in colors" :key="color.id" :value="color">{{color.color}}</option>
+                            <option :selected="colors[0]" v-for="color in colors" :key="color.id" :value="color">{{color.color}}</option>
                         </select>
                         <div class="color_cont flex flex-wrap gap-5" v-if="sliders.length>0">
                             <div class="img-input w-1/3 h-[171px]">
@@ -87,7 +87,10 @@
         console.log(colors.value);
     }
     async function getSlider(){
-        console.log(selectedColor.value.id);
+        if (selectedColor.value.length == 0) {
+            selectedColor.value = colors.value[0]
+            console.log(selectedColor.value);
+        }
         let response = await axios.get(`/api/getSlider/id${selectedColor.value.id}`, {
             headers: {
                 Authorization: `Bearer ${userStore.token}`,
@@ -97,7 +100,6 @@
     }
     async function createSlider(){
         let formData = new FormData();
-        console.log(sliderImage.value);
         formData.append("slider", sliderImage.value || '');
         formData.append("colorId", selectedColor.value.id);
         formData.append("productId", props.product.id);
@@ -157,6 +159,7 @@
 
     onMounted(async() => {
         await getColor(props.product.id);
+        await getSlider(selectedColor.value.id)
         eventBus.on('createSlider', async()=>{
             await getSlider();
         })

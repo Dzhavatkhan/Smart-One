@@ -108,11 +108,8 @@
     async function getTab(){
         if (query.value.length == 0) {
             query.value = document.querySelector(".active").textContent
-            console.log(document.querySelector(".active").textContent);
         }
-        console.log(query.value);
         let response = await axios.get(`/api/catalog/category=${query.value}`)
-        console.log(response.data.catalog);
         categories.value = response.data.catalog
     }
     onMounted(async() => {

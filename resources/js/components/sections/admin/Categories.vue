@@ -20,8 +20,9 @@
             <ul class="list flex flex-col gap-5">
                 <li class="flex flex-col gap-3" v-for="(block, index) in blocks" :key="index">
                     <div class="shadow border border-t-gray-100 h-14 flex justify-between items-center px-5" >
-                        <div class="flex gap-3">
+                        <div class="flex gap-3 items-center">
                             <input type="checkbox" @click="selectCategory(block)" v-model="block.selected" class="w-4" >
+                            <img class="h-full w-full" :src="'/img/admin/type/' + block.image" alt="">
                             <p >{{ block.name}}</p>
                         </div>
                         <div class="btns flex gap-3">
@@ -88,6 +89,7 @@
             if (!blocks.value.includes(categories[category])) {
                 arr.push({
                     id: categories[category].id,
+                    image: categories[category].image,
                     name: categories[category].name,
                     lists: categories[category].lists,
                     isShow: false,

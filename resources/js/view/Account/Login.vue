@@ -19,7 +19,11 @@
                     <div @click="loginWithYandex" class="api-element max-sm:border-t max-sm:border-gray-200 max-sm:h-[60px] max-sm:items-center duration-200 hover:scale-110 rounded-md cursor-pointer px-2 gap-6  w-[210px] max-sm:w-full h-9 shadow-md flex items-center max-sm:gap-0">
                         <img src="../../../../public/img/auth-components/login/yandex-logo.svg" class="yandex w-[27px]" alt=""><img src="" alt="">
                         <div class="api-element-name text-[16px] font-[Roboto] flex max-sm:hidden"><p class="text-[#FC3F1D]" >Я</p>ндекс</div>
-                        <div class="div hidden max-sm:flex items-center justify-center w-full h-full"><p>Яндекс</p></div>
+                        <div class="div hidden max-sm:flex items-center justify-center w-full h-full">
+                            <p>
+                                <p class="ya">Я</p>ндекс
+                            </p>
+                        </div>
                     </div>
                 </div>
 
@@ -71,6 +75,7 @@
 
     const loginWithGoogle = async () => {
         try {
+            userStore.clearUser();
             window.location = '/api/auth/google';
         } catch (error) {
             console.error(error);
@@ -79,6 +84,7 @@
 
     const loginWithYandex = async () => {
         try {
+            userStore.clearUser();
             window.location = '/api/auth/yandex';
         } catch (error) {
             console.error(error);
@@ -96,6 +102,7 @@
     }
 
     async function sendForm (){
+        userStore.clearUser();
         let response = await axios.post("/api/login", {
             email: email.value,
             password: password.value
@@ -125,3 +132,9 @@
         });
     }
 </script>
+
+<style scoped>
+    .ya{
+        color: #FC3F1D !important;
+    }
+</style>

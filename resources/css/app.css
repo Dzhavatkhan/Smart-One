@@ -16,4 +16,63 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: "Roboto";
+}
+
+
+.swiper-pagination-bullet {
+    background-color: #151528 !important;
+}
+.swiper-pagination-bullet-active {
+    background-color: #05DBF2 !important;
+}
+.swiper-button-next{
+    width: 25px !important;
+    height: 25px !important;
+    border-radius: 100%;
+    background-color: #fff;
+    position: absolute !important;
+    top: 55% !important;
+    right: -1px !important;
+    box-shadow: 0 -6px 15px -3px rgb(0 0 0 / 0.1), 0 6px 6px -4px rgb(0 0 0 / 0.1) !important;
+}
+.swiper-button-next::after{
+    content: '' !important;
+    width: 25px !important;
+    height: 25px !important;
+    border-radius: 100%;
+    background-color: #fff;
+    box-shadow: 0 -6px 15px -3px rgb(0 0 0 / 0.1), 0 6px 6px -4px rgb(0 0 0 / 0.1) !important;
+}
+.swiper-button-prev{
+    content: '' !important;
+    width: 25px !important;
+    height: 25px !important;
+    border-radius: 100%;
+    background-color: #fff !important;
+    position: absolute !important;
+    left: -10px !important;
+    top: 55% !important;
+    box-shadow: 0 -6px 15px -3px rgb(0 0 0 / 0.1), 0 6px 6px -4px rgb(0 0 0 / 0.1) !important;
+}
+.swiper-button-prev::after{
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    border-radius: 100%;
+    background-color: #fff;
+    box-shadow: 0 -6px 15px -3px rgb(0 0 0 / 0.1), 0 6px 6px -4px rgb(0 0 0 / 0.1) !important;
+}
+.swipSlider{
+    width: 274px !important;
+}
+.mySwiper2{
+    width: 274px !important;
+}
+.otherImg div{
+    justify-content: space-between !important;
+}
+.otherImg img{
+    margin: 0 !important;
 }

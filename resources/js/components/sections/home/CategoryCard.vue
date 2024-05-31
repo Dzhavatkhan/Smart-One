@@ -1,5 +1,5 @@
 <template>
-    <section class="flex px-[200px] flex-col gap-[42px] mb-[108px]">
+    <section class="flex px-[200px] flex-col gap-[42px] mb-[108px] max-sm:hidden">
         <div class="title text-[#4E4C4C] text-[36px]">
             Популярные категории
         </div>
@@ -34,6 +34,35 @@
             <div id="right" class=" controller right"></div>
           </div>
 
+    </section>
+    <section class="hidden flex-col gap-[14px] px-5 w-full max-sm:flex">
+        <div class="title text-[#4E4C4C] text-[24px]">Категории</div>
+        <div class="categories h-[300px] gap-5 flex w-full justify-between flex-wrap">
+            <div class="category-card h-[112px] w-[185px] shadow-category px-[3px] pt-4 border-t border-gray-100 flex flex-col">
+                <div class="category-image w-full h-[55px] flex justify-center items-center bg-[#F4F4F4]">
+                    <img src="/public/img/home/mobile/SmartPhoneMobile.png" alt="">
+                </div>
+                <div class="category-name text-[14px] font-[Roboto] flex items-center justify-center h-full w-full text-center">Смартфоны</div>
+            </div>
+            <div class="category-card h-[112px] w-[185px] shadow-category px-[3px] pt-4 border-t border-gray-100 flex flex-col">
+                <div class="category-image w-full h-[55px] flex justify-center items-center bg-[#F4F4F4]">
+                    <img src="/public/img/home/mobile/Laptop.png" alt="">
+                </div>
+                <div class="category-name text-[14px] font-[Roboto] flex items-center justify-center  h-full w-full text-center">Ноутбуки</div>
+            </div>
+            <div class="category-card h-[112px] w-[185px] shadow-category px-[3px] pt-4 border-t border-gray-100 flex flex-col">
+                <div class="category-image w-full h-[55px] flex justify-center items-center bg-[#F4F4F4]">
+                    <img src="/public/img/home/mobile/Pad.png" alt="">
+                </div>
+                <div class="category-name text-[14px] max-h-[40px] font-[Roboto] flex items-center justify-center h-full w-full text-center">Планшеты</div>
+            </div>
+            <div class="category-card h-[112px] w-[185px] shadow-category px-[3px] pt-4 border-t border-gray-100 flex flex-col">
+                <div class="category-image w-full h-[55px] flex justify-center items-center bg-[#F4F4F4]">
+                    <img src="/public/img/home/mobile/Smartwatch screen digital device.png" alt="">
+                </div>
+                <div class="category-name text-[14px] font-[Roboto] flex items-center justify-center h-full w-full text-center">Смарт-часы</div>
+            </div>
+        </div>
     </section>
 </template>
 

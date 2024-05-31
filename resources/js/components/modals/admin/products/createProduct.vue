@@ -7,8 +7,8 @@
             <div class="w-max fixed inset-0 m-auto z-20 flex justify-center items-center">
                 <div class="bg-white shadow-md w-[695px] h-[900px] px-10 py-5 flex flex-col just gap-3">
                     <div class="img flex w-full justify-end">
-                        <img class="close text-right cursor-pointer w-[20px]" @click="createProductModal = !createProductModal; console.log(createProductModal)" src="/public/img/admin/Multiply.svg">
-                    </div>
+                        <img class="close down text-right cursor-pointer w-[20px]" @click="createProductModal = !createProductModal" src="/public/img/admin/Multiply.svg">
+                   </div>
                     <div class="modal-content h-full overflow-auto  flex flex-col gap-10 items-center">
                         <div class="title text-[32px] text=[#151528] w-full text-center">
                             Создать товар

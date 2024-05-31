@@ -4,10 +4,12 @@ import Admin from "../view/Admin/Index.vue"
 import Registration from "../view//Account/Registration.vue"
 import Profile from "../view//Account/Profile.vue"
 import Login from "../view//Account/Login.vue"
-
+import Catalog from '../view/Catalog/Index.vue'
+import Result from '../view/Catalog/Result.vue'
 import ProfileSection from "../components/sections/profile/Profile.vue"
 import FavoriteSection from "../components/sections/profile/Favorite.vue"
 import CartSection from "../components/sections/profile/Cart.vue"
+import Product from "../view/Product/Index.vue";
 
 import AdminUsersSection from "../components/sections/admin/Users.vue";
 import AdminOrdersSection from "../components/sections/admin/Orders.vue";
@@ -20,7 +22,10 @@ let routes = [
     {
         path: "/",
         component: Home,
-        name: 'home'
+        name: 'home',
+        children: [
+
+        ]
     },
     {
         path: "/registration",
@@ -60,6 +65,12 @@ let routes = [
         ]
     },
     {
+        path: "/product/id:id",
+        component: Product,
+        name: 'Product',
+        props: true
+    },
+    {
         path: "/profile",
         component: Profile,
         name: 'Profile',
@@ -81,7 +92,23 @@ let routes = [
             },
         ]
     },
-
+    {
+        path: "/catalog",
+        component: Catalog,
+        name: 'catalog'
+    },
+    {
+        path: "/catalog/:category/",
+        component: Result,
+        name: 'result',
+        props: true
+    },
+    {
+        path: "/catalog/:category/:subcategory",
+        component: Result,
+        name: 'result2',
+        props: true
+    },
 ]
 
 

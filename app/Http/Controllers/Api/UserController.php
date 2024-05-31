@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProductResource;
 use App\Models\Cart;
 use App\Models\Favorite;
+use App\Models\Product;
+use App\Models\TypeProduct;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,15 +26,9 @@ class UserController extends Controller
             "token" => $token
         ]);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-
-
-    /**
-     * Update the specified resource in storage.
-     */
+    public function getCatalogResult($category,$subcategory){
+        $products = Product::where();
+    }
     public function updateInfo(Request $request)
     {
         //
@@ -39,13 +36,14 @@ class UserController extends Controller
     public function updateAvatar(Request $request, $id)
     {
         $avatar = $request->file("avatar")->getClientOriginalName();
-        // if (file_exists(public_path("img/avatars/$user->avatar"))) {
-        //     $lastAvatar = public_path("img/avatars/$user->avatar");
-        //     unlink($lastAvatar);
-        // }
+        $user = Auth::user();
+        if (file_exists(public_path($user->avatar))) {
+            $lastAvatar = public_path($user->avatar);
+            unlink($lastAvatar);
+        }
         User::findOrFail($id)
         ->update([
-                "avatar" => $avatar
+                "avatar" => "/img/avatars/$avatar"
         ]);
         $request->file("avatar")->move(public_path("img/avatars"), $avatar);
         return response()->json([
@@ -67,6 +65,18 @@ class UserController extends Controller
         // $user->delete();
         return response()->json([
             "message" => "$user->name, Вы удалены"
+        ]);
+    }
+    public function search($query){
+        $products = ProductResource::collection(Product::whereRaw("name LIKE '%$query%'")->orWhereRaw("id LIKE '%$query%'")->get());
+        $category = TypeProduct::whereRaw("name LIKE '%$query%';")->get();
+        $results = [
+            "products" => $products,
+            "categories" => $category
+        ];
+
+        return response()->json([
+            "results" => $results
         ]);
     }
 }

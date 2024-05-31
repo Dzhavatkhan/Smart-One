@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('type_products', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
+            $table->string("image")->nullable();
+            $table->string("name")->nullable();
             $table->timestamps();
         });
     }

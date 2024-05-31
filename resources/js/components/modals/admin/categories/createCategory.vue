@@ -6,15 +6,25 @@
     <transition name="fade">
         <div v-show="createCategoryModal" class="fixed inset-0 m-auto bg-black bg-opacity-60 z-10">
             <div class="w-max fixed inset-0 m-auto z-20 flex justify-center items-center">
-                <div class="bg-white shadow-md w-[695px] h-[400px] px-10 py-5 flex flex-col just gap-3">
+                <div class="bg-white shadow-md w-[695px] h-[700px] max-h-full px-10 py-5 flex flex-col gap-3">
                     <div class="img flex w-full justify-end">
                         <img class="close text-right cursor-pointer w-[20px]" @click="createCategoryModal = !createCategoryModal" src="/public/img/admin/Multiply.svg">
                     </div>
                     <div class="modal-content h-64 flex flex-col gap-10  justify-center items-center">
-                        <div class="title text-[32px] text=[#151528] w-full text-center">
+                        <div class="title text-[32px] text=[#151528] w-1/2 text-center">
                             Создать категорию
                         </div>
-                        <form class="flex flex-col w-full gap-20 items-center justify-center">
+                        <form class="flex flex-col h-full w-full gap-20 items-center">
+                            <div class="img-input py-5 w-full">
+                                <label for="input-cat" ref="inputFile" id="drop-area" @drop.prevent="onDrop">
+                                    <input @change="getImage" type="file" name="image" id="input-cat" hidden>
+                                    <div ref="view" class="img-view py-5 cursor-pointer flex flex-col bg-white duration-200 hover:bg-[#DEFCFF] items-center w-full h-full rounded-md border border-[#151528]">
+                                        <img src="/public/img/profile/Upload to the Cloud.svg" class="w-24" alt="">
+                                        <p class="text-center">Перетащите файл сюда или кликните <br>чтобы загрузить изображение</p>
+                                        <span class="duration-100">Загружайте изображение с рабочего стола</span>
+                                    </div>
+                                </label>
+                            </div>
                             <input type="text" v-model="category" class="border-b w-full outline-none hover:border-black focus:border-black text-[24px] border-[#A4A4A4] placeholder:text-[#A4A4A4] font-[Roboto]" placeholder="Название категории">
                             <button @click="createCategory" class="send h-[70px] w-1/2 text-white rounded-md text-[24px] duration-300 bg-[#151528] hover:text-[#151528] hover:border hover:border-[#151528] hover:bg-white">Создать</button>
                         </form>
@@ -37,11 +47,18 @@
     let blocks = ref([])
     let category = ref(null)
     let token = null;
+    let image = ref([]);
+    const emit = defineEmits(['files-dropped'])
+    const events = ['dragenter', 'dragover', 'dragleave', 'drop']
+    let view = ref([]);
+
 
     async function createCategory(e){
         e.preventDefault();
-        console.log(userStore.token);
-        let response = await axios.post("/api/createTypeProduct", {name: category.value}, {
+        let formData = new FormData();
+        formData.append("name", category.value);
+        formData.append("image", image.value)
+        let response = await axios.post("/api/createTypeProduct", formData, {
                 headers: {
 
                     Authorization: `Bearer ${userStore.token}`,
@@ -51,6 +68,49 @@
         eventBus.emit('createCategory', '')
         console.log(response.data);
     }
+    function getImage(e){
+        image.value = e.target.files[0]
+        let background = URL.createObjectURL(e.target.files[0])
+        view.value.style.backgroundRepeat = "no-repeat"
+        view.value.style.width = "100%";
+        view.value.style.backgroundSize = "100%";
+        view.value.style.backgroundImage = `url(${background})`
+        view.value.style.minHeight = "300px";
+        view.value.textContent= ''
+        console.log(background);
+        console.log(image.value);
+    }
+    function onDrop(e) {
+        emit('files-dropped', [...e.dataTransfer.files])
+        const blob = new Blob([`${e.dataTransfer.files[0]}`], { type: 'text/plain' });
+
+        let background = URL.createObjectURL(e.dataTransfer.files[0])
+        image.value = e.dataTransfer.files[0];
+        view.value.style.backgroundRepeat = "no-repeat"
+        view.value.style.width = "100%";
+        view.value.style.backgroundSize = "100%";
+        view.value.style.backgroundImage = `url(${background})`
+        view.value.style.minHeight = "300px";
+        view.value.textContent= ''
+        console.log(background);
+        console.log(image.value);
+    }
+    function preventDefaults(e) {
+        e.preventDefault()
+    }
+
+    onMounted(async() => {
+
+        events.forEach((eventName) => {
+            document.body.addEventListener(eventName, preventDefaults)
+        })
+    })
+    onUnmounted(() => {
+
+        events.forEach((eventName) => {
+            document.body.removeEventListener(eventName, preventDefaults)
+        })
+    })
 
 
 </script>
