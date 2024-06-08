@@ -11,7 +11,7 @@
                     </div>
                     <div class="modal-content h-full overflow-auto  flex flex-col gap-10 items-center">
                         <div class="title text-[32px] text=[#151528] w-full text-center">
-                            Создать товар
+                            Редактировать товар
                         </div>
                         <form enctype="multipart/form-data" class="flex flex-col w-full gap-10 p-2 items-center">
                             <div class="img-input w-full">
@@ -43,7 +43,7 @@
 
                             <div class="specification flex flex-col items-center gap-10 w-full">
                                 <div class="specVal w-full flex flex-wrap gap-4">
-                                    <div v-show="specification.length > 0" v-for="(item, index) in specification" :key="index" class="specItem w-52 p-3 flex gap-3 border border-[#151528] justify-between">
+                                    <div v-show="specification.length > 0" v-for="(item, index) in specification" :key="index" class="specItem w-52 p-3 flex gap-3 border border-[#151528] items-center justify-between">
                                         <p class="cursor-pointer" @click="getSpecification(item)">{{item.title}}</p>
                                         <img @click="deleteSpecification(item)" class="close text-right cursor-pointer w-[15px]" src="/public/img/admin/Multiply.svg">
                                     </div>
@@ -53,7 +53,7 @@
                                 <button v-show="specificationTitle.length > 0 && specificationBody.length > 0" @click.prevent="addSpecfication(specificationTitle, specificationBody)" class="send h-[60px] w-1/3 text-white rounded-md text-[20px] duration-300 bg-[#151528] hover:text-[#151528] hover:border hover:border-[#151528] hover:bg-white">Добавить</button>
                             </div>
 
-                            <button @click.prevent="editProduct(props.product.id)" class="send h-[70px] w-1/2 text-white rounded-md text-[24px] duration-300 bg-[#151528] hover:text-[#151528] hover:border hover:border-[#151528] hover:bg-white">Создать</button>
+                            <button @click.prevent="editProduct(props.product.id)" class="send h-[70px] w-1/2 text-white rounded-md text-[24px] duration-300 bg-[#151528] hover:text-[#151528] hover:border hover:border-[#151528] hover:bg-white">Отправить</button>
                         </form>
                     </div>
 
@@ -123,30 +123,51 @@
     }
     async function editProduct(id){
         let formData = new FormData();
-        price.value = price.value.trim();
-        console.log(selectedSubcategory.value.id);
-        formData.append("image", avatar.value)
-        formData.append("description", description.value)
-        formData.append("color", color.value)
-        formData.append("name", name.value)
-        formData.append("price", price.value)
-        formData.append("percent", percent.value)
-        formData.append("brand", brand.value)
+        if(price.value != null && price.valuelength == 0){
+            formData.append("price", parseInt(price.value.replace(/\s/g, ''), 10) || '')
+        }
+        if(price.value != null && price.value.length == 0){
+            price.value = price.value.trim();
+            formData.append("image", avatar.value || '')            
+        }
+        if(description.value != null && description.value.length != 0){
+            formData.append("description", description.value || '')
+        }
+        if(color.value != null && color.value.length != 0){
+            formData.append("color", color.value || '')
+        }
+        if(name.value != null && name.value.length != 0){
+            formData.append("name", name.value || '')
+        }        
+        if(percent.value != null && percent.value.length != 0){
+            formData.append("percent", percent.value || '')
+        }
+        if(brand.value != null && brand.value.length != 0){
+            formData.append("brand", brand.value || '')
+            console.log(1008);
+        }                
         for (let spec = 0; spec < specification.value.length; spec++){
             spc_array.push(specification.value[spec]);
             console.log(spc_array);
             formData.append("specification", JSON.stringify(spc_array) || '')
         }
-        formData.append("typeProductId", selectedCategory.value.id)
-        formData.append("categoryId", selectedSubcategory.value.id)
-
-        console.log(selectedCategory.value, selectedSubcategory.value);
-        let response = await axios.put(`/api/updateProduct/id${id}`, formData, {
+        if (selectedCategory.value.length != 0) {
+            formData.append("typeProductId", selectedCategory.value.id)            
+        }
+        if (selectedSubcategory.value.length != 0) {
+            formData.append("categoryId", selectedSubcategory.value.id)            
+        }
+        console.log(name.value, selectedCategory.value, percent.value, specification.value);
+        let response = await axios.post(`/api/updateProduct/id${id}`, formData, {
             headers: {
                 Authorization: `Bearer ${userStore.token}`,
             }
         })
-        eventBus.emit('updateProduct', '')
+        .then((result) => {
+            eventBus.emit('updateProduct', '')
+        }).catch((err) => {
+            console.log(err);
+        });
 
 
 
@@ -180,7 +201,6 @@
         console.log(selectedCategory.value.lists);
         subcategories.value = selectedCategory.value.lists
         console.log(subcategories.value.length);
-        selectedSubcategory.value = subcategories.value[0];
 
     }
     function getAvatar(e){

@@ -15,6 +15,7 @@ import AdminUsersSection from "../components/sections/admin/Users.vue";
 import AdminOrdersSection from "../components/sections/admin/Orders.vue";
 import AdminProductsSection from "../components/sections/admin/Products.vue";
 import AdminCategoriesSection from "../components/sections/admin/Categories.vue";
+import NotFound from '../components/sections/errors/NotFound.vue'
 
 
 
@@ -108,6 +109,11 @@ let routes = [
         component: Result,
         name: 'result2',
         props: true
+    },
+    {
+        path: "/:patchMatch(.*)*",
+        component: NotFound,
+        name: "NotFound"
     },
 ]
 

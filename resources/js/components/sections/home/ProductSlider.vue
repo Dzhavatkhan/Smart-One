@@ -7,7 +7,7 @@
           '--swiper-slide-active-width': '274px', 
         }" :spaceBetween="10" :thumbs="{ swiper: thumbsSwiper }" :modules="modules" class="mySwiper2 mb-8">
         <swiper-slide v-for="(item, index) in slider" :key="index" class="swipSlid">
-        <div class="img-block w-[274px] h-[335px]">
+        <div class="img-block flex justify-center items-center max-w-[274px] max-h-[335px]">
             <img :src="item" />
         </div>
         </swiper-slide>
@@ -23,7 +23,7 @@
                 class="otherImg"
                 >
                 <swiper-slide  v-for="(item, index) in slider" :key="index">
-                    <div class="img-block min-w-[66px] cursor-pointer max-w-[79px] h-[99px]">
+                    <div class="img-block min-w-[66px] cursor-pointer max-w-[82px] max-h-[99px]">
                         <img :src="item" />
                     </div>
                 </swiper-slide>
@@ -50,11 +50,11 @@
 
 <style scoped>
     .pcSlider img{
-        width: 100%;
-        height: 100%;
+        max-width: 274px;
+        max-height: 335px;
     }
     .otherImg img{
-        width: 100%;
-        height: 100%;
+        max-width: 82px;
+        max-height: 99px;
     }
 </style>

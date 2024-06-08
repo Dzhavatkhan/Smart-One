@@ -1,6 +1,6 @@
 <template>
-    <img @click="updateAvatarModal = !updateAvatarModal" src="/public/img/profile/Group 17.svg" alt="" class="edit w-[30px] relative left-16 bottom-7 cursor-pointer max-sm:hidden">
-    <img @click="updateAvatarModal = !updateAvatarModal" src="/public/img/profile/Group 16.svg" alt="" class=" hidden edit w-[30px] relative left-8 bottom-5 cursor-pointer max-sm:block">
+    <img @click="updateAvatarModal = !updateAvatarModal" src="/public/img/profile/Group 17.svg" alt="" class="edit w-[30px] relative left-16 bottom-7 cursor-pointer max-md:hidden max-sm:hidden">
+    <img @click="updateAvatarModal = !updateAvatarModal" src="/public/img/profile/Group 16.svg" alt="" class=" hidden edit w-[30px] relative left-8 bottom-5 cursor-pointer max-md:block max-md:left-9 max-sm:block">
 
     <transition name="fade">
         <div v-if="updateAvatarModal" class="fixed inset-0 m-auto bg-black bg-opacity-60 z-10">

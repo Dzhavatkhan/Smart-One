@@ -14,19 +14,26 @@
                             Создать товар
                         </div>
                         <form enctype="multipart/form-data" class="flex flex-col w-full gap-10 p-2 items-center">
-                            <div class="img-input w-full">
-                                    <label for="input-file" ref="inputFile" id="drop-area" @drop.prevent="onDrop">
-                                        <input @change="getAvatar" type="file" name="avatar" id="input-file" hidden>
-                                        <div ref="view" class="img-view py-5 cursor-pointer flex flex-col bg-white duration-200 hover:bg-[#DEFCFF] items-center w-full h-full rounded-md border border-[#151528]">
-                                            <img src="/public/img/profile/Upload to the Cloud.svg" class="w-24" alt="">
-                                            <p class="text-center">Перетащите файл сюда или кликните <br>чтобы загрузить изображение</p>
-                                            <span class="duration-100">Загружайте изображение с рабочего стола</span>
-                                        </div>
-                                    </label>
+                            <div v-if="selectImage.length == 0" class="img-input py-5 w-full">
+                                <label for="prod" ref="inputFile" @drop.prevent="onDrop">
+                                    <input @change="getImage" type="file" name="image" id="prod" hidden>
+                                    <div ref="view" class="img-view py-5 cursor-pointer flex flex-col bg-white duration-200 hover:bg-[#DEFCFF] items-center w-full h-full rounded-md border border-[#151528]">
+                                        <img src="/public/img/profile/Upload to the Cloud.svg" class="w-24" alt="">
+                                        <p class="text-center">Перетащите файл сюда или кликните <br>чтобы загрузить изображение</p>
+                                        <span class="duration-100">Загружайте изображение с рабочего стола</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div v-else class="img-input flex flex-col justify-center items-center py-5 w-full">
+                                <div @click="removeImage(selectImage)" class="bg-white duration-300 hover:scale-110 shadow-md relative top-0 left-48 rounded-full h-8 w-8 flex justify-center items-center">
+                                    <img class="close down text-right cursor-pointer w-[20px] max-sm:max-h-[250px]" src="/public/img/admin/Multiply.svg">
+                                </div>
+                                <img :src="selectImage" alt="">
                             </div>
                             <input type="text" v-model="name" class="border-b w-full outline-none hover:border-black focus:border-black text-[24px] border-[#A4A4A4] placeholder:text-[#A4A4A4] font-[Roboto]" placeholder="Название товара">
                             <input type="text" v-model="color" class="border-b w-full outline-none hover:border-black focus:border-black text-[24px] border-[#A4A4A4] placeholder:text-[#A4A4A4] font-[Roboto]" placeholder="Цвет товара">
                             <input type="text" v-model="price" class="border-b w-full outline-none hover:border-black focus:border-black text-[24px] border-[#A4A4A4] placeholder:text-[#A4A4A4] font-[Roboto]" placeholder="Цена товара">
+                            <input type="number" v-model="quantity" class="border-b w-full outline-none hover:border-black focus:border-black text-[24px] border-[#A4A4A4] placeholder:text-[#A4A4A4] font-[Roboto]" placeholder="Сколько в наличии">
                             <input type="text" v-model="description" class="border-b w-full outline-none hover:border-black focus:border-black text-[24px] border-[#A4A4A4] placeholder:text-[#A4A4A4] font-[Roboto]" placeholder="Описание товара">
                             <input type="text" v-model="brand" class="border-b w-full outline-none hover:border-black focus:border-black text-[24px] border-[#A4A4A4] placeholder:text-[#A4A4A4] font-[Roboto]" placeholder="Бренд">
                             <input type="text" v-model="percent" class="border-b w-full outline-none hover:border-black focus:border-black text-[24px] border-[#A4A4A4] placeholder:text-[#A4A4A4] font-[Roboto]" placeholder="Скидка">
@@ -43,7 +50,7 @@
 
                             <div class="specification flex flex-col items-center gap-10 w-full">
                                 <div class="specVal w-full flex flex-wrap gap-4">
-                                    <div v-show="specification.length > 0" v-for="(item, index) in specification" :key="index" class="specItem w-52 p-3 flex gap-3 border border-[#151528] justify-between">
+                                    <div v-show="specification.length > 0" v-for="(item, index) in specification" :key="index" class="specItem w-52 p-3 flex gap-3 border border-[#151528] items-center justify-between">
                                         <p>{{item.title}}</p>
                                         <img @click="deleteSpecification(item)" class="close text-right cursor-pointer w-[15px]" src="/public/img/admin/Multiply.svg">
                                     </div>
@@ -69,7 +76,9 @@
     import eventBus from '@/eventBus'
 
     let createProductModal = ref(false)
+    let selectImage = ref([]);
     const userStore = useUserStore();
+    let quantity = ref([]);
     let specification = ref([]);
     let specificationTitle = ref([]);
     let specificationBody = ref([]);
@@ -83,7 +92,7 @@
     let selectedCategory = ref([]);
     let selectedSubcategory = ref([]);
     let subcategories = ref([]);
-    let avatar = ref(null);
+    let image = ref(null);
     const view = ref(null)
     const emit = defineEmits(['files-dropped'])
     const events = ['dragenter', 'dragover', 'dragleave', 'drop']
@@ -93,14 +102,14 @@
         let formData = new FormData();
         price.value = price.value.trim();
         console.log(selectedSubcategory.value.id);
-        formData.append("image", avatar.value)
+        formData.append("image", image.value)
         formData.append("description", description.value)
         formData.append("color", color.value)
         formData.append("name", name.value)
+        formData.append("quantity", quantity.value)
         formData.append("price", price.value)
         formData.append("percent", percent.value)
         formData.append("brand", brand.value)
-        formData.append("image", avatar.value)
         for (let spec = 0; spec < specification.value.length; spec++){
             spc_array.push(specification.value[spec]);
             console.log(spc_array);
@@ -116,9 +125,10 @@
             }
         })
         eventBus.emit('createProduct', '')
-
-
-
+    }
+    function removeImage(){
+        selectImage.value = [];
+        image.value = [];
     }
     function addSpecfication(title, body){
         if (title.length > 0 && body.length > 0) {
@@ -149,35 +159,22 @@
         console.log(selectedCategory.value.lists);
         subcategories.value = selectedCategory.value.lists
         console.log(subcategories.value.length);
-        selectedSubcategory.value = subcategories.value[0];
+        if (selectedCategory.value.length == 0) {
+            selectedCategory.value = categories.value[0];
+        }
+        if (selectedSubcategory.value.length == 0) {
+            selectedSubcategory.value = subcategories.value[0];
+        }
 
     }
-    function getAvatar(e){
-        avatar.value = e.target.files[0]
-        let background = URL.createObjectURL(e.target.files[0])
-        view.value.style.backgroundRepeat = "no-repeat"
-        view.value.style.width = "100%";
-        view.value.style.backgroundSize = "100%";
-        view.value.style.backgroundImage = `url(${background})`
-        view.value.style.minHeight = "400px";
-        view.value.textContent= ''
-        console.log(background);
-        console.log(avatar.value);
+    function getImage(e){
+        image.value = e.target.files[0]
+        selectImage.value = URL.createObjectURL(e.target.files[0])
     }
     function onDrop(e) {
         emit('files-dropped', [...e.dataTransfer.files])
-        const blob = new Blob([`${e.dataTransfer.files[0]}`], { type: 'text/plain' });
-
-        let background = URL.createObjectURL(e.dataTransfer.files[0])
-        avatar.value = e.dataTransfer.files[0];
-        view.value.style.backgroundRepeat = "no-repeat"
-        view.value.style.width = "100%";
-        view.value.style.backgroundSize = "100%";
-        view.value.style.backgroundImage = `url(${background})`
-        view.value.style.minHeight = "400px";
-        view.value.textContent= ''
-        console.log(background);
-        console.log(avatar.value);
+        selectImage.value = URL.createObjectURL(e.dataTransfer.files[0])
+        image.value = e.dataTransfer.files[0];
     }
     function preventDefaults(e) {
         e.preventDefault()

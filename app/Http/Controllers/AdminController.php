@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
 use App\Http\Resources\CategoryResource;
+use App\Http\Resources\OrderResource;
 use App\Http\Resources\ProductResource;
 use App\Models\Cart;
 use App\Models\Category;
@@ -18,6 +19,8 @@ use App\Models\TypeProduct;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Laravel\Sanctum\PersonalAccessToken;
+
+use function PHPUnit\Framework\fileExists;
 
 class AdminController extends Controller
 {
@@ -73,7 +76,7 @@ class AdminController extends Controller
     }
     public function getOrders()
     {
-        $orders = Order::all();
+        $orders = OrderResource::collection(Order::with("user", "products")->get());
 
         return response()->json([
             "orders"   => $orders
@@ -95,7 +98,7 @@ class AdminController extends Controller
     {
         try {
             $data = $request->all([
-                "name", "price", "image", "percent", "description", "brand", "specification",  "typeProductId", "categoryId", "color"
+                "name", "price", "quantity", "image", "percent", "description", "brand", "specification",  "typeProductId", "categoryId", "color"
             ]);
 
             $image = $data['image']->getClientOriginalName();
@@ -104,6 +107,7 @@ class AdminController extends Controller
                 "price" => $data["price"],
                 "description" => $data["description"],
                 "percent" => $data["percent"],
+                "quantity" => $data["quantity"],
                 "brand" => $data['brand']
             ]);
             Color::create([
@@ -116,7 +120,7 @@ class AdminController extends Controller
             for ($item=0; $item < count($specification_arr); $item++) {
                 $title = $specification_arr[$item]->title;
                 $body = $specification_arr[$item]->body;
-                $specification = Specification::create([
+                $specification = Specification::firstOrCreate([
                     "productId" => $product->id,
                     "title" => "$title",
                     "content" => "$body"
@@ -224,30 +228,68 @@ class AdminController extends Controller
     public function updateProduct(Request $request, string $id)
     {
         try {
+            $product = Product::findOrFail($id);
             $updateProductData = $request->all([
-                "name", "typeProductId", "brand", "categoryId", "description", "price", "percent"
+                "name", "brand", "description", "price", "percent", "quantity"
             ]);
-            $updateImageData = $request->all(["image", "color"]);
-            if ($request->specification) {
+            $updateColorData = $request->all([
+                "image", "productId", "color"
+            ]);
+            $updateCategoryData = $request->all(["typeProductId","categoryId", "productId"]);
+            if ($request->specification != null) {
                 $specification_arr = json_decode($request->specification);
                 $count = count($specification_arr);
                 for ($item=0; $item < count($specification_arr); $item++) {
                     $title = $specification_arr[$item]->title;
-                    $body = $specification_arr[$item]->body;
-                    $specification = Specification::where("productId", $id)->update([
+                    $body = $specification_arr[$item]->content;
+                    $specification = Specification::where("productId", $id)->updateOrInsert([
                         "productId" => $id,
                         "title" => "$title",
                         "content" => "$body"
                     ]);
                 }
              }
-            if ($updateProductData == null) {
-                Product::findOrFail($id)
-                ->update($updateProductData);
+            if ($updateProductData != null) {            
+                if($updateProductData["price"] == null){
+                    $updateProductData["price"] = $product->price;
+                }
+                if($updateProductData["percent"] == null){
+                    $updateProductData["percent"] = 0;
+                }
+                if($updateProductData["name"] == null){
+                    $updateProductData["name"] = $product->name;
+                }
+                if($updateProductData["description"] == null){
+                    $updateProductData["description"] = $product->description;
+                }
+                if($updateProductData["quantity"] == null){
+                    $updateProductData["quantity"] = $product->quantity;
+                }
+                if($updateProductData["brand"] == null){
+                    $updateProductData["brand"] = $product->brand;
+                }
+                $product->update($updateProductData);
             }
-            if ($updateImageData == null) {
-                Color::where("productId", $id)
-                ->update($updateImageData);
+
+            $color = Color::where("productId", $product->id)->first();
+            $updateColorData["productId"] = $product->id;
+            if ($updateColorData["color"]  == null) {
+                $updateColorData["color"] = $color->color;
+            }
+            if ($updateColorData["image"] == null) {
+                $updateColorData["image"] = $color->image;
+            }
+            else{
+                $data["image"] = $request->file("image")->getClientOriginalName();
+                if (fileExists(public_path("img/products/$color->image"))) {
+                    unlink(public_path("img/products/$color->image"));
+                }
+                $request->file("image")->move(public_path("img/products/"), $data["image"]);                
+            }
+            $color->update($updateColorData);
+            if ($updateCategoryData["typeProductId"] != null) {
+                $updateCategoryData["productId"] = $id;
+                ProductCategory::where("productId", $id)->update($updateCategoryData);
             }
             return response()->json([
                 "message" => "Товар обновлен"
@@ -404,6 +446,7 @@ class AdminController extends Controller
         if (Category::where("typeProductId", $id)) {
             Category::where("typeProductId", $id)->delete();
         }
+        
         TypeProduct::findOrFail($id)->delete();
         return response()->json([
             "message" => "Удален"

@@ -32,7 +32,7 @@
         background-color: #05DBF2 !important;
     }
         img{
-            height: 272px;
-            width: 222px;
+            max-height: 272px;
+            max-width: 222px;
         }
 </style>

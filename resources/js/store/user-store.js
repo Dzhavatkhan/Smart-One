@@ -9,7 +9,8 @@ export const useUserStore = defineStore('user', {
     email: null,
     avatar: null,
     role_id: null,
-    password: null
+    password: null,
+    city: null
   }),
   // could also be defined as
   // state: () => ({ count: 0 })

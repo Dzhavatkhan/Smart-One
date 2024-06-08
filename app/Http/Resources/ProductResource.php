@@ -49,6 +49,7 @@ class ProductResource extends JsonResource
         $color = Color::where("productId", $this->id)->first();
         
         $isFavorite = Favorite::where("productId", $this->id)->where("userId", Auth::id())->count() > 0;
+        // dd($isFavorite, Auth::user(), auth()->user());
 
         return [
             "id" => $this->id,
@@ -58,7 +59,7 @@ class ProductResource extends JsonResource
             "percent" => $this->percent,
             "date" => $this->created_at->format("d.m.Y"),
             "color" => $color->color,
-            "currentColorId" => $color->id,
+            "currentColor" => $color,
             "colors" => $this->getColors,
             "image" => $color->image,
             "categories" => $typeProduct,
@@ -70,7 +71,7 @@ class ProductResource extends JsonResource
             "reviews" => $reviews,
             "avg" => $avg,
             "isFavorite" => $isFavorite,
-            "quantityInCart" => $quantityInCart
+            "quantityInCart" => $quantityInCart,
         ];
     }
 }

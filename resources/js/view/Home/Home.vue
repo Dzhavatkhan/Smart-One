@@ -2,7 +2,7 @@
     <Header></Header>
     <Main></Main>
     <Footer></Footer>
-    <MobileMenu class="hidden max-sm:flex"></MobileMenu>
+    <MobileMenu class="hidden max-md:flex max-sm:flex"></MobileMenu>
 </template>
 
 <script setup>

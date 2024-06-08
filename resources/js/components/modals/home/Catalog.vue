@@ -45,31 +45,16 @@
                                 </div>
                                 <div class="subc-cont w-full flex flex-wrap gap-[66px]">
                                     <div class="content flex flex-col gap-[25px]">
-                                        <div class="category-name font-semibold title text-[24px]">
+                                        <router-link :to="{path:'/catalog/' + category.name}" class="category-name cursor-pointer opacity-75 font-semibold title text-[24px]">
                                             {{category.name}}
-                                        </div>
+                                        </router-link>
                                         <div v-for="subcategory in categories[0].lists" :key="subcategory.id" class="sub-list flex flex-col gap-[37px]">
-                                            <div class="list_item font-[Roboto] text-[20px]">
+                                            <router-link :to="{path:`/catalog/${category.name}/` + subcategory.name}" class="list_item opacity-75 font-[Roboto] text-[20px]">
                                                 {{ subcategory.name }}
-                                            </div>
+                                            </router-link>
                                         </div>
                                     </div>
-                                    <!-- <div class="content flex flex-col gap-[25px]">
-                                            <div class="category-name font-semibold title text-[24px]">
-                                                Смартфоны
-                                            </div>
-                                            <div class="sub-list flex flex-col gap-[37px]">
-                                                <div class="list_item font-[Roboto] text-[20px]">
-                                                    Флагманы
-                                                </div>
-                                                <div class="list_item font-[Roboto] text-[20px]">
-                                                    Бюджетные
-                                                </div>
-                                                <div class="list_item font-[Roboto] text-[20px]">
-                                                    Игровые
-                                                </div>
-                                            </div>
-                                      </div> -->
+
                                 </div>
 
                         </div>

@@ -1,5 +1,5 @@
 <template>
-    <section class="flex px-[200px] flex-col gap-[42px] mb-[108px] max-sm:hidden">
+    <section class="flex px-[200px] flex-col gap-[42px] mb-[108px] max-md:hidden max-sm:hidden">
         <div class="title text-[#4E4C4C] text-[36px]">
             Популярные категории
         </div>
@@ -7,61 +7,61 @@
             <div id="left" class="fa-solid controller left fa-angle-left"></div>
             <ul class="carousel">
               <li class="card">
-                <div class="img"><img src="/public/img/home/main/image 20.jpg" alt="img" draggable="false"></div>
-                <h2>Ноутбуки</h2>
+                <div @click="location.href='/catalog/Ноутбуки'" class="img"><img src="/public/img/home/main/image 20.jpg" alt="img" draggable="false"></div>
+                <router-link class="h2" :to="{path:'/catalog/Ноутбуки'}">Ноутбуки</router-link>
               </li>
               <li class="card">
-                <div class="img"><img src="/public/img/auth-components/login/login-image.png" alt="img" draggable="false"></div>
-                <h2>Смартфоны</h2>
+                <div @click="location.href='/catalog/Смартфоны'" class="img"><img src="/public/img/auth-components/login/login-image.png" alt="img" draggable="false"></div>
+                <router-link class="h2" :to="{path:'/catalog/Смартфоны'}">Смартфоны</router-link>
               </li>
               <li class="card">
-                <div class="img"><img src="/public/img/home/main/Charger and usb cable type c over orange background.jpg" alt="img" draggable="false"></div>
-                <h2>Зарядки</h2>
+                <div @click="location.href='/catalog/Зарядки'" class="img"><img src="/public/img/home/main/Charger and usb cable type c over orange background.jpg" alt="img" draggable="false"></div>
+                <router-link class="h2" :to="{path:'/catalog/Зарядки'}">Зарядки</router-link>
               </li>
               <li class="card">
-                <div class="img"><img src="/public/img/home/main/image 5.jpg" alt="img" draggable="false"></div>
-                <h2>Планшеты</h2>
+                <div @click="location.href='/catalog/Планшеты'" class="img"><img src="/public/img/home/main/image 5.jpg" alt="img" draggable="false"></div>
+                <router-link class="h2" :to="{path:'/catalog/Планшеты'}">Планшеты</router-link>
               </li>
               <li class="card">
-                <div class="img"><img src="/public/img/home/main/Smartwatch screen digital device.jpg" alt="img" draggable="false"></div>
-                <h2>Смарт-часы</h2>
+                <div @click="location.href='/catalog/Смарт-часы'" class="img"><img src="/public/img/home/main/Smartwatch screen digital device.jpg" alt="img" draggable="false"></div>
+                <router-link class="h2" :to="{path:'/catalog/Смарт-часы'}">Смарт-часы</router-link>
               </li>
               <li class="card">
-                <div class="img"><img src="/public/img/home/main/image 8.jpg" alt="img" draggable="false"></div>
-                <h2>Наушники</h2>
+                <div @click="location.href='/catalog/Наушники'" class="img"><img src="/public/img/home/main/image 8.jpg" alt="img" draggable="false"></div>
+                <router-link class="h2" :to="{path:'/catalog/Наушники'}">Наушники</router-link>
               </li>
             </ul>
             <div id="right" class=" controller right"></div>
           </div>
 
     </section>
-    <section class="hidden flex-col gap-[14px] px-5 w-full max-sm:flex">
+    <section class="hidden flex-col gap-[14px] px-5 w-full max-md:flex max-sm:flex">
         <div class="title text-[#4E4C4C] text-[24px]">Категории</div>
         <div class="categories h-[300px] gap-5 flex w-full justify-between flex-wrap">
-            <div class="category-card h-[112px] w-[185px] shadow-category px-[3px] pt-4 border-t border-gray-100 flex flex-col">
+            <router-link :to="{path:'/catalog/Смартфоны'}" class="category-card h-[112px] w-[185px] shadow-category px-[3px] pt-4 border-t border-gray-100 flex flex-col">
                 <div class="category-image w-full h-[55px] flex justify-center items-center bg-[#F4F4F4]">
                     <img src="/public/img/home/mobile/SmartPhoneMobile.png" alt="">
                 </div>
                 <div class="category-name text-[14px] font-[Roboto] flex items-center justify-center h-full w-full text-center">Смартфоны</div>
-            </div>
-            <div class="category-card h-[112px] w-[185px] shadow-category px-[3px] pt-4 border-t border-gray-100 flex flex-col">
+            </router-link>
+            <router-link :to="{path:'/catalog/Ноутбуки'}" class="category-card h-[112px] w-[185px] shadow-category px-[3px] pt-4 border-t border-gray-100 flex flex-col">
                 <div class="category-image w-full h-[55px] flex justify-center items-center bg-[#F4F4F4]">
                     <img src="/public/img/home/mobile/Laptop.png" alt="">
                 </div>
                 <div class="category-name text-[14px] font-[Roboto] flex items-center justify-center  h-full w-full text-center">Ноутбуки</div>
-            </div>
-            <div class="category-card h-[112px] w-[185px] shadow-category px-[3px] pt-4 border-t border-gray-100 flex flex-col">
+            </router-link>
+            <router-link :to="{path:'/catalog/Планшеты'}" class="category-card h-[112px] w-[185px] shadow-category px-[3px] pt-4 border-t border-gray-100 flex flex-col">
                 <div class="category-image w-full h-[55px] flex justify-center items-center bg-[#F4F4F4]">
                     <img src="/public/img/home/mobile/Pad.png" alt="">
                 </div>
                 <div class="category-name text-[14px] max-h-[40px] font-[Roboto] flex items-center justify-center h-full w-full text-center">Планшеты</div>
-            </div>
-            <div class="category-card h-[112px] w-[185px] shadow-category px-[3px] pt-4 border-t border-gray-100 flex flex-col">
+            </router-link>
+            <router-link :to="{path:'/catalog/Смарт-часы'}" class="category-card h-[112px] w-[185px] shadow-category px-[3px] pt-4 border-t border-gray-100 flex flex-col">
                 <div class="category-image w-full h-[55px] flex justify-center items-center bg-[#F4F4F4]">
                     <img src="/public/img/home/mobile/Smartwatch screen digital device.png" alt="">
                 </div>
                 <div class="category-name text-[14px] font-[Roboto] flex items-center justify-center h-full w-full text-center">Смарт-часы</div>
-            </div>
+              </router-link>
         </div>
     </section>
 </template>
@@ -229,7 +229,7 @@
     width: 100%;
     object-fit: cover;
   }
-  .carousel .card h2 {
+  .carousel .card .h2 {
     font-weight: 500;
     font-size: 32px;
     font-family: "Roboto";

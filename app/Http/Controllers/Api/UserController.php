@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
+use App\Http\Resources\OrderResource;
 use App\Http\Resources\ProductResource;
 use App\Models\Cart;
 use App\Models\Favorite;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\TypeProduct;
 use App\Models\User;
@@ -26,12 +29,49 @@ class UserController extends Controller
             "token" => $token
         ]);
     }
-    public function getCatalogResult($category,$subcategory){
-        $products = Product::where();
+
+    public function getMyOrders(){
+        $myOrders = OrderResource::collection(Order::where("userId", Auth::id())->get());
+
+        return response()->json([
+            "orders" => $myOrders
+        ]);
     }
-    public function updateInfo(Request $request)
+    public function createOrder(Request $request){
+        $postIndex = $request->postIndex;
+        $productId = $request->productId;
+
+        $cartProduct = Cart::where("productId", $productId)->first();
+        Order::create([
+            "postIndex" => $postIndex,
+            "quantity" => 1,
+            "price" => $cartProduct->price,
+            "productId" => $productId,
+            "userId" => Auth::id()
+        ]);
+
+        return response()->json([
+            "message" => "Заказ оформлен"
+        ]);
+    }
+    public function updateUserInfo(Request $request, $id)
     {
-        //
+        try {
+            $name = $request->name;
+
+            User::findOrFail($id)->update([
+                "name" => $name
+            ]);
+    
+            return response()->json([
+                "user" => User::findOrFail($id),
+                "message" => "Профиль отредактирован"
+            ]);
+        } catch (\ErrorException $error) {
+            return response()->json([
+                "message" => $error->getMessage()
+            ]);
+        }
     }
     public function updateAvatar(Request $request, $id)
     {
@@ -61,8 +101,9 @@ class UserController extends Controller
         $user = User::findOrFail(Auth::id());
         Favorite::where("userId", Auth::id())->delete();
         Cart::where("userId", Auth::id())->delete();
+        Order::where("userId", Auth::id())->delete();
 
-        // $user->delete();
+        $user->delete();
         return response()->json([
             "message" => "$user->name, Вы удалены"
         ]);
@@ -79,4 +120,5 @@ class UserController extends Controller
             "results" => $results
         ]);
     }
+
 }

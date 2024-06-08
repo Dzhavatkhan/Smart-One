@@ -6,12 +6,12 @@
         </div>
         <div class="search-btn flex gap-5">
             <createProduct></createProduct>
-            <button @click="deleteCategory" :class="count > 0 ? 'w-20 h-10 rounded-md duration-300 text-[#DE0202] hover:bg-[#FFF0F0]' : 'hidden'">
+            <button v-show="count > 0" @click="deleteProduct(selectedProduct)" class="w-20 h-10 rounded-md duration-300 text-[#DE0202] hover:bg-[#FFF0F0]">
                 Удалить
             </button>
         </div>
     </div>
-    <div class="panel-content rounded-md p-10 h-full bg-white shadow flex flex-col gap-5">
+    <div class="panel-content overflow-y-auto overflow-x-hidden rounded-md p-10 h-full bg-white shadow flex flex-col gap-5">
         <div class="panel-navbar flex justify-start items-center">
             <div class="text-[32px]" style="font-family: Roboto Condensened">Товары</div>
         </div>
@@ -48,7 +48,7 @@
                 <tr v-for="product in products" :key="product.id">
                     <td class="text-center">
                         <div class="flex p-1 justify-center items-center">
-                            <input type="checkbox" v-model="checkbox" class="w-5 h-5 border border-[#F1F2F4]" name="" id="">
+                            <input type="checkbox" @change="selectProduct(product.id)" class="w-5 h-5 border border-[#F1F2F4]" name="" id="">
                         </div>
                     </td>
                     <td class="text-center flex justify-center items-center">
@@ -96,11 +96,12 @@
     import createProduct from '../../modals/admin/products/createProduct.vue'
     import editProduct from "../../modals/admin/products/editProduct/index.vue";
 
-    let count = 0;
+    let count = ref(0);
     let products = ref([]);
     let allSelected = ref(false)
-    let checkbox = ref([]);
     const userStore = useUserStore();
+    let selectedProduct = []
+    console.log(selectedProduct);
     const props = defineProps({
     })
 
@@ -113,6 +114,46 @@
         products.value = response.data.products
 
     }
+    function selectProduct(id){
+        if (selectedProduct.filter(x => x == id).length > 0) {
+            console.log(selectedProduct, id);
+
+            count.value = count.value - 1;
+            selectedProduct = selectedProduct.filter(x => x != id)
+            console.log(selectedProduct, id);
+        }
+        else{
+            console.log(selectedProduct, id);
+
+            if (!selectedProduct.includes(id)) {
+                selectedProduct.push(id)
+            }
+            console.log(selectedProduct, id);
+            count.value = count.value + 1;
+            console.log("count " + count);
+
+
+        }
+    }
+    async function deleteProduct(products){
+        for (let index = 0; index < products.length; index++) {
+            const id = products[index];
+            let response = await axios.delete(`/api/deleteProduct/id${id}`, {
+            headers:
+            {
+                Authorization: `Bearer ${userStore.token}`,
+            }
+        })
+        .then((result) => {
+            eventBus.emit('deleteProduct', '')   
+            count.value = count.value - 1               
+        }).catch((err) => {
+            
+        });
+           
+        }
+   
+    }
 
 
     onMounted(async() => {
@@ -121,6 +162,9 @@
             await getProducts();
         })
         eventBus.on('updateProduct', async()=>{
+            await getProducts();
+        })
+        eventBus.on('deleteProduct', async()=>{
             await getProducts();
         })
 
@@ -166,4 +210,26 @@
     .price, .name, .color, .type, .date{
         width: 120px;
     }
+    .panel-content::-webkit-scrollbar {
+        width: 5px; /* Ширина всего элемента навигации */
+        padding: 2px;
+
+    }
+
+      
+    .panel-content::-webkit-scrollbar-track {
+        background: #fff; /* Цвет дорожки */
+    }
+      
+    .panel-content::-webkit-scrollbar-thumb {
+        padding: 2px;
+        cursor: pointer;
+        transition: 0.5s;
+        background-color: #050c26; /* Цвет бегунка */
+        border-radius: 20px; /* Округление бегунка */
+        border: 3px solid #050c26; /* Оформление границ бегунка */
+    }    
+    .panel-content::-webkit-scrollbar-thumb:hover {
+        transform: scale(1.1)
+    }    
 </style>

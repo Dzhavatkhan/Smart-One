@@ -1,36 +1,47 @@
 
 <template>
     <Loading v-show="isLoading"></Loading>
-    <div v-for="product in cartProducts" :key="product.id" class="product w-[275.05px] max-h-[351px] duration-200 hover:shadow-lg bg-white shadow-md border-t border-gray-200 flex flex-col max-sm:w-[185px] max-sm:h-[274px]">
-        <div class="p-image w-full h-[187px] flex justify-center items-center">
-            <div class="relative h-[50px] z-10 left-52 bottom-7 max-sm:left-[115px] max-sm:bottom-5">
-                <div class="flex flex-col h-full w-full justify-between cursor-pointer">
-                    <Heart :product="product"></Heart>
-                    <img @click="deleteProductFromCart(product.id)" src="/public/img/home/main/Delete.svg" class="" alt="">
+    <div v-if="cartProducts.length != 0" class="vIF w-full h-full gap-[38.07px] max-sm:gap-x-0 max-md:gap-x-5 max-md:gap-y-5 max-sm:gap-y-5 max-sm:justify-between flex flex-wrap">
+        <div  v-for="product in cartProducts" :key="product.id" class="product w-[275.05px] max-h-[351px] duration-200 hover:shadow-lg bg-white shadow-md border-t border-gray-200 flex flex-col max-sm:w-[185px] max-sm:h-[274px]">
+            <div class="p-image w-full min-h-[186px] max-md:min-h-[155px] max-sm:min-h-[98px] flex justify-center items-center">
+                <img @click="getProduct(product.id)" class="max-h-full pt-[11px] max-w-[185px] max-md:pt-[16px] max-md:w-[96px] max-sm:pt-[16px] max-sm:w-[85px]" :src="'/img/products/' + product.image" alt="">
+                <div class="relative w-[20px] h-[50px] left-[20px] z-10 bottom-10  max-sm:m-0 max-sm:left-[15px] max-sm:bottom-1 max-md:m-0 max-md:left-[65px] max-md:bottom-5">
+                    <div class="flex flex-col h-full w-full justify-between cursor-pointer">
+                        <Heart :product="product"></Heart>
+                        <img @click="deleteProductFromCart(product.id)" src="/public/img/home/main/Delete.svg" class="" alt="">
+                    </div>
                 </div>
             </div>
-            <router-link :to="{path: '/product/id' + product.id}"><img class="max-h-full pt-[11px] max-w-[185px] max-sm:pt-[16px] max-sm:w-[85px]" :src="'/img/products/' + product.image" alt=""></router-link>
-        </div>
-        <div class="p-info gap-[17px] pl-[19px] pr-[12px] w-full h-full flex flex-col max-sm:gap-0 max-sm:justify-between">
-            <div class="p-name flex flex-col text-[20px] pt-2 cursor-pointer max-sm:text-[14px]">
-                <div v-if="product.avg > 0" class="hidden max-sm:flex w-full h-[17px]">
-                    <img src="/public/img/home/mobile/Star.svg" alt="">
-                    <div class="revCount text-[14px]">{{product.avg}}</div>
+            <div class="p-info justify-between pl-[19px] pr-[12px] w-full h-full flex flex-col max-md:gap-0 max-md:justify-between max-sm:gap-0 max-sm:justify-between">
+                <div class="p-name flex flex-col text-[20px] pt-2 cursor-pointer max-md:text-[14px] max-sm:text-[14px]">
+                    <div v-if="product.avg > 0" class="hidden mb-[5px] max-sm:flex max-md:flex w-full h-[17px]">
+                        <img src="/public/img/home/mobile/Star.svg" alt="">
+                        <div class="revCount text-[14px]">{{product.avg}}</div>
+                    </div>
+                    <div v-else class="hidden mb-[5px] max-sm:flex max-md:flex w-full h-[17px]">
+                        <img src="/public/img/home/mobile/StarEmpty.svg" alt="">
+                        <div class="revCount text-[14px]">0</div>
+                    </div>
+                    <div class="name text-[20px] max-sm:text-[14px]">
+                        <router-link :to="{path: '/product/id' + product.id}" class="font-semibold font-[Roboto]">
+                            {{product.name}}
+                        </router-link>
+                        {{product.description}}, {{product.color}}
+                    </div>
                 </div>
-                <div v-else class="hidden max-sm:flex w-full h-[17px]">
-                    <img src="/public/img/home/mobile/Star.svg" alt="">
-                    <div class="revCount text-[14px]">Нет отзывов</div>
+                <div class="p-price flex justify-between items-center pb-6 max-md:pb-[9px] max-sm:pb-[9px]">
+                    <div class="price font-semibold text-[24px] font-[Roboto] max-md:text-[20px] max-sm:text-[20px]">{{product.price}}₽</div>
+                    <BuyBtn :product="product.id"></BuyBtn>
                 </div>
-                <router-link :to="{path: '/product/id' + product.id}" class="font-semibold font font-[Roboto]">{{product.name}}</router-link>
-                <p class="font-[Roboto]">{{product.description}},{{product.color}}</p>
-            </div>
-            <div class="p-price flex justify-between items-center pb-6 max-sm:pb-[9px]">
-                <div class="price font-semibold text-[24px] font-[Roboto] max-sm:text-[20px]">{{product.price}}₽</div>
-                <button class="w-[87px] h-7 rounded-md duration-300 hover:scale-110 bg-[#05DBF2] font-[Roboto] text-white max-sm:hidden">Купить</button>
-                <img src="/public/img/profile/Добавить.svg" alt="" class="addCart hidden max-sm:flex cursor-pointer w-8 h-8 max-sm:w-10 max-sm:h-10">
             </div>
         </div>
     </div>
+    <div v-else class="vElse w-full h-[133px] flex justify-center items-center">
+        <div class="w-max h-max">
+            Корзина пуста.
+        </div>
+    </div>
+    
 </template>
 
 <script setup>
@@ -40,12 +51,16 @@
     import { useUserStore } from '@/store/user-store';
     import Loading from '../../structure/Loading.vue';
     import Swal from 'sweetalert2';
+    import BuyBtn from './BuyBtn.vue';
 
 
     let cartProducts = ref([]);
     const userStore = useUserStore();
     let isLoading = ref(true);
 
+    function getProduct(id){
+        location.href = `/product/id${id}`
+    }
     async function getCartProducts(){
         let response = await axios.get("/api/getCart", {
             headers: {

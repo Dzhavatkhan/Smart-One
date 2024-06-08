@@ -1,27 +1,27 @@
 <template>
     <Header></Header>
-    <div class=" hidden max-sm:w-full max-sm:flex flex-col gap-7">
+    <div class=" hidden max-md:w-full max-md:flex max-sm:w-full max-sm:flex flex-col gap-7">
         <div class="title px-5 text-[#4E4C4C] text-[24px] pt-[15px]">Каталог</div>
         <div class="cont w-full" v-for="(block, index) in blocks" :key="index">
             <div class="item  items-center flex px-4 justify-between h-[50px] border-t border-gray-100 w-full bg-white shadow-md">
                 <div class="item-info flex gap-[9px] items-center">
                     <img :src="'/img/admin/type/' + block.image" alt="">
-                    <div class="category-name">
+                    <router-link :to="{path:'/catalog/' + block.name}" class="category-name">
                         {{ block.name }}
-                    </div>
+                    </router-link>
                 </div>
                 <img v-show="block.lists.length > 0" class="down cursor-pointer w-[30px] h-[30px]" @click="getList(block)" :src="block.icons.down" alt="">
             </div>
             <div v-show="block.isShow" class="flex flex-col gap-3">
-                <div v-for="list in block.lists" :key="list.id" class="bg-[#FBFBFB] h-[50px] pl-[54px] pr-5 flex justify-between items-center">
-                    <div class="category">{{list.name}}</div>
+                <div v-for="list in block.lists" :key="list.id" class="bg-gray-100 h-[50px] pl-[54px] pr-5 flex justify-between items-center">
+                    <router-link :to="{path:`/catalog/${block.name}/` + list.name}" class="category">{{list.name}}</router-link>
                     <img src="/public/img/admin/rigth.svg" alt="">
                 </div>
             </div>
 
         </div>
     </div>
-    <div class="pc max-sm:hidden flex flex-col px-[200px] pt-5 gap-5">
+    <div class="pc max-md:hidden max-sm:hidden flex flex-col px-[200px] pt-5 gap-5">
         <div class="title text-[36px] text-[#4E4C4C]">Каталог</div>
         <div class="pc w-full flex flex-wrap  gap-[6rem]">
             <div class="flex gap-3" v-for="(block, index) in blocks" :key="index">
@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <MobileMenu class="hidden max-sm:flex"></MobileMenu>
+    <MobileMenu class="hidden max-md:flex max-sm:flex"></MobileMenu>
 </template>
 
 <script setup>

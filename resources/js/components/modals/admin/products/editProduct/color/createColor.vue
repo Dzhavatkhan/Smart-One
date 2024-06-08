@@ -10,15 +10,21 @@
                         <img class="close text-right cursor-pointer w-[20px]" @click="show = !show;" src="/public/img/admin/Multiply.svg">
                     </div>
                     <form enctype="multipart/form-data" class="form h-full w-full flex flex-col items-center gap-10 p-20">
-                        <div class="img-input w-full">
-                            <label for="input-color" id="drop-area" @drop.prevent="onDropColor">
-                                <input type="file" id="input-color" @change="getImage" hidden>
-                                    <div ref="colorDiv" class="img-colorDiv py-5 cursor-pointer flex flex-col bg-white duration-200 hover:bg-[#DEFCFF] items-center w-full h-full rounded-md border border-[#151528]">
+                        <div v-if="selectImage.length == 0" class="img-input py-5 w-full">
+                            <label for="input-col" ref="inputFile" @drop.prevent="onDrop">
+                                <input @change="getImage" type="file" name="image" id="input-col" hidden>
+                                <div ref="view" class="img-view py-5 cursor-pointer flex flex-col bg-white duration-200 hover:bg-[#DEFCFF] items-center w-full h-full rounded-md border border-[#151528]">
                                     <img src="/public/img/profile/Upload to the Cloud.svg" class="w-24" alt="">
                                     <p class="text-center">Перетащите файл сюда или кликните <br>чтобы загрузить изображение</p>
                                     <span class="duration-100">Загружайте изображение с рабочего стола</span>
-                                    </div>
+                                </div>
                             </label>
+                        </div>
+                        <div v-else class="img-input flex flex-col justify-center items-center py-5 w-full">
+                            <div @click="removeImage(selectImage)" class="bg-white duration-300 hover:scale-110 shadow-md relative top-0 left-48 rounded-full h-8 w-8 flex justify-center items-center">
+                                <img class="close down text-right cursor-pointer w-[20px] max-sm:max-h-[250px]" src="/public/img/admin/Multiply.svg">
+                            </div>
+                            <img :src="selectImage" alt="">
                         </div>
                         <input type="text" v-model="colorName" class="border-b w-full outline-none hover:border-black focus:border-black text-[24px] border-[#A4A4A4] placeholder:text-[#A4A4A4] font-[Roboto]" placeholder="Название цвета">
                         <button v-show="colorIMG && colorName" @click.prevent="createColor(product.id)" class="h-[70px] w-full text-white rounded-md text-[24px] duration-300 bg-[#151528] hover:text-[#151528] hover:border hover:border-[#151528] hover:bg-white">
@@ -40,6 +46,7 @@
 
     let show = ref(false);
     let colorIMG = ref([]);
+    let selectImage = ref([]);
     const colorDiv = ref(null)
     const userStore = useUserStore();
     const emit = defineEmits(['files-dropped'])
@@ -49,7 +56,10 @@
         product: Object,
         // Другие props
     });
-
+    function removeImage(){
+        selectImage.value = [];
+        colorIMG.value = [];
+    }
     async function createColor(id){
         let formData = new FormData();
         formData.append("productId", id);
@@ -70,26 +80,12 @@
     }
     function getImage(e){
         colorIMG.value = e.target.files[0]
-        let background = URL.createObjectURL(e.target.files[0])
-        colorDiv.value.style.backgroundRepeat = "no-repeat"
-        colorDiv.value.style.width = "100%";
-        colorDiv.value.style.backgroundSize = "100%";
-        colorDiv.value.style.backgroundImage = `url(${background})`
-        colorDiv.value.style.minHeight = "400px";
-        colorDiv.value.textContent= ''
+        selectImage.value = URL.createObjectURL(e.target.files[0])
     }
-    function onDropColor(e) {
+    function onDrop(e) {
         emit('files-dropped', [...e.dataTransfer.files])
-        let background = URL.createObjectURL(e.dataTransfer.files[0])
+        selectImage.value = URL.createObjectURL(e.dataTransfer.files[0])
         colorIMG.value = e.dataTransfer.files[0];
-        colorDiv.value.style.backgroundRepeat = "no-repeat"
-        colorDiv.value.style.width = "100%";
-        colorDiv.value.style.backgroundSize = "100%";
-        colorDiv.value.style.backgroundImage = `url(${background})`
-        colorDiv.value.style.minHeight = "400px";
-        colorDiv.value.textContent= ''
-        console.log(background);
-        console.log(colorIMG.value);
     }
     function preventDefaults(e) {
         e.preventDefault()

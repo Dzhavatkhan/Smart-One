@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Models\ReviewDisike;
+use App\Models\ReviewDislike;
 use App\Models\ReviewLike;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -20,7 +20,7 @@ class ReviewResource extends JsonResource
 
         $date = 1;
         $isYourLike = ReviewLike::where("userId", Auth::id())->where("reviewId", $this->id)->count() > 0;
-        $isYourDislike = ReviewDisike::where("userId", Auth::id())->where("reviewId", $this->id)->count() > 0;
+        $isYourDislike = ReviewDislike::where("userId", Auth::id())->where("reviewId", $this->id)->count() > 0;
 
 
         if($this->updated_at->format("d.m.Y") == Carbon::today()->format("d.m.Y")){

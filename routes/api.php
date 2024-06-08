@@ -37,10 +37,21 @@ Route::get("catalog/category={category}", [AdminController::class, "getCatalogCa
 Route::get("catalog/{category}/{subcatwgory}", [UserController::class, "getCatalogResult"]);
 Route::get("search={query}", [UserController::class, "search"]);
 Route::get("getCategories", [AdminController::class, "getCategories"]);
-Route::get("getPopularProducts", [ProductController::class, "getPopularProducts"]);
-Route::get("getNewProducts", [ProductController::class, "getNewProducts"]);
+
+
+Route::get("getFilterData/{category}/{subcategory}", [ProductController::class, "getFilterData"]);
+Route::get("getFilterData/{category}", [ProductController::class, "getFilterData"]);
+Route::post("filter", [ProductController::class, "filter"]);
+if (!auth('sanctum')->check()) {
+    Route::get("getPopularProducts", [ProductController::class, "getPopularProducts"]);
+    Route::get("getNewProducts", [ProductController::class, "getNewProducts"]); 
+}
+
+
 
 Route::get("getProduct/id{id}", [ProductController::class, "show"]);
+Route::get("getAccessories/{category}", [ProductController::class, "getAccessories"]);
+
 
 
 
@@ -57,6 +68,10 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get("getSlider/id{id}", [AdminController::class, "getSlider"]);
     Route::get("getUsers", [AdminController::class, "getUsers"]);
     Route::get("getOrders", [AdminController::class, "getOrders"]);
+    if (auth('sanctum')->check()) {
+        Route::get("getPopularProducts", [ProductController::class, "getPopularProducts"]);
+        Route::get("getNewProducts", [ProductController::class, "getNewProducts"]); 
+    }  
 
 
     Route::get("search/user_{query}", [AdminController::class, "searchUser"])->name("searchUser");
@@ -70,7 +85,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
 
     Route::post("createProduct", [AdminController::class, 'createProduct'])->name("createProduct");
-    Route::put("updateProduct/id{id}", [AdminController::class, 'updateProduct']);
+    Route::post("updateProduct/id{id}", [AdminController::class, 'updateProduct']);
     Route::delete("deleteProduct/id{id}", [AdminController::class, "deleteProduct"])->name("deleteProduct");
 
     Route::post("createTypeProduct", [AdminController::class, 'createTypeProduct'])->name("createTypeProduct");
@@ -82,11 +97,17 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::delete("deleteCategory/id{id}", [AdminController::class, "deleteCategory"])->name("deleteCategory");
 
     Route::post("updateUserAvatar/id{id}", [UserController::class, 'updateAvatar']);
+    Route::post("updateUserInfo/id{id}", [UserController::class, 'updateUserInfo']);
+
+    Route::get("getMyOrders", [UserController::class, "getMyOrders"]);
+    Route::post("createOrder", [UserController::class, "createOrder"]);
+
     Route::delete("logout", [AuthController::class, "logout"]);
     Route::delete("deleteUser", [UserController::class, "delete"]);
 
     Route::get("getCart", [ProductController::class, "getCart"]);
     Route::get("getFavorite", [ProductController::class, "getFavorite"]);
+
 
 
     Route::get("addProductToCart/id{id}", [ProductController::class, "addProductToCart"]);

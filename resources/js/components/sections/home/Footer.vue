@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full h-[285px] bg-[#2C3238] flex flex-col justify-around max-sm:hidden">
+    <div class="w-full h-[285px] bg-[#2C3238] flex flex-col justify-around max-md:hidden max-sm:hidden">
         <div class="footerInfo  px-[200px] flex justify-between items-center">
             <img src="/public/img/home/header/LogoDark.svg" alt="">
             <div class="info flex gap-[121px]">
@@ -55,14 +55,17 @@
         </div>
     </div>
 
-    <div class="mobile text-white hidden pl-[23px] pt-[25px] pr-7 w-full h-[245px] bg-[#2C3238]  flex-col gap-[25px] max-sm:flex">
+    <div class="mobile text-white hidden pl-[23px] pt-[25px] pr-7 w-full h-[245px] bg-[#2C3238]  flex-col gap-[25px] max-md:flex max-sm:flex">
         <div class="text-start text-[24px] title">
             Контакты
         </div>
         <div class="info font-[Roboto] flex justify-between w-full pb-10 border-b text-[16px] border-[#F4F4F4]">
             <div class="phone">+79374823</div>
-            <select name="" id="" class="city outline-none bg-transparent w-[99px]">
-                <option selected value="">Астрахань</option>
+            <select  v-if="userStore.id != null" v-model="myCity" @change="selectCity" name="" id="" class="city outline-none bg-transparent w-[99px]">
+                <option v-for="(city, index) in cities" :key="index" :selected="userStore.city" class="text-black" >{{city}}</option>
+            </select>
+            <select  v-else v-model="myCity" @click="toProfile" name="" id="" class="city outline-none bg-transparent w-[99px]">
+                <option v-for="(city, index) in cities" :key="index" :selected="userStore.city" >{{city}}</option>
             </select>
         </div>
         <div class="w-full font-[Roboto] text-white text-center text-[12px] flex flex-col gap-[5px]">
@@ -74,7 +77,22 @@
 </template>
 
 <script setup>
+    import { ref } from 'vue';
+    import { useUserStore } from '@/store/user-store';
 
+    const userStore = useUserStore();
+    let cities = ref([
+        "Москва", "Санкт-Петербург","Екатринбург","Казань"
+    ])
+    let myCity = ref([])
+    if (myCity.value.length == 0) {
+            myCity.value = cities.value[0];
+    }
+
+    const selectCity = () => {
+        userStore.city = myCity.value
+        console.log(userStore.city);
+    }
 </script>
 
 <style>

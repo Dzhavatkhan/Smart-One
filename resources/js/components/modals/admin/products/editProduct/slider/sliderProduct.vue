@@ -17,16 +17,24 @@
                             <option :selected="colors[0]" v-for="color in colors" :key="color.id" :value="color">{{color.color}}</option>
                         </select>
                         <div class="color_cont flex flex-wrap gap-5" v-if="sliders.length>0">
-                            <div class="img-input w-1/3 h-[171px]">
-                                <label for="input-slider" id="drop-area" @drop.prevent="onDrop">
-                                    <input type="file" id="input-slider" @change="getImage" hidden>
-                                        <div ref="sliderDiv" class="img-sliderDiv py-5 px-5 cursor-pointer flex flex-col bg-white duration-200 hover:bg-[#DEFCFF] items-center justify-center w-full h-full rounded-md border border-[#151528]">
-                                            <img src="/public/img/profile/Upload to the Cloud.svg" class="w-24" alt="">
-                                        </div>
+                            <div v-if="selectImage.length == 0" class="img-input py-5 w-full">
+                                <label for="sslider" ref="inputFile" @drop.prevent="onDrop">
+                                    <input @change="getImage" type="file" name="image" id="sslider" hidden>
+                                    <div ref="view" class="img-view py-5 cursor-pointer flex flex-col bg-white duration-200 hover:bg-[#DEFCFF] items-center w-full h-full rounded-md border border-[#151528]">
+                                        <img src="/public/img/profile/Upload to the Cloud.svg" class="w-24" alt="">
+                                        <p class="text-center">Перетащите файл сюда или кликните <br>чтобы загрузить изображение</p>
+                                        <span class="duration-100">Загружайте изображение с рабочего стола</span>
+                                    </div>
                                 </label>
                             </div>
-                            <div v-for="slider in sliders" :key="slider.id" class="colors w-[120px] flex flex-col gap-3">
-                                <img :src="'/img/products/slider/' + slider.slider" class="w-full h-[135px]" alt="">
+                            <div v-else class="img-input flex justify-center items-center py-5 w-full">
+                                <div @click="removeImage(selectImage)" class="bg-white duration-300 hover:scale-110 shadow-md relative top-0 left-48 rounded-full h-8 w-8 flex justify-center items-center">
+                                    <img class="close down text-right cursor-pointer w-[20px] max-sm:max-h-[250px]" src="/public/img/admin/Multiply.svg">
+                                </div>
+                                <img class="w-24" :src="selectImage" alt="">
+                            </div>
+                            <div v-for="slider in sliders" :key="slider.id" class="colors w-[120px] flex flex-col items-center gap-3">
+                                <img :src="'/img/products/slider/' + slider.slider" class="w-12 max-h-[135px]" alt="">
                                 <button @click.prevent="deleteSlider(slider.id)" class="w-full rounded-md duration-300 cursor-pointer text-[#DE0202] hover:bg-[#FFF0F0]">
                                         Удалить
                                 </button>
@@ -34,15 +42,21 @@
                         </div>
                         <div class="flex flex-col gap-3" v-else>
                             <p class="text-[36px]">Слайдер пуст</p>
-                            <div class="img-input w-full">
-                                <label for="input-slider" id="drop-area" @drop.prevent="onDrop">
-                                    <input type="file" id="input-slider" @change="getImage" hidden>
-                                        <div ref="sliderDiv" class="img-sliderDiv py-5 px-5 cursor-pointer flex flex-col bg-white duration-200 hover:bg-[#DEFCFF] items-center w-full h-full rounded-md border border-[#151528]">
+                            <div v-if="selectImage.length == 0" class="img-input py-5 w-full">
+                                <label for="Islider" ref="inputFile" @drop.prevent="onDrop">
+                                    <input @change="getImage" type="file" name="image" id="Islider" hidden>
+                                    <div ref="view" class="img-view py-5 cursor-pointer flex flex-col bg-white duration-200 hover:bg-[#DEFCFF] items-center w-full h-full rounded-md border border-[#151528]">
                                         <img src="/public/img/profile/Upload to the Cloud.svg" class="w-24" alt="">
                                         <p class="text-center">Перетащите файл сюда или кликните <br>чтобы загрузить изображение</p>
                                         <span class="duration-100">Загружайте изображение с рабочего стола</span>
-                                        </div>
+                                    </div>
                                 </label>
+                            </div>
+                            <div v-else class="img-input flex flex-col justify-center items-center py-5 w-full">
+                                <div @click="removeImage(selectImage)" class="bg-white duration-300 hover:scale-110 shadow-md relative top-0 left-48 rounded-full h-8 w-8 flex justify-center items-center">
+                                    <img class="close down text-right cursor-pointer w-[20px] max-sm:max-h-[250px]" src="/public/img/admin/Multiply.svg">
+                                </div>
+                                <img class="w-24" :src="selectImage" alt="">
                             </div>
                         </div>
                         <div class="w-full flex justify-center">
@@ -69,6 +83,7 @@
     const emit = defineEmits(['files-dropped']);
     const events = ['dragenter', 'dragover', 'dragleave', 'drop']
     let sliders = ref([]);
+    let selectImage = ref([]);
     let colors = ref([]);
     let styleDiv = 0;
     let selectedColor = ref([])
@@ -114,6 +129,10 @@
         eventBus.emit('createSlider', '')
         sliderDiv.style = styleDiv.style
     }
+    function removeImage(){
+        selectImage.value = [];
+        sliderImage.value = [];
+    }
     async function deleteSlider(id){
         let response = await axios.delete(`/api/deleteSlider/id${id}`, {
             headers: {
@@ -127,31 +146,14 @@
         });
     }
     function getImage(e){
-        sliderImage.value = e.target.files[0]
-        let background = URL.createObjectURL(e.target.files[0])
-        styleDiv = sliderDiv.value;
-        console.log(styleDiv.style);
-        sliderDiv.value.style.backgroundRepeat = "no-repeat"
-        sliderDiv.value.style.width = "100%";
-        sliderDiv.value.style.backgroundSize = "100%";
-        sliderDiv.value.style.backgroundImage = `url(${background})`
-        sliderDiv.value.style.minHeight = "171px";
-        sliderDiv.value.style.maxHeight = "300px";
-        sliderDiv.value.textContent= ''
+        sliderImage.value = e.target.files[0];
+        selectImage.value = URL.createObjectURL(e.target.files[0])
     }
     function onDrop(e) {
         emit('files-dropped', [...e.dataTransfer.files])
-        let background = URL.createObjectURL(e.dataTransfer.files[0])
+        selectImage.value = URL.createObjectURL(e.dataTransfer.files[0])
         sliderImage.value = e.dataTransfer.files[0];
-        sliderDiv.value.style.backgroundRepeat = "no-repeat"
-        sliderDiv.value.style.width = "100%";
-        sliderDiv.value.style.backgroundSize = "100%";
-        sliderDiv.value.style.backgroundImage = `url(${background})`
-        sliderDiv.value.style.minHeight = "171px";
-        sliderDiv.value.style.maxHeight = "300px";
-        sliderDiv.value.textContent= ''
-        console.log(background);
-        console.log(sliderImage.value);
+
     }
     function preventDefaults(e) {
         e.preventDefault()
@@ -162,6 +164,10 @@
         await getSlider(selectedColor.value.id)
         eventBus.on('createSlider', async()=>{
             await getSlider();
+        })
+        eventBus.on('createColor', async()=>{
+            await getSlider();
+            await getColor(props.product.id);
         })
         eventBus.on('deleteSlider', async()=>{
             await getSlider();

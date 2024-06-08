@@ -1,5 +1,6 @@
 <template>
     <img class="cursor-pointer" @click="favorite(product.id)" v-if="product.isFavorite != true" src="/public/img/home/main/Favorite.svg" alt="">
+    <img class="cursor-pointer" @click="favorite(product.id)" v-else-if="userStore.id == null" src="/public/img/home/main/Favorite.svg" alt="">
     <img class="cursor-pointer" @click="favorite(product.id)" v-else src="/public/img/home/main/FavRed.svg" alt="">
 </template>
 
@@ -21,6 +22,7 @@
     }
     async function favorite(id){
         isAuth(userStore);
+        console.log(id);
         let response = await axios.get(`/api/addProductToFavorite/id${id}`, {
             headers: {
                 Authorization: `Bearer ${userStore.token}`,
@@ -28,7 +30,9 @@
         })
         .then((result) => {
                 eventBus.emit('addProductToFavorite', '')
-                console.log(props.product);
+                console.log(result.data);
+                console.log(props.product.isFavorite);
+                
                 Swal.fire({
                 title: `${result.data.message}`,
                 icon: 'success',

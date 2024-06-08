@@ -1,7 +1,7 @@
 <template>
     <Header></Header>
-    <div class="px-[200px] w-full h-full flex gap-[90px] pt-[139px] pb-[93px] max-sm:pt-[30px] max-sm:px-5">
-        <div class="flex flex-col gap-4 h-[133px] w-[247px] max-sm:hidden">
+    <div class="px-[200px] w-full min-h-[400px] flex gap-[90px] mb-[93px] pt-[139px] max-md:pt-[30px] max-md:px-5 max-sm:pt-[30px] max-sm:px-5">
+        <div class="flex flex-col gap-4 h-[133px] w-[247px] max-md:hidden max-sm:hidden">
             <router-link to="/profile/me" class="flex flex-col gap-[13px] w-full">
                 <div class="route w-full">
                     Личный кабинет
@@ -20,13 +20,13 @@
                 <div class="lane bg-[#A4A4A4] h-[1px] w-full"></div>
             </router-link>
         </div>
-        <div id="ProfileView" class="max-sm:w-full">
-            <router-view ></router-view>
+        <div id="ProfileView" class="w-full min-h-[133px]">
+            <router-view class="w-full h-full" ></router-view>
         </div>
     </div>
 
     <Footer></Footer>
-    <MobileMenu class="hidden max-sm:flex"></MobileMenu>
+    <MobileMenu class="hidden max-md:flex max-sm:flex"></MobileMenu>
 </template>
 
 <script setup>

@@ -1,10 +1,16 @@
 <template>
-     <div class="content mobile">
+     <div class="content max-sm:block max-md:hidden mobile">
         <div class="images">
             <img ref="mobile" class="mob" src="/public/img/home/mobile/SliderMobile.jpg">
             <img ref="mobile" class="mob" src="/public/img/home/mobile/Slider (1).jpg">
         </div>
      </div>
+     <div class="contentPad max-md:block max-sm:hidden mobile">
+      <div class="images">
+          <img ref="mobile" class="mob" src="/public/img/home/mobile/SliderMobile.jpg">
+          <img ref="mobile" class="mob" src="/public/img/home/mobile/Slider (1).jpg">
+      </div>
+   </div>
 </template>
 <script setup>
     import { onMounted, ref } from "vue";
@@ -37,15 +43,37 @@
 </script>
 <style scoped>
 
-@media screen and (max-width: 430px) {
+@media not all and (min-width: 640px) {
     .content{
         width: 100%;
         margin: 0 !important;
-        height: 210px !important;
+        height: 210px;
         overflow: hidden;
         transition: all 0.5s ease-in-out;
       }
       .content .images{
+        height: 100%;
+        width: 100%;
+        transition: all 0.5s ease-in-out;
+
+      }
+      .images img{
+        height: 100%;
+        width: 100%;
+        transition: all 0.5s ease-in-out;
+
+      }
+
+}
+@media not all and (min-width: 768px) {
+    .contentPad{
+        width: 100%;
+        margin: 0 !important;
+        height: 310px;
+        overflow: hidden;
+        transition: all 0.5s ease-in-out;
+      }
+      .contentPad .images{
         height: 100%;
         width: 100%;
         transition: all 0.5s ease-in-out;

@@ -1,5 +1,6 @@
 <template>
     <img @click="addProductToCart(product.id)" v-if="product.quantityInCart == 0" src="/public/img/home/main/addCart.svg" alt="" class="addCart cursor-pointer w-8 h-8 max-sm:w-10 max-sm:h-10">
+    <img @click="addProductToCart(product.id)" v-else-if="userStore.id == null" src="/public/img/home/main/addCart.svg" alt="" class="addCart cursor-pointer w-8 h-8 max-sm:w-10 max-sm:h-10">
     <img v-else  @click="toCart()" src="/public/img/home/main/Fast Cart.svg" alt="" class="addCart cursor-pointer w-8 h-8 max-sm:w-10 max-sm:h-10">
 </template>
 

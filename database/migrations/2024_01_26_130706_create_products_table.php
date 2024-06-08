@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->bigInteger("price");
             $table->longText("name");
-            $table->integer("percent");
-            $table->longText("description");
+            $table->integer("percent")->nullable();
+            $table->longText("description")->nullable();
+            $table->integer("quantity")->nullable();
             $table->string("brand");
             $table->timestamps();
         });

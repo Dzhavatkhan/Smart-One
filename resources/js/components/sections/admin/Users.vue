@@ -4,16 +4,9 @@
             <input type="text" placeholder="Поиск" v-model="searchQuery" @input="searchUsers" class="bg-transparent outline-none">
             <img class="w-8" src="../../../../../public/img/admin/Search.svg" alt="">
         </div>
-        <div class="search-btn flex gap-5">
-            <button class="w-20 h-10 rounded-md duration-300 hover:text-white hover:bg-[#081225] border border-[#081225]">
-                Создать
-            </button>
-            <button @click="deleteUser" v-show="allSelected || checkbox.length>0" class="w-20 h-10 rounded-md duration-300 text-[#DE0202] hover:bg-[#FFF0F0]">
-                Удалить
-            </button>
-        </div>
+
     </div>
-    <div class="panel-content rounded-md p-10 h-full bg-white shadow flex flex-col gap-5">
+    <div class="panel-content overflow-auto rounded-md p-10 h-full bg-white shadow flex flex-col gap-5">
         <div class="panel-navbar flex justify-between items-center">
             <div class="text-[32px]" style="font-family: Roboto Condensened">Клиенты</div>
             <div class="text-[24px]">{{ users.length }}</div>
@@ -32,9 +25,6 @@
                 <td class="text-center font-bold">
                     Дата
                 </td>
-                <td>
-
-                </td>
 
             </thead>
 
@@ -46,7 +36,6 @@
                     <td class="text-center">{{ user.name }}</td>
                     <td class="text-center">{{ user.email }}</td>
                     <td class="text-center">{{ user.created_at }}</td>
-                    <td class="text-center cursor-pointer text-[#1B7A94] bg-[#EEFBFE]">Edit</td>
                 </tr>
             </tbody>
         </table>
@@ -178,5 +167,26 @@
         border-collapse:separate;
         border-spacing:0px 30px;
     }
+    .panel-content::-webkit-scrollbar {
+        width: 5px; /* Ширина всего элемента навигации */
+        padding: 2px;
 
+    }
+
+      
+    .panel-content::-webkit-scrollbar-track {
+        background: #fff; /* Цвет дорожки */
+    }
+      
+    .panel-content::-webkit-scrollbar-thumb {
+        padding: 2px;
+        cursor: pointer;
+        transition: 0.5s;
+        background-color: #050c26; /* Цвет бегунка */
+        border-radius: 20px; /* Округление бегунка */
+        border: 3px solid #050c26; /* Оформление границ бегунка */
+    }    
+    .panel-content::-webkit-scrollbar-thumb:hover {
+        transform: scale(1.1)
+    }
 </style>

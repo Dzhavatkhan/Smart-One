@@ -22,6 +22,6 @@ class Review extends Model
         return $this->hasMany(ReviewLike::class, "reviewId");
     }
     public function dislikes(){
-        return $this->hasMany(ReviewDisike::class, "reviewId");
+        return $this->hasMany(ReviewDislike::class, "reviewId");
     }
 }
