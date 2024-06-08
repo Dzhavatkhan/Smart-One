@@ -20,7 +20,7 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            "@": "../../../../../public",
+            "@public": "/public",
         },
     },
 });

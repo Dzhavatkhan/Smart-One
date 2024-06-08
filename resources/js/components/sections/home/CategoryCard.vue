@@ -7,7 +7,7 @@
             <div id="left" class="fa-solid controller left fa-angle-left"></div>
             <ul class="carousel">
               <li class="card">
-                <div @click="location.href='/catalog/Ноутбуки'" class="img"><img src="@/img/home/main/image 20.jpg" alt="img" draggable="false"></div>
+                <div @click="location.href='/catalog/Ноутбуки'" class="img"><img src="@public/img/home/main/image 20.jpg" alt="img" draggable="false"></div>
                 <router-link class="h2" :to="{path:'/catalog/Ноутбуки'}">Ноутбуки</router-link>
               </li>
               <li class="card">
