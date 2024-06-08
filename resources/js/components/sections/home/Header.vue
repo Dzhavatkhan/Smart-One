@@ -11,7 +11,7 @@
         </div>
         <div class="header-content flex gap-[45px] justufy-between max-md:w-full max-md:justify-between max-md:items-center max-sm:w-full max-sm:gap-[88px] max-sm:items-center">
             <Menu></Menu>
-            <img @click="home" src="/public/img/home/header/Logo.svg" class="max-sm:w-[174px] cursor-pointer max-sm:h-full" alt="">
+            <img @click="home" src="../../../../../public/img/home/header/Logo.svg" class="max-sm:w-[174px] cursor-pointer max-sm:h-full" alt="">
             <SearchMobile></SearchMobile>
             <div class="header-center flex max-md:hidden max-sm:hidden">
                 <div class="seacrhCatalog flex gap-[16px]">

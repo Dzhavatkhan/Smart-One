@@ -5,7 +5,7 @@
             <img ref="mobile" class="mob" src="/public/img/home/mobile/Slider (1).jpg">
         </div>
      </div>
-     <div class="contentPad max-md:block max-sm:hidden mobile">
+     <div class="contentPad max-md:block hidden mobile">
       <div class="images">
           <img ref="mobile" class="mob" src="/public/img/home/mobile/SliderMobile.jpg">
           <img ref="mobile" class="mob" src="/public/img/home/mobile/Slider (1).jpg">
