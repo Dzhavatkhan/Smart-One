@@ -15,7 +15,7 @@
                 <router-link class="h2" :to="{path:'/catalog/Смартфоны'}">Смартфоны</router-link>
               </li>
               <li class="card">
-                <div @click="location.href='/catalog/Зарядки'" class="img"><img src="/public/img/home/main/Charger and usb cable type c over orange background.jpg" alt="img" draggable="false"></div>
+                <div @click="location.href='/catalog/Зарядки'" class="img"><img src="../../../../../public/img/home/main/Charger and usb cable type c over orange background.jpg" alt="img" draggable="false"></div>
                 <router-link class="h2" :to="{path:'/catalog/Зарядки'}">Зарядки</router-link>
               </li>
               <li class="card">
