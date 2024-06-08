@@ -46,7 +46,7 @@
                                     <div @click="active" class="category-name text-[32px] font-[Roboto]">Планшеты</div>
                                 </div>
                                 <div class="category flex gap-[2px]">
-                                    <img src="@public/img/home/header/laptop.svg" alt="">
+                                    <img src="@public/img/home/header/Laptop.svg" alt="">
                                     <div @click="active" class="category-name text-[32px] text-[#4E4C4C] font-[Roboto]">Ноутбуки</div>
                                 </div>
                                 <div class="category flex gap-[2px]">
