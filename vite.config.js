@@ -18,9 +18,9 @@ export default defineConfig({
             refresh: true,
         }),
     ],
-    build: {
-        rollupOptions: {
-                 external: ['/public/**'],
-         },
+    resolve: {
+        alias: {
+            "@": "/public",
+        },
     },
 });
