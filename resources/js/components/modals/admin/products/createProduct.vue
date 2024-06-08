@@ -52,7 +52,7 @@
                                 <div class="specVal w-full flex flex-wrap gap-4">
                                     <div v-show="specification.length > 0" v-for="(item, index) in specification" :key="index" class="specItem w-52 p-3 flex gap-3 border border-[#151528] items-center justify-between">
                                         <p>{{item.title}}</p>
-                                        <img @click="deleteSpecification(item)" class="close text-right cursor-pointer w-[15px]" src="@/img/admin/Multiply.svg">
+                                        <img @click="deleteSpecification(item)" class="close text-right cursor-pointer w-[15px]" src="@public/img/admin/Multiply.svg">
                                     </div>
                                 </div>
                                 <input type="text" v-model="specificationTitle" class="border-b w-full outline-none hover:border-black focus:border-black text-[24px] border-[#A4A4A4] placeholder:text-[#A4A4A4] font-[Roboto]" placeholder="Название характеристики">
