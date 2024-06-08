@@ -7,11 +7,11 @@
             <div id="left" class="fa-solid controller left fa-angle-left"></div>
             <ul class="carousel">
               <li class="card">
-                <div @click="location.href='/catalog/Ноутбуки'" class="img"><img src="/public/img/home/main/image 20.jpg" alt="img" draggable="false"></div>
+                <div @click="location.href='/catalog/Ноутбуки'" class="img"><img src="../../../../../public/img/home/main/image 20.jpg" alt="img" draggable="false"></div>
                 <router-link class="h2" :to="{path:'/catalog/Ноутбуки'}">Ноутбуки</router-link>
               </li>
               <li class="card">
-                <div @click="location.href='/catalog/Смартфоны'" class="img"><img src="/public/img/auth-components/login/login-image.png" alt="img" draggable="false"></div>
+                <div @click="location.href='/catalog/Смартфоны'" class="img"><img src="../../../../../public/img/auth-components/login/login-image.png" alt="img" draggable="false"></div>
                 <router-link class="h2" :to="{path:'/catalog/Смартфоны'}">Смартфоны</router-link>
               </li>
               <li class="card">
@@ -19,15 +19,15 @@
                 <router-link class="h2" :to="{path:'/catalog/Зарядки'}">Зарядки</router-link>
               </li>
               <li class="card">
-                <div @click="location.href='/catalog/Планшеты'" class="img"><img src="/public/img/home/main/image 5.jpg" alt="img" draggable="false"></div>
+                <div @click="location.href='/catalog/Планшеты'" class="img"><img src="@/public/img/home/main/image 5.jpg" alt="img" draggable="false"></div>
                 <router-link class="h2" :to="{path:'/catalog/Планшеты'}">Планшеты</router-link>
               </li>
               <li class="card">
-                <div @click="location.href='/catalog/Смарт-часы'" class="img"><img src="/public/img/home/main/Smartwatch screen digital device.jpg" alt="img" draggable="false"></div>
+                <div @click="location.href='/catalog/Смарт-часы'" class="img"><img src="../../public/img/home/main/Smartwatch screen digital device.jpg" alt="img" draggable="false"></div>
                 <router-link class="h2" :to="{path:'/catalog/Смарт-часы'}">Смарт-часы</router-link>
               </li>
               <li class="card">
-                <div @click="location.href='/catalog/Наушники'" class="img"><img src="/public/img/home/main/image 8.jpg" alt="img" draggable="false"></div>
+                <div @click="location.href='/catalog/Наушники'" class="img"><img src="../public/img/home/main/image 8.jpg" alt="img" draggable="false"></div>
                 <router-link class="h2" :to="{path:'/catalog/Наушники'}">Наушники</router-link>
               </li>
             </ul>
