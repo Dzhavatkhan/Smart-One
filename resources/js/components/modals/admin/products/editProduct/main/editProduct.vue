@@ -7,7 +7,7 @@
             <div class="w-max fixed inset-0 m-auto z-20 flex justify-center items-center">
                 <div class="bg-white shadow-md w-[695px] h-[900px] px-10 py-5 flex flex-col just gap-3">
                     <div class="img flex w-full justify-end">
-                        <img class="close text-right cursor-pointer w-[20px]" @click="editProductModal = !editProductModal; console.log(editProductModal)" src="/public/img/admin/Multiply.svg">
+                        <img class="close text-right cursor-pointer w-[20px]" @click="editProductModal = !editProductModal; console.log(editProductModal)" src="@public/img/admin/Multiply.svg">
                     </div>
                     <div class="modal-content h-full overflow-auto  flex flex-col gap-10 items-center">
                         <div class="title text-[32px] text=[#151528] w-full text-center">
@@ -18,7 +18,7 @@
                                     <label for="input-file" ref="inputFile" id="drop-area" @drop.prevent="onDrop">
                                         <input @change="getAvatar" type="file" name="avatar" id="input-file" hidden>
                                         <div ref="view" class="img-view py-5 cursor-pointer flex flex-col bg-white duration-200 hover:bg-[#DEFCFF] items-center w-full h-full rounded-md border border-[#151528]">
-                                            <img src="/public/img/profile/Upload to the Cloud.svg" class="w-24" alt="">
+                                            <img src="@public/img/profile/Upload to the Cloud.svg" class="w-24" alt="">
                                             <p class="text-center">Перетащите файл сюда или кликните <br>чтобы загрузить изображение</p>
                                             <span class="duration-100">Загружайте изображение с рабочего стола</span>
                                         </div>
@@ -45,7 +45,7 @@
                                 <div class="specVal w-full flex flex-wrap gap-4">
                                     <div v-show="specification.length > 0" v-for="(item, index) in specification" :key="index" class="specItem w-52 p-3 flex gap-3 border border-[#151528] items-center justify-between">
                                         <p class="cursor-pointer" @click="getSpecification(item)">{{item.title}}</p>
-                                        <img @click="deleteSpecification(item)" class="close text-right cursor-pointer w-[15px]" src="/public/img/admin/Multiply.svg">
+                                        <img @click="deleteSpecification(item)" class="close text-right cursor-pointer w-[15px]" src="@public/img/admin/Multiply.svg">
                                     </div>
                                 </div>
                                 <input type="text" v-model="specificationTitle" class="border-b w-full outline-none hover:border-black focus:border-black text-[24px] border-[#A4A4A4] placeholder:text-[#A4A4A4] font-[Roboto]" placeholder="Название характеристики">

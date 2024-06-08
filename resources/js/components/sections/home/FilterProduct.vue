@@ -11,7 +11,7 @@
         <div class="np-info justify-between pl-[19px] pr-[12px] w-full h-full flex flex-col max-sm:pl-2 max-sm:pr-[7px] max-sm:gap-[30px]">
             <div class="np-name flex flex-col text-[20px] pt-2 cursor-pointer  max-sm:text-[14px] max-sm:h-[70px]">
                 <div class="hidden max-sm:flex w-full h-[17px]">
-                    <img src="/public/img/home/mobile/Star.svg" alt="">
+                    <img src="@public/img/home/mobile/Star.svg" alt="">
                     <div class="revCount text-[14px]">5</div>
                 </div>
                 <div class="name text-[20px] max-sm:text-[14px]">

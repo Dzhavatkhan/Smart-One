@@ -1,12 +1,12 @@
 <template>
-    <img @click="show = !show" src="/public/img/profile/Edit.svg" alt="" class="edit cursor-pointer max-sm:w-5">
+    <img @click="show = !show" src="@public/img/profile/Edit.svg" alt="" class="edit cursor-pointer max-sm:w-5">
 
     <transition name="fade">
         <div v-if="show" class="fixed inset-0 m-auto bg-black bg-opacity-60 z-10">
             <div class="w-max fixed inset-0 m-auto z-20 flex justify-center items-center">
                 <div class="bg-white shadow-md w-[695px] h-[600px] px-5 py-5 flex flex-col just gap-6 max-md:w-[500px] max-sm:w-[400px]">
                     <div class="img flex w-full justify-end">
-                        <img class="close down text-right cursor-pointer w-[20px]" @click="show = !show" src="../../../../../public/img/admin/Multiply.svg">
+                        <img class="close down text-right cursor-pointer w-[20px]" @click="show = !show" src="@public/img/admin/Multiply.svg">
                     </div>
                     <div class="title text-[24px] flex justify-center">Редактировать профиль</div>
                     <form  class="flex flex-col h-full items-center justify-between gap-3 max-sm:mt-5">

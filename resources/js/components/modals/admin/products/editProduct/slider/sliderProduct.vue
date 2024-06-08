@@ -7,7 +7,7 @@
             <div class="w-max fixed inset-0 m-auto z-20 flex justify-center items-center">
                 <div class="bg-white shadow-md w-[695px] h-[900px] py-5 flex flex-col just gap-5 px-16">
                     <div class="img flex w-full justify-end">
-                        <img class="close text-right cursor-pointer w-[20px]" @click="show = !show; console.log(show)" src="/public/img/admin/Multiply.svg">
+                        <img class="close text-right cursor-pointer w-[20px]" @click="show = !show; console.log(show)" src="@public/img/admin/Multiply.svg">
                     </div>
                     <div class="title w-full font-bold text-[36px] text-center">
                         Слайдер товара ({{ product.name }})
@@ -21,7 +21,7 @@
                                 <label for="sslider" ref="inputFile" @drop.prevent="onDrop">
                                     <input @change="getImage" type="file" name="image" id="sslider" hidden>
                                     <div ref="view" class="img-view py-5 cursor-pointer flex flex-col bg-white duration-200 hover:bg-[#DEFCFF] items-center w-full h-full rounded-md border border-[#151528]">
-                                        <img src="/public/img/profile/Upload to the Cloud.svg" class="w-24" alt="">
+                                        <img src="@public/img/profile/Upload to the Cloud.svg" class="w-24" alt="">
                                         <p class="text-center">Перетащите файл сюда или кликните <br>чтобы загрузить изображение</p>
                                         <span class="duration-100">Загружайте изображение с рабочего стола</span>
                                     </div>
@@ -29,7 +29,7 @@
                             </div>
                             <div v-else class="img-input flex justify-center items-center py-5 w-full">
                                 <div @click="removeImage(selectImage)" class="bg-white duration-300 hover:scale-110 shadow-md relative top-0 left-48 rounded-full h-8 w-8 flex justify-center items-center">
-                                    <img class="close down text-right cursor-pointer w-[20px] max-sm:max-h-[250px]" src="/public/img/admin/Multiply.svg">
+                                    <img class="close down text-right cursor-pointer w-[20px] max-sm:max-h-[250px]" src="@public/img/admin/Multiply.svg">
                                 </div>
                                 <img class="w-24" :src="selectImage" alt="">
                             </div>
@@ -46,7 +46,7 @@
                                 <label for="Islider" ref="inputFile" @drop.prevent="onDrop">
                                     <input @change="getImage" type="file" name="image" id="Islider" hidden>
                                     <div ref="view" class="img-view py-5 cursor-pointer flex flex-col bg-white duration-200 hover:bg-[#DEFCFF] items-center w-full h-full rounded-md border border-[#151528]">
-                                        <img src="/public/img/profile/Upload to the Cloud.svg" class="w-24" alt="">
+                                        <img src="@public/img/profile/Upload to the Cloud.svg" class="w-24" alt="">
                                         <p class="text-center">Перетащите файл сюда или кликните <br>чтобы загрузить изображение</p>
                                         <span class="duration-100">Загружайте изображение с рабочего стола</span>
                                     </div>
@@ -54,7 +54,7 @@
                             </div>
                             <div v-else class="img-input flex flex-col justify-center items-center py-5 w-full">
                                 <div @click="removeImage(selectImage)" class="bg-white duration-300 hover:scale-110 shadow-md relative top-0 left-48 rounded-full h-8 w-8 flex justify-center items-center">
-                                    <img class="close down text-right cursor-pointer w-[20px] max-sm:max-h-[250px]" src="/public/img/admin/Multiply.svg">
+                                    <img class="close down text-right cursor-pointer w-[20px] max-sm:max-h-[250px]" src="@public/img/admin/Multiply.svg">
                                 </div>
                                 <img class="w-24" :src="selectImage" alt="">
                             </div>

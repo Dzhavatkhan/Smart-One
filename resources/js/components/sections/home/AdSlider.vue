@@ -1,8 +1,8 @@
 <template>
     <div class="content">
         <div class="images">
-            <img ref="image" class="slider-item" src="/public/img/home/header/Slider.jpg">
-            <img ref="image" class="slider-item" src="/public/img/home/header/SliderTwo.jpg">
+            <img ref="image" class="slider-item" src="@public/img/home/header/Slider.jpg">
+            <img ref="image" class="slider-item" src="@public/img/home/header/SliderTwo.jpg">
         </div>
      </div>
 </template>

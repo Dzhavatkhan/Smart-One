@@ -2,12 +2,12 @@
         <div class="flex h-[55px] w-[819px] border border-[#162C40]">
             <div  @click="show = !show" class="searchCategory cursor-pointer duration-300 hover:opacity-75 hover:text-black font-[Roboto] gap-[12px] text-[#797171] bg-[#F5F7FA] h-full w-[105px] flex justify-center items-center">
                 <div class="category">Все</div>
-                <img src="/public/img/home/header/DoubleDown.svg" alt="">
+                <img src="@public/img/home/header/DoubleDown.svg" alt="">
             </div>
             <div class="searchInput w-full flex items-center px-[53px]">
                 <input @input="search" v-model="searchQuery"  type="text" class="placeholder:text-[#797171] w-full outline-none" placeholder="Поиск...">
             </div>
-            <img src="/public/img/home/header/Search.svg" class="cursor-pointer duration-300 hover:opacity-90" alt="" srcset="">
+            <img src="@public/img/home/header/Search.svg" class="cursor-pointer duration-300 hover:opacity-90" alt="" srcset="">
         </div>
         <div ref="searchDiv" class="bg-white absolute top-52 result hidden shadow-md w-[819px] max-h-96">
             <div v-if="results.categories == 0 && results.products == 0" class="w-full py-5 h-full flex flex-col">
@@ -38,27 +38,27 @@
                             </div>
                             <div class="categories flex flex-col gap-[26px]">
                                 <div class="category flex gap-[2px]">
-                                    <img src="/public/img/home/header/iPhone 14.svg" alt="">
+                                    <img src="@public/img/home/header/iPhone 14.svg" alt="">
                                     <div @click="active" class="category-name text-[32px] text-[#4E4C4C] active font-[Roboto]">Смартфоны</div>
                                 </div>
                                 <div class="category flex gap-[2px]">
-                                    <img src="/public/img/home/header/iPad.svg" alt="">
+                                    <img src="@public/img/home/header/iPad.svg" alt="">
                                     <div @click="active" class="category-name text-[32px] font-[Roboto]">Планшеты</div>
                                 </div>
                                 <div class="category flex gap-[2px]">
-                                    <img src="/public/img/home/header/laptop.svg" alt="">
+                                    <img src="@public/img/home/header/laptop.svg" alt="">
                                     <div @click="active" class="category-name text-[32px] text-[#4E4C4C] font-[Roboto]">Ноутбуки</div>
                                 </div>
                                 <div class="category flex gap-[2px]">
-                                    <img src="/public/img/home/header/Earbud Headphones.svg" alt="">
+                                    <img src="@public/img/home/header/Earbud Headphones.svg" alt="">
                                     <div @click="active" class="category-name text-[32px] text-[#4E4C4C] font-[Roboto]">Наушники</div>
                                 </div>
                                 <div class="category flex gap-[2px]">
-                                    <img src="/public/img/home/header/Smart Watch.svg" alt="">
+                                    <img src="@public/img/home/header/Smart Watch.svg" alt="">
                                     <div @click="active" class="category-name text-[32px] text-[#4E4C4C] font-[Roboto]">Смарт-часы</div>
                                 </div>
                                 <div class="category flex gap-[2px]">
-                                    <img src="/public/img/home/header/USB C.svg" alt="">
+                                    <img src="@public/img/home/header/USB C.svg" alt="">
                                     <div @click="active" class="category-name text-[32px] text-[#4E4C4C] font-[Roboto]">Аксессуары</div>
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
                                 <div class="subcategories w-full flex flex-col gap-[79px]">
                                     <div class="category-name w-full flex justify-between font-[Roboto] title text-[32px] pt-[63px]">
                                         <div class="">{{category.name}}</div>
-                                        <img class="close text-right cursor-pointer w-[20px]" @click="show = !show" src="/public/img/admin/Multiply.svg">
+                                        <img class="close text-right cursor-pointer w-[20px]" @click="show = !show" src="@public/img/admin/Multiply.svg">
                                     </div>
                                     <div class="subc-cont w-full flex flex-wrap gap-[66px]">
                                         <div class="content flex flex-col gap-[25px]">

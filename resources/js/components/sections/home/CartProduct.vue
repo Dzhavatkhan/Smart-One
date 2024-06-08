@@ -8,18 +8,18 @@
                 <div class="relative w-[20px] h-[50px] left-[20px] z-10 bottom-10  max-sm:m-0 max-sm:left-[15px] max-sm:bottom-1 max-md:m-0 max-md:left-[65px] max-md:bottom-5">
                     <div class="flex flex-col h-full w-full justify-between cursor-pointer">
                         <Heart :product="product"></Heart>
-                        <img @click="deleteProductFromCart(product.id)" src="/public/img/home/main/Delete.svg" class="" alt="">
+                        <img @click="deleteProductFromCart(product.id)" src="@public/img/home/main/Delete.svg" class="" alt="">
                     </div>
                 </div>
             </div>
             <div class="p-info justify-between pl-[19px] pr-[12px] w-full h-full flex flex-col max-md:gap-0 max-md:justify-between max-sm:gap-0 max-sm:justify-between">
                 <div class="p-name flex flex-col text-[20px] pt-2 cursor-pointer max-md:text-[14px] max-sm:text-[14px]">
                     <div v-if="product.avg > 0" class="hidden mb-[5px] max-sm:flex max-md:flex w-full h-[17px]">
-                        <img src="/public/img/home/mobile/Star.svg" alt="">
+                        <img src="@public/img/home/mobile/Star.svg" alt="">
                         <div class="revCount text-[14px]">{{product.avg}}</div>
                     </div>
                     <div v-else class="hidden mb-[5px] max-sm:flex max-md:flex w-full h-[17px]">
-                        <img src="/public/img/home/mobile/StarEmpty.svg" alt="">
+                        <img src="@public/img/home/mobile/StarEmpty.svg" alt="">
                         <div class="revCount text-[14px]">0</div>
                     </div>
                     <div class="name text-[20px] max-sm:text-[14px]">

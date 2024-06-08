@@ -9,7 +9,7 @@
                         <div class="filterTIt flex justify-between w-full items-center">
                             <div class=""></div>
                             <div class="title text-[24px]">Фильтры</div>
-                            <img class="close text-right cursor-pointer w-[20px]" @click="show = !show" src="/public/img/admin/Multiply.svg">
+                            <img class="close text-right cursor-pointer w-[20px]" @click="show = !show" src="@public/img/admin/Multiply.svg">
                         </div>
                         <div class="filterDiv bg-white px-2 py-5 flex flex-col w-full min-h-[548px] justify-between shadow-md border-t border-r-gray-100">
                             <div class="category-block">

@@ -8,7 +8,7 @@
             <div class="w-max fixed inset-0 m-auto z-20 flex justify-center items-center max-md:items-start max-sm:items-start">
                 <div class="bg-white shadow-md w-[695px] h-[900px] px-10 py-5 flex flex-col just gap-3 max-md:w-screen max-md:h-screen max-sm:w-screen max-sm:h-screen max-md:overflow-auto max-sm:overflow-auto">
                     <div class="img flex w-full justify-end">
-                        <img class="close down text-right cursor-pointer w-[20px]" @click="modal" src="/public/img/admin/Multiply.svg">
+                        <img class="close down text-right cursor-pointer w-[20px]" @click="modal" src="@public/img/admin/Multiply.svg">
                    </div>
                    <div class="revTitle text-[24px] font-bold w-full flex justify-center">
                         Оставить отзыв
@@ -17,7 +17,7 @@
                         <div v-for="index in limit" :key="index" class="">
                             <label :for="'star' + index" class="label" @mouseenter="selectStar(index)">
                                 <input class="" type="checkbox" :id="'star' + index" @click="selectStar(index)" hidden>
-                                <div  @mouseout="selectStar(index)" id="starImg" src="/public/img/home/mobile/StarEmpty.svg"></div>
+                                <div  @mouseout="selectStar(index)" id="starImg" src="@public/img/home/mobile/StarEmpty.svg"></div>
                             </label>
                         </div>
                    </div>
@@ -29,7 +29,7 @@
                    <div class="images flex flex-wrap gap-4 w-full " v-show="saveImage.length>0">
                         <div v-for="image in saveImage" :key="image" class="flex">
                             <div @click="removeImage(image)" class="bg-white duration-300 hover:scale-110 shadow-md relative top-2 left-36 rounded-full h-8 w-8 flex justify-center items-center">
-                                <img class="close down text-right cursor-pointer w-[20px] max-md:h-[250px] max-sm:max-h-[250px]" src="/public/img/admin/Multiply.svg">
+                                <img class="close down text-right cursor-pointer w-[20px] max-md:h-[250px] max-sm:max-h-[250px]" src="@public/img/admin/Multiply.svg">
                             </div>
                             <img class="w-[150px] h-auto" :src="image" alt="">
                         </div>
@@ -39,7 +39,7 @@
                         <label for="comment" class="" id="drop-area" @drop.prevent="onDrop">
                             <input @change="getImage" type="file" name="avatar" id="comment" hidden>
                             <div ref="view" class="img-view py-5 cursor-pointer flex flex-col bg-white duration-200 hover:bg-[#DEFCFF] items-center justify-center w-full h-full rounded-md border border-[#151528]">
-                                <img src="../../../../../public/img/profile/Upload to the Cloud.svg" class="w-24 " alt="">
+                                <img src="@public/img/profile/Upload to the Cloud.svg" class="w-24 " alt="">
                                 <p class="text-center max-md:hidden max-sm:hidden">Перетащите файл сюда или кликните <br>чтобы загрузить изображение</p>
                                 <span class="duration-100 max-md:hidden max-sm:hidden">Загружайте изображение с рабочего стола</span>
                             </div>
@@ -164,13 +164,13 @@
         height: 50px;
         cursor: pointer;
         transition: 0.3s;
-        background-image: url("/public/img/home/mobile/StarEmpty.svg");
+        background-image: url("@public/img/home/mobile/StarEmpty.svg");
         background-repeat: no-repeat;
         background-size: 100%;
 
     }
     .active{
-        background-image: url("/public/img/home/mobile/Star.svg") !important;
+        background-image: url("@public/img/home/mobile/Star.svg") !important;
         background-repeat: no-repeat;
         transition: 0.3s;
         background-size: 100%;

@@ -1,14 +1,14 @@
 <template>
      <div class="content hidden max-sm:block mobile">
         <div class="images">
-            <img ref="mobile" class="mob" src="/public/img/home/mobile/SliderMobile.jpg">
-            <img ref="mobile" class="mob" src="/public/img/home/mobile/Slider (1).jpg">
+            <img ref="mobile" class="mob" src="@public/img/home/mobile/SliderMobile.jpg">
+            <img ref="mobile" class="mob" src="@public/img/home/mobile/Slider (1).jpg">
         </div>
      </div>
      <div class="contentPad max-md:block hidden mobile">
         <div class="images">
-            <img ref="mobile" class="mob" src="/public/img/home/mobile/SliderMobile.jpg">
-            <img ref="mobile" class="mob" src="/public/img/home/mobile/Slider (1).jpg">
+            <img ref="mobile" class="mob" src="@public/img/home/mobile/SliderMobile.jpg">
+            <img ref="mobile" class="mob" src="@public/img/home/mobile/Slider (1).jpg">
         </div>
    </div>
 </template>

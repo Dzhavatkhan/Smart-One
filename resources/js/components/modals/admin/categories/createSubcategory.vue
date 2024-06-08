@@ -5,7 +5,7 @@
             <div class="w-max fixed inset-0 m-auto z-20 flex justify-center items-center">
                 <div class="bg-white shadow-md w-[695px] h-[400px] px-10 py-5 flex flex-col just gap-3">
                     <div class="img flex w-full justify-end">
-                        <img class="close text-right cursor-pointer w-[20px]" @click="createSubcategoryModal = !createSubcategoryModal; console.log(createSubcategoryModal)" src="/public/img/admin/Multiply.svg">
+                        <img class="close text-right cursor-pointer w-[20px]" @click="createSubcategoryModal = !createSubcategoryModal; console.log(createSubcategoryModal)" src="@public/img/admin/Multiply.svg">
                     </div>
                     <div class="modal-content h-64 flex flex-col gap-10  justify-center items-center">
                         <div class="title text-[32px] text=[#151528] w-full text-center">

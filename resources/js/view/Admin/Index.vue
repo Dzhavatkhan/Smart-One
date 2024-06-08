@@ -10,24 +10,24 @@
             <div class="links flex flex-col h-[700px] justify-between">
                 <nav class="nav flex flex-col gap-3 px-4 py-5">
                     <router-link to="/admin/orders" class="nav-link p-5 rounded-lg hover:bg-[#081225] hover:text-white duration-300 cursor-pointer w-full h-8 flex gap-2 items-center">
-                        <img src="../../../../public/img/admin/Expensive Price.svg" alt="">
+                        <img src="@public/img/admin/Expensive Price.svg" alt="">
                         <p>Заказы</p>
                     </router-link>
                     <router-link to="/admin/products" class="nav-link p-5 rounded-lg hover:bg-[#081225] hover:text-white duration-300 cursor-pointer w-full h-8 flex gap-2 items-center">
-                        <img src="../../../../public/img/admin/Shopping Basket.svg" alt="">
+                        <img src="@public/img/admin/Shopping Basket.svg" alt="">
                         <p>Товары</p>
                     </router-link>
                     <router-link to="/admin/users" class="nav-link p-5 rounded-lg hover:bg-[#081225] hover:text-white duration-300 cursor-pointer w-full h-8 flex gap-2 items-center">
-                        <img src="../../../../public/img/admin/User Male.svg" alt="">
+                        <img src="@public/img/admin/User Male.svg" alt="">
                         <p>Клиенты</p>
                     </router-link>
                     <router-link to="/admin/categories" class="nav-link p-5 rounded-lg hover:bg-[#081225] hover:text-white duration-300 cursor-pointer w-full h-8 flex gap-2 items-center">
-                        <img src="../../../../public/img/admin/Sorting.svg" alt="">
+                        <img src="@public/img/admin/Sorting.svg" alt="">
                         <p>Категории</p>
                     </router-link>
                 </nav>
                 <div class="admin flex flex-col items-center">
-                    <img class="w-[50px] h-[40px] rounded-lg " src="/public/img/avatars/default.png" alt="">
+                    <img class="w-[50px] h-[40px] rounded-lg " src="@public/img/avatars/default.png" alt="">
                     <p>{{userStore.name}}</p>
                     <p class="text-red-600 cursor-pointer" @click="logout">Выйти</p>
                 </div>

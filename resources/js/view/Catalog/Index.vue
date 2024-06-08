@@ -15,7 +15,7 @@
             <div v-show="block.isShow" class="flex flex-col gap-3">
                 <div v-for="list in block.lists" :key="list.id" class="bg-gray-100 h-[50px] pl-[54px] pr-5 flex justify-between items-center">
                     <router-link :to="{path:`/catalog/${block.name}/` + list.name}" class="category">{{list.name}}</router-link>
-                    <img src="/public/img/admin/rigth.svg" alt="">
+                    <img src="@public/img/admin/rigth.svg" alt="">
                 </div>
             </div>
 

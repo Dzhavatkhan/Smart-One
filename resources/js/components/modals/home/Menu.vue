@@ -1,13 +1,13 @@
 <template>
-    <img @click="show = !show" src="/public/img/home/header/Menu.svg" alt="" class="hidden max-md:flex max-sm:flex max-md:w-5 max-sm:w-5">
+    <img @click="show = !show" src="@public/img/home/header/Menu.svg" alt="" class="hidden max-md:flex max-sm:flex max-md:w-5 max-sm:w-5">
 
     <div class="catalog fixed inset-0 m-auto bg-white z-30" v-show="show">
         <div class="w-max fixed inset-0 m-auto z-20 flex justify-center items-center">
             <div class="w-full h-full px-5 py-[10px] flex flex-col gap-5">
                 <div class="w-full flex justify-end">
-                    <img class="close text-right cursor-pointer w-[20px]" @click="show = !show" src="/public/img/admin/Multiply.svg">
+                    <img class="close text-right cursor-pointer w-[20px]" @click="show = !show" src="@public/img/admin/Multiply.svg">
                 </div>
-                <img src="/public/img/home/header/Logo.svg" alt="">
+                <img src="@public/img/home/header/Logo.svg" alt="">
                 <div class="menu flex flex-col items-start gap-10 py-10">
                     <select v-if="userStore.id != null" v-model="myCity" @change="selectCity" name="" id="" class="city outline-none bg-transparent w-full">
                         <option v-for="(city, index) in cities" :key="index" :selected="city" >{{city}}</option>

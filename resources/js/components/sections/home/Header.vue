@@ -11,7 +11,7 @@
         </div>
         <div class="header-content flex gap-[45px] justufy-between max-md:w-full max-md:justify-between max-md:items-center max-sm:w-full max-sm:gap-[88px] max-sm:items-center">
             <Menu></Menu>
-            <img @click="home" src="../../../../../public/img/home/header/Logo.svg" class="max-sm:w-[174px] cursor-pointer max-sm:h-full" alt="">
+            <img @click="home" src="@public/img/home/header/Logo.svg" class="max-sm:w-[174px] cursor-pointer max-sm:h-full" alt="">
             <SearchMobile></SearchMobile>
             <div class="header-center flex max-md:hidden max-sm:hidden">
                 <div class="seacrhCatalog flex gap-[16px]">
@@ -22,9 +22,9 @@
                 </div>
             </div>
             <div class="icons flex gap-[45px] items-center max-md:hidden max-sm:hidden">
-                <img @click="toProfile" class="cursor-pointer hover:opacity-85 h-[50px]" src="/public/img/home/header/Male User.svg" alt="">
-                <img @click="toFavorite" class="cursor-pointer hover:opacity-85 h-[50px]" src="/public/img/home/header/Heart.svg" alt="">
-                <img @click="toCart" class="cursor-pointer hover:opacity-85 h-[50px]" src="/public/img/home/header/Shopping Cart.svg" alt="">
+                <img @click="toProfile" class="cursor-pointer hover:opacity-85 h-[50px]" src="@public/img/home/header/Male User.svg" alt="">
+                <img @click="toFavorite" class="cursor-pointer hover:opacity-85 h-[50px]" src="@public/img/home/header/Heart.svg" alt="">
+                <img @click="toCart" class="cursor-pointer hover:opacity-85 h-[50px]" src="@public/img/home/header/Shopping Cart.svg" alt="">
             </div>
         </div>
     </header>

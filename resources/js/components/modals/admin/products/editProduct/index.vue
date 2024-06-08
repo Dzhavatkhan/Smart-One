@@ -6,7 +6,7 @@
             <div class="w-max fixed inset-0 m-auto z-20 flex justify-center items-center">
                 <div class="bg-white shadow-md w-[695px] h-[900px] py-5 flex flex-col just gap-3 px-24">
                     <div class="img flex w-full justify-end">
-                        <img class="close text-right cursor-pointer w-[20px]" @click="show = !show; console.log(show)" src="/public/img/admin/Multiply.svg">
+                        <img class="close text-right cursor-pointer w-[20px]" @click="show = !show; console.log(show)" src="@public/img/admin/Multiply.svg">
                     </div>
                     <div class="title w-full font-bold text-[36px] text-center">
                         Редактировать товар

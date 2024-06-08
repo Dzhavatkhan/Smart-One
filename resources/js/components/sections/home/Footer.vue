@@ -1,7 +1,7 @@
 <template>
     <div class="w-full h-[285px] bg-[#2C3238] flex flex-col justify-around max-md:hidden max-sm:hidden">
         <div class="footerInfo  px-[200px] flex justify-between items-center">
-            <img src="/public/img/home/header/LogoDark.svg" alt="">
+            <img src="@public/img/home/header/LogoDark.svg" alt="">
             <div class="info flex gap-[121px]">
                 <div class="soc flex flex-col w-[194px] gap-3">
                     <div class="title text-white text-[20px]">
@@ -10,11 +10,11 @@
                     <div class="lane w-full h-[1px] bg-[#5D5D64]"></div>
                     <div class="soc-info flex flex-col gap-[14px] text-white text-[16px] font-[Roboto]">
                         <div class="soc-item cursor-pointer flex gap-[5px] items-center">
-                            <img src="/public/img/home/footer/telegram-icon.svg" alt="">
+                            <img src="@public/img/home/footer/telegram-icon.svg" alt="">
                             <p>Telegram</p>
                         </div>
                         <div class="soc-item cursor-pointer flex gap-[5px] items-center">
-                            <img src="/public/img/home/footer/vk-icon.svg" alt="">
+                            <img src="@public/img/home/footer/vk-icon.svg" alt="">
                             <p>ВКонтакте</p>
                         </div>
                     </div>

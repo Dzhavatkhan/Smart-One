@@ -1,5 +1,5 @@
 <template>
-    <img @click="show = !show" src="/public/img/home/header/SearchMobile.svg" alt="" class="hidden max-md:flex max-md:h-5 max-sm:flex max-sm:w-5 max-sm:h-5">
+    <img @click="show = !show" src="@public/img/home/header/SearchMobile.svg" alt="" class="hidden max-md:flex max-md:h-5 max-sm:flex max-sm:w-5 max-sm:h-5">
 
     <transition name="fade">
         <div v-if="show" class="fixed inset-0 m-auto bg-black bg-opacity-60 z-10">
@@ -7,7 +7,7 @@
                 <div class="bg-white shadow-md w-screen h-full px-5 py-5 flex flex-col just gap-6">
                     <div class="img flex w-full justify-between">
                         <input type="text"  @input="search" v-model="searchQuery" class="border-b w-full  outline-none focus:border-black text-[20px] border-[#A4A4A4] placeholder:text-[#A4A4A4] font-[Roboto]" placeholder="Поиск">
-                        <img class="close down text-right cursor-pointer w-[20px]" @click="show = !show" src="../../../../../public/img/admin/Multiply.svg">
+                        <img class="close down text-right cursor-pointer w-[20px]" @click="show = !show" src="@public/img/admin/Multiply.svg">
                     </div>
                     <div class="results h-full w-full">
                         <div v-if="results.categories == 0 && results.products == 0" class="w-full py-5 h-full flex flex-col">

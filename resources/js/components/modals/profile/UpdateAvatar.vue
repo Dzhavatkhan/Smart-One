@@ -1,20 +1,20 @@
 <template>
-    <img @click="updateAvatarModal = !updateAvatarModal" src="/public/img/profile/Group 17.svg" alt="" class="edit w-[30px] relative left-16 bottom-7 cursor-pointer max-md:hidden max-sm:hidden">
-    <img @click="updateAvatarModal = !updateAvatarModal" src="/public/img/profile/Group 16.svg" alt="" class=" hidden edit w-[30px] relative left-8 bottom-5 cursor-pointer max-md:block max-md:left-9 max-sm:block">
+    <img @click="updateAvatarModal = !updateAvatarModal" src="@public/img/profile/Group 17.svg" alt="" class="edit w-[30px] relative left-16 bottom-7 cursor-pointer max-md:hidden max-sm:hidden">
+    <img @click="updateAvatarModal = !updateAvatarModal" src="@public/img/profile/Group 16.svg" alt="" class=" hidden edit w-[30px] relative left-8 bottom-5 cursor-pointer max-md:block max-md:left-9 max-sm:block">
 
     <transition name="fade">
         <div v-if="updateAvatarModal" class="fixed inset-0 m-auto bg-black bg-opacity-60 z-10">
             <div class="w-max fixed inset-0 m-auto z-20 flex justify-center items-center">
                 <div class="bg-white shadow-md w-[695px] h-[600px] px-5 py-5 flex flex-col just gap-6 max-sm:w-[400px]">
                     <div class="img flex w-full justify-end">
-                        <img class="close down text-right cursor-pointer w-[20px]" @click="updateAvatarModal = !updateAvatarModal" src="../../../../../public/img/admin/Multiply.svg">
+                        <img class="close down text-right cursor-pointer w-[20px]" @click="updateAvatarModal = !updateAvatarModal" src="@public/img/admin/Multiply.svg">
                     </div>
                     <form  class="flex flex-col h-full items-center justify-between gap-3">
                         <div class="hero h-full w-full">
                             <label for="input-file" class="" ref="inputFile" id="drop-area" @drop.prevent="onDrop">
                                 <input @change="getAvatar" type="file" name="avatar" id="input-file" hidden>
                                 <div ref="view" class="img-view py-5 cursor-pointer flex flex-col bg-white duration-200 hover:bg-[#DEFCFF] items-center justify-center w-full h-full rounded-md border border-[#151528]">
-                                    <img src="../../../../../public/img/profile/Upload to the Cloud.svg" class="w-24" alt="">
+                                    <img src="@public/img/profile/Upload to the Cloud.svg" class="w-24" alt="">
                                     <p class="text-center">Перетащите файл сюда или кликните <br>чтобы загрузить изображение</p>
                                     <span class="duration-100">Загружайте изображение с рабочего стола</span>
                                 </div>

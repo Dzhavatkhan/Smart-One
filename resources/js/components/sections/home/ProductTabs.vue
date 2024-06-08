@@ -17,7 +17,7 @@
                 <div class="statistic max-md:w-full max-sm:w-full">
                     <div class="flex gap-[22px] max-md:gap-[7px] max-sm:gap-[7px]">
                         <div class="flex gap-[6px] max-md:gap-[1px] max-sm:gap-[1px]">
-                            <img class="w-5 h-5" src="/public/img/home/mobile/Star.svg" alt="">
+                            <img class="w-5 h-5" src="@public/img/home/mobile/Star.svg" alt="">
                             <div v-if="product.reviews != 0" class="rate">{{avg}}</div>
                             <div v-else class="">0</div>
                         </div>
@@ -70,7 +70,7 @@
                                 <div class="date text-[14px] max-md:text-[12px] text-[#5D5D64] max-sm:text-[12px]">{{review.date}}</div>
                             </div>
                             <div class="star flex items-center h-5">
-                                <img src="/public/img/home/mobile/Star.svg" class="h-full w-full" alt="">
+                                <img src="@public/img/home/mobile/Star.svg" class="h-full w-full" alt="">
                                 <div class="rate">{{ review.rate }}</div>
                             </div>
                         </div>
@@ -119,18 +119,18 @@
                     <div class="relative w-[20px] h-[50px] left-[20px] z-10 bottom-10 max-md:m-0 max-md:left-[15px] max-md:bottom-1  max-sm:m-0 max-sm:left-[15px] max-sm:bottom-1">
                         <div class="flex flex-col h-full w-full justify-between cursor-pointer">
                             <Heart :product="accessory"></Heart>
-                            <img @click="deleteProductFromCart(accessory.id)" src="/public/img/home/main/Delete.svg" class="" alt="">
+                            <img @click="deleteProductFromCart(accessory.id)" src="@public/img/home/main/Delete.svg" class="" alt="">
                         </div>
                     </div>
                 </div>
                 <div class="p-info justify-between pl-[19px] pr-[12px] w-full h-full flex flex-col max-md:gap-0 max-md:justify-between max-sm:gap-0 max-sm:justify-between">
                     <div class="p-name flex flex-col text-[20px] pt-2 cursor-pointer max-md:text-[14px] max-sm:text-[14px]">
                         <div v-if="accessory.avg > 0" class="hidden mb-[5px] max-md:flex max-sm:flex w-full h-[17px]">
-                            <img src="/public/img/home/mobile/Star.svg" alt="">
+                            <img src="@public/img/home/mobile/Star.svg" alt="">
                             <div class="revCount text-[14px]">{{accessory.avg}}</div>
                         </div>
                         <div v-else class="hidden mb-[5px]max-md:flex max-sm:flex w-full h-[17px]">
-                            <img src="/public/img/home/mobile/StarEmpty.svg" alt="">
+                            <img src="@public/img/home/mobile/StarEmpty.svg" alt="">
                             <div class="revCount text-[14px]">0</div>
                         </div>
                         <div class="name text-[20px] max-md:text-[14px] max-sm:text-[14px]">

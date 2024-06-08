@@ -7,7 +7,7 @@
             <div class="w-max fixed inset-0 m-auto z-20 flex justify-center items-center">
                 <div class="bg-white shadow-md w-[695px] h-[900px] px-10 py-5 flex flex-col just gap-3">
                     <div class="img flex w-full justify-end">
-                        <img class="close down text-right cursor-pointer w-[20px]" @click="createProductModal = !createProductModal" src="/public/img/admin/Multiply.svg">
+                        <img class="close down text-right cursor-pointer w-[20px]" @click="createProductModal = !createProductModal" src="@public/img/admin/Multiply.svg">
                    </div>
                     <div class="modal-content h-full overflow-auto  flex flex-col gap-10 items-center">
                         <div class="title text-[32px] text=[#151528] w-full text-center">
@@ -18,7 +18,7 @@
                                 <label for="prod" ref="inputFile" @drop.prevent="onDrop">
                                     <input @change="getImage" type="file" name="image" id="prod" hidden>
                                     <div ref="view" class="img-view py-5 cursor-pointer flex flex-col bg-white duration-200 hover:bg-[#DEFCFF] items-center w-full h-full rounded-md border border-[#151528]">
-                                        <img src="/public/img/profile/Upload to the Cloud.svg" class="w-24" alt="">
+                                        <img src="@public/img/profile/Upload to the Cloud.svg" class="w-24" alt="">
                                         <p class="text-center">Перетащите файл сюда или кликните <br>чтобы загрузить изображение</p>
                                         <span class="duration-100">Загружайте изображение с рабочего стола</span>
                                     </div>
@@ -26,7 +26,7 @@
                             </div>
                             <div v-else class="img-input flex flex-col justify-center items-center py-5 w-full">
                                 <div @click="removeImage(selectImage)" class="bg-white duration-300 hover:scale-110 shadow-md relative top-0 left-48 rounded-full h-8 w-8 flex justify-center items-center">
-                                    <img class="close down text-right cursor-pointer w-[20px] max-sm:max-h-[250px]" src="/public/img/admin/Multiply.svg">
+                                    <img class="close down text-right cursor-pointer w-[20px] max-sm:max-h-[250px]" src="@public/img/admin/Multiply.svg">
                                 </div>
                                 <img :src="selectImage" alt="">
                             </div>
@@ -52,7 +52,7 @@
                                 <div class="specVal w-full flex flex-wrap gap-4">
                                     <div v-show="specification.length > 0" v-for="(item, index) in specification" :key="index" class="specItem w-52 p-3 flex gap-3 border border-[#151528] items-center justify-between">
                                         <p>{{item.title}}</p>
-                                        <img @click="deleteSpecification(item)" class="close text-right cursor-pointer w-[15px]" src="/public/img/admin/Multiply.svg">
+                                        <img @click="deleteSpecification(item)" class="close text-right cursor-pointer w-[15px]" src="@/img/admin/Multiply.svg">
                                     </div>
                                 </div>
                                 <input type="text" v-model="specificationTitle" class="border-b w-full outline-none hover:border-black focus:border-black text-[24px] border-[#A4A4A4] placeholder:text-[#A4A4A4] font-[Roboto]" placeholder="Название характеристики">

@@ -2,7 +2,7 @@
     <div class="search w-full px-10 bg-white h-20 shadow rounded-md flex justify-between items-center">
         <div class="search-box bg-[#F0F3F4] h-10 rounded-md flex justify-around px-4">
             <input type="text" placeholder="Поиск" class="bg-transparent outline-none">
-            <img class="w-8" src="../../../../../public/img/admin/Search.svg" alt="">
+            <img class="w-8" src="@public/img/admin/Search.svg" alt="">
         </div>
         <div class="search-btn flex gap-5">
             <button @click="deleteCategory" :class="count > 0 ? 'w-20 h-10 rounded-md duration-300 text-[#DE0202] hover:bg-[#FFF0F0]' : 'hidden'">

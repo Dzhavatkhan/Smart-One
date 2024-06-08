@@ -8,7 +8,7 @@
             <div class="w-max fixed inset-0 m-auto z-20 flex justify-center items-center">
                 <div class="bg-white shadow-md w-[695px] h-[700px] max-h-full px-10 py-5 flex flex-col gap-3">
                     <div class="img flex w-full justify-end">
-                        <img class="close text-right cursor-pointer w-[20px]" @click="createCategoryModal = !createCategoryModal" src="/public/img/admin/Multiply.svg">
+                        <img class="close text-right cursor-pointer w-[20px]" @click="createCategoryModal = !createCategoryModal" src="@public/img/admin/Multiply.svg">
                     </div>
                     <div class="modal-content h-64 flex flex-col gap-10  justify-center items-center">
                         <div class="title text-[32px] text=[#151528] w-1/2 text-center">
@@ -19,7 +19,7 @@
                                 <label for="input-cat" ref="inputFile" id="drop-area" @drop.prevent="onDrop">
                                     <input @change="getImage" type="file" name="image" id="input-cat" hidden>
                                     <div ref="view" class="img-view py-5 cursor-pointer flex flex-col bg-white duration-200 hover:bg-[#DEFCFF] items-center w-full h-full rounded-md border border-[#151528]">
-                                        <img src="/public/img/profile/Upload to the Cloud.svg" class="w-24" alt="">
+                                        <img src="@public/img/profile/Upload to the Cloud.svg" class="w-24" alt="">
                                         <p class="text-center">Перетащите файл сюда или кликните <br>чтобы загрузить изображение</p>
                                         <span class="duration-100">Загружайте изображение с рабочего стола</span>
                                     </div>
@@ -27,7 +27,7 @@
                             </div>
                             <div v-else class="img-input flex justify-center items-center py-5 w-full">
                                 <div @click="removeImage(selectImage)" class="bg-white duration-300 hover:scale-110 shadow-md relative top-0 left-24 rounded-full h-8 w-8 flex justify-center items-center">
-                                    <img class="close down text-right cursor-pointer w-[20px] max-sm:max-h-[250px]" src="/public/img/admin/Multiply.svg">
+                                    <img class="close down text-right cursor-pointer w-[20px] max-sm:max-h-[250px]" src="@public/img/admin/Multiply.svg">
                                 </div>
                                 <img :src="selectImage" alt="">
                             </div>

@@ -1,13 +1,13 @@
 <template>
     <button @click="show = !show" class="w-[87px] h-7 rounded-md duration-300 hover:scale-110 bg-[#05DBF2] font-[Roboto] text-white max-sm:hidden">Купить</button>
-    <img @click="show = !show" src="/public/img/profile/Добавить.svg" alt="" class="addCart hidden max-sm:flex cursor-pointer w-8 h-8 max-sm:w-10 max-sm:h-10">
+    <img @click="show = !show" src="@public/img/profile/Добавить.svg" alt="" class="addCart hidden max-sm:flex cursor-pointer w-8 h-8 max-sm:w-10 max-sm:h-10">
 
     <transition name="fade">
         <div v-if="show" class="fixed inset-0 m-auto bg-black bg-opacity-60 z-20">
             <div class="w-max fixed inset-0 m-auto z-20 flex justify-center items-center">
                 <div class="bg-white shadow-md w-[695px] h-[600px] px-10 max-sm:px-5 py-5 flex flex-col just gap-6 max-sm:w-[400px]">
                     <div class="img flex w-full justify-end">
-                        <img class="close down text-right cursor-pointer w-[20px]" @click="show = !show" src="../../../../../public/img/admin/Multiply.svg">
+                        <img class="close down text-right cursor-pointer w-[20px]" @click="show = !show" src="@public/img/admin/Multiply.svg">
                     </div>
                     <div class="title text-[24px] flex justify-center">Оформление заказа</div>
                     <form  class="flex flex-col h-full items-center justify-between gap-3 max-sm:mt-5">
@@ -15,13 +15,13 @@
                             <div class="w-24 checked:border checked:border-black flex justify-center items-center">
                                 <input name="payment" type="radio" id="sber" hidden>
                                 <label for="sber" class="w-24 h-full flex justify-center items-center">
-                                    <img src="/public/img/home/payments/image 57.jpg" alt="" class="w-full">
+                                    <img src="@public/img/home/payments/image 57.jpg" alt="" class="w-full">
                                 </label>
                             </div>
                             <div class="w-24 checked:border checked:border-black flex justify-center items-center" >
                                 <input name="payment" type="radio" id="sbp"  hidden>
                                 <label for="sbp" class="w-24 h-full flex justify-center items-center">
-                                    <img src="/public/img/home/payments/sds7.jpg" alt="" class="w-full">
+                                    <img src="@public/img/home/payments/sds7.jpg" alt="" class="w-full">
                                 </label>
                             </div>
                         </div>
