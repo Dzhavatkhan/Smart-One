@@ -23,7 +23,7 @@
                 <router-link class="h2" :to="{path:'/catalog/Планшеты'}">Планшеты</router-link>
               </li>
               <li class="card">
-                <div @click="location.href='/catalog/Смарт-часы'" class="img"><img src="../../public/img/home/main/Smartwatch screen digital device.jpg" alt="img" draggable="false"></div>
+                <div @click="location.href='/catalog/Смарт-часы'" class="img"><img src="../public/img/home/main/Smartwatch screen digital device.jpg" alt="img" draggable="false"></div>
                 <router-link class="h2" :to="{path:'/catalog/Смарт-часы'}">Смарт-часы</router-link>
               </li>
               <li class="card">
