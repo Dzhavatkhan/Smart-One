@@ -39,7 +39,7 @@ export const useUserStore = defineStore('user', {
 
           this.$state.avatar = res.data.user.avatar
         } else if (!noImage) {
-          this.$state.avatar = 'http://127.0.0.1:8000/img/avatars/default.png'
+          this.$state.avatar = '@public/img/avatars/default.png'
         }
     },
 
@@ -55,7 +55,7 @@ export const useUserStore = defineStore('user', {
         if (res.data.user.avatar) {
           this.$state.avatar = res.data.user.avatar
         } else {
-          this.$state.avatar = 'http://127.0.0.1:8000/img/avatars/default.png'
+          this.$state.avatar = '@public/img/avatars/default.png'
         }
     },
 
