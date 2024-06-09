@@ -28,7 +28,7 @@
             }
         })
         .then((result) => {
-                eventBus.emit('addProductToFavorite', '')
+                eventBus.emit('favorite', '')
                 console.log(result.data);
                 console.log(props.product.isFavorite);
                 

@@ -113,7 +113,7 @@
         eventBus.on('deleteProductFromCart', async()=>{
             await getCartProducts();   
         })
-        eventBus.on('addProductToFavorite', async()=>{
+        eventBus.on('favorite', async()=>{
             await getCartProducts();   
         })
     })

@@ -296,6 +296,10 @@
         eventBus.on('like', async()=>{
             await getProduct(props.id);   
         })
+        eventBus.on('favorite', async()=>{
+            await getProduct(props.id);   
+            await getAccessories();
+        })        
         eventBus.on('dislike', async()=>{
             await getProduct(props.id);   
         })

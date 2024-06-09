@@ -64,9 +64,7 @@
         eventBus.on('favorite', async()=>{
             await getPopularProducts();   
         })  
-        eventBus.on('addProductToFavorite', async()=>{
-            await getPopularProducts();   
-        })         
+     
     })
 </script>
 

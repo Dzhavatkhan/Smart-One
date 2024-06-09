@@ -208,7 +208,7 @@
         getFavorite();
         notUserStore();
         await getMyOrders();
-        eventBus.on('addProductToFavorite', async()=>{
+        eventBus.on('favorite', async()=>{
             await getFavorite();   
         }) 
         eventBus.on('createOrder', async()=>{

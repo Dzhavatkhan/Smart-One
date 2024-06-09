@@ -98,7 +98,7 @@
             }
         })
         .then((result) => {
-                eventBus.emit('addProductToFavorite', '')
+                eventBus.emit('favorite', '')
                 Swal.fire({
                 title: `${result.data.message}`,
                 icon: 'success',
@@ -127,7 +127,7 @@
         eventBus.on('addProductToCart', async()=>{
             await getFavorite();   
         })
-        eventBus.on('addProductToFavorite', async()=>{
+        eventBus.on('favorite', async()=>{
             await getFavorite();   
         })
     })
