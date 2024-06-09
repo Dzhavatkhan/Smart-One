@@ -31,6 +31,8 @@ class AuthController extends Controller
 
             if ($user->role_id == 2) {
                 $token = $user->createToken('user_token')->plainTextToken;
+                Auth::login($user);
+
             }
             else{
                 $token = $user->createToken('admin_token')->plainTextToken;
@@ -66,6 +68,7 @@ class AuthController extends Controller
                     $token = $user->createToken('user_token')->plainTextToken;
                 }
                 else{
+                    Auth::login($user);
                     $token = $user->createToken('admin_token')->plainTextToken;
                 }
                 $password = Hash::needsRehash($user->password);
@@ -85,5 +88,6 @@ class AuthController extends Controller
 
     public function logout(){
         User::findOrFail(Auth::id())->tokens()->delete();
+        Auth::logout();
     }
 }

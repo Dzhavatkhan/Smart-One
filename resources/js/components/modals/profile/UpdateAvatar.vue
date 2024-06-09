@@ -91,6 +91,7 @@
 )
         .then((result) => {
             console.log(result);
+            updateAvatarModal.value = false
             userStore.setUserDetails(result)
             eventBus.emit('updateAvatar', '')
         }).catch((err) => {
