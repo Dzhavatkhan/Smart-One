@@ -1,5 +1,5 @@
 <template>
-    <img class="cursor-pointer" @click="favorite(product.id)" v-if="product.isFavorite === false && userStore.id == null" src="@public/img/home/main/Favorite.svg" alt="">
+    <img class="cursor-pointer" @click="favorite(product.id)" v-if="isFavorite === false && userStore.id == null" src="@public/img/home/main/Favorite.svg" alt="">
     <img class="cursor-pointer" @click="favorite(product.id)" v-else src="@public/img/home/main/FavRed.svg" alt="">
 </template>
 
@@ -14,6 +14,9 @@
     const props = defineProps({
         product: Object
     })
+    let isFavorite = ref([]);
+    isFavorite.value = props.product.isFavorite
+
     function isAuth(user){
         if (user.id == null) {
             location.href = "/login"
@@ -22,6 +25,7 @@
     async function favorite(id){
         isAuth(userStore);
         console.log(id);
+        console.log(isFavorite.value);       
         let response = await axios.get(`/api/addProductToFavorite/id${id}`, {
             headers: {
                 Authorization: `Bearer ${userStore.token}`,
@@ -29,8 +33,7 @@
         })
         .then((result) => {
                 eventBus.emit('favorite', '')
-                console.log(result.data);
-                console.log(props.product.isFavorite);
+                console.log(isFavorite.value);
                 
                 Swal.fire({
                 title: `${result.data.message}`,
