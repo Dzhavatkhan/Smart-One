@@ -39,9 +39,9 @@
         })
         .then((result) => {
                 eventBus.emit('favorite', '')
-                if () {
+                // if () {
                     
-                }
+                // }
                 console.log(props.product.isFavorite, result.data);       
                 
                 Swal.fire({
