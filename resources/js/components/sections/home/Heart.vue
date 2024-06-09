@@ -70,7 +70,7 @@
         await checkFav(props.product.id)
     })
     eventBus.on('favorite', async()=>{
-            await checkFav();   
+            await checkFav(props.product.id);   
         })  
 </script>
 
