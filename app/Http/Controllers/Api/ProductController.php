@@ -33,8 +33,7 @@ class ProductController extends Controller
         ->selectRaw("products.*")
         ->orderBy('carts.quantity', 'desc')
         ->groupBy("products.id") // Включаем все столбцы из таблицы products в GROUP BY
-        ->take(5)
-        ->get());
+        ->take(5));
         return response()->json([
             "products" => $products
         ]);
