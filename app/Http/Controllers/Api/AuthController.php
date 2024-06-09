@@ -24,7 +24,7 @@ class AuthController extends Controller
             $user = User::create([
                 'name' => $request->get('name'),
                 'email' => $request->get('email'),
-                "avatar" => "http://127.0.0.1:8000/img/avatars/default.png",
+                "avatar" => "/img/avatars/default.png",
                 'password' => Hash::make($request->get('password')),
                 'role_id' => 2
             ]);
