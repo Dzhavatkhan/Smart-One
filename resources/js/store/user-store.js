@@ -39,7 +39,7 @@ export const useUserStore = defineStore('user', {
 
           this.$state.avatar = res.data.user.avatar
         } else if (!noImage) {
-          this.$state.avatar = '@/img/avatars/default.png'
+          this.$state.avatar = '/img/avatars/default.png'
         }
     },
 
