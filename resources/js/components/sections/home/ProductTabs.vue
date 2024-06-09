@@ -113,27 +113,22 @@
             </div>
         </div>
         <div v-if="accessories != null" id="accessoriesContent" class="tabcontent pb-5 w-full h-full gap-[38.07px] max-sm:gap-x-0 max-sm:gap-y-5 max-sm:justify-between flex flex-wrap">
-            <div  v-for="accessory in accessories" :key="accessory.id" class="product w-[275.05px] max-h-[351px] duration-200 hover:shadow-lg bg-white shadow-md border-t border-gray-200 flex flex-col max-sm:w-[185px] max-sm:h-[274px]">
+            <div  v-for="accessory in accessories" :key="accessory.id" class="product w-[275.05px] max-h-[351px] duration-200 hover:shadow-lg bg-white shadow-md border-t border-gray-200 flex flex-col max-sm:w-[185px] max-sm:h-[274px] max-[400px]:h-[247px] max-[400px]:w-[168px]">
                 <div class="p-image w-full min-h-[186px] max-md:min-h-[98px] max-sm:min-h-[98px] flex justify-center items-center">
-                    <img @click="toProduct(accessory.id)" class="max-h-full cursor-pointer pt-[11px] max-w-[185px] max-md:pt-4 max-md:w-[85px] max-sm:pt-[16px] max-sm:w-[85px]" :src="'/img/products/' + accessory.image" alt="">
-                    <div class="relative w-[20px] h-[50px] left-[20px] z-10 bottom-10 max-md:m-0 max-md:left-[15px] max-md:bottom-1  max-sm:m-0 max-sm:left-[15px] max-sm:bottom-1">
-                        <div class="flex flex-col h-full w-full justify-between cursor-pointer">
-                            <Heart :product="accessory"></Heart>
-                            <img @click="deleteProductFromCart(accessory.id)" src="@public/img/home/main/Delete.svg" class="" alt="">
-                        </div>
-                    </div>
+                    <img @click="toProduct(accessory.id)" class="max-h-full cursor-pointer pt-[11px] max-w-[185px] max-md:pt-4 max-md:w-[85px] max-sm:pt-[16px] max-sm:w-[85px] max-[400px]:w-[75px] max-[400px]:max-h-[88px]" :src="'/img/products/' + accessory.image" alt="">
+                    <Heart class="relative left-[20px] bottom-12 max-md:left-[30px] max-sm:left-[30px] max-sm:bottom-5 max-md:bottom-5" :product="product"></Heart>
                 </div>
                 <div class="p-info justify-between pl-[19px] pr-[12px] w-full h-full flex flex-col max-md:gap-0 max-md:justify-between max-sm:gap-0 max-sm:justify-between">
                     <div class="p-name flex flex-col text-[20px] pt-2 cursor-pointer max-md:text-[14px] max-sm:text-[14px]">
                         <div v-if="accessory.avg > 0" class="hidden mb-[5px] max-md:flex max-sm:flex w-full h-[17px]">
                             <img src="@public/img/home/mobile/Star.svg" alt="">
-                            <div class="revCount text-[14px]">{{accessory.avg}}</div>
+                            <div class="revCount max-[400px]:text-[12px] text-[14px]">{{accessory.avg}}</div>
                         </div>
                         <div v-else class="hidden mb-[5px]max-md:flex max-sm:flex w-full h-[17px]">
                             <img src="@public/img/home/mobile/StarEmpty.svg" alt="">
-                            <div class="revCount text-[14px]">0</div>
+                            <div class="revCount max-[400px]:text-[12px] text-[14px]">0</div>
                         </div>
-                        <div class="name text-[20px] max-md:text-[14px] max-sm:text-[14px]">
+                        <div class="name text-[20px] max-[400px]:text-[12px] max-md:text-[14px] max-sm:text-[14px]">
                             <div @click="toProduct(accessory.id)" class="font-semibold font-[Roboto]">
                                 {{accessory.name}}
                             </div>
@@ -141,7 +136,7 @@
                         </div>
                     </div>
                     <div class="p-price flex justify-between items-center pb-6 max-md:pb-[9px] max-sm:pb-[9px]">
-                        <div class="price font-semibold text-[24px] font-[Roboto] max-md:text-[20px] max-sm:text-[20px]">{{accessory.price}}₽</div>
+                        <div class="price max-[400px]:text-[16px]  font-semibold text-[24px] font-[Roboto] max-md:text-[20px] max-sm:text-[20px]">{{accessory.price}}₽</div>
                         <BuyBtn :product="accessory.id"></BuyBtn>
                     </div>
                 </div>
