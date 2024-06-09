@@ -79,7 +79,7 @@ class UserController extends Controller
         $user = Auth::user();
         $lastAvatar = str_replace("@public/", "", $user->avatar);
         if(file_exists(public_path($lastAvatar)) && $lastAvatar != "/img/avatars/defailt.png") {
-            unlink($lastAvatar);
+            unlink(public_path($lastAvatar));
         }
         User::findOrFail($id)
         ->update([
