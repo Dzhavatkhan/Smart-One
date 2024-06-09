@@ -35,7 +35,7 @@
           </div>
 
     </section>
-    <section class="hidden flex-col gap-[14px] px-5 w-full max-md:flex max-sm:flex">
+    <section class="hidden flex-col gap-[14px] px-5 w-full max-[400px]:px-[10px] max-[400px]:flex max-md:flex max-sm:flex">
         <div class="title text-[#4E4C4C] text-[24px]">Категории</div>
         <div class="categories h-[300px] gap-5 flex w-full justify-between flex-wrap">
             <router-link :to="{path:'/catalog/Смартфоны'}" class="category-card h-[112px] w-[185px] shadow-category px-[3px] pt-4 border-t border-gray-100 flex flex-col">

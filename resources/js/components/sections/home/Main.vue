@@ -5,7 +5,7 @@
         <div class="w-full hidden max-md:block max-sm:block">
             <CategoryCard></CategoryCard>
         </div>
-        <section class="new-products w-full flex flex-col gap-[42px] px-[200px] mb-[52px] max-sm:px-5 max-sm:gap-[24px] max-md:px-5 max-md:gap-[24px]">
+        <section class="new-products max-[400px]:px-[10px] w-full flex flex-col gap-[42px] px-[200px] mb-[52px] max-sm:px-5 max-sm:gap-[24px] max-md:px-5 max-md:gap-[24px]">
             <div class="title text-[36px] text-[#4E4C4C] max-sm:text-[24px]">
                 Новинки
             </div>

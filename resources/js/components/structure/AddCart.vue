@@ -1,5 +1,5 @@
 <template>
-    <div class="w-screen px-5 h-[60px] justify-center items-center bg-white shadow-menu fixed bottom-[69px] z-10">
+    <div class="w-screen max-[400px]:px-[10px] px-5 h-[60px] justify-center items-center bg-white shadow-menu fixed bottom-[69px] z-10">
         <div v-if="product.quantityInCart == 0" @click.prevent="addProductToCart(product.id)" class="addCartBtn bg-[#151528] max-md:w-full w-[390px] px-[10px] h-[41px] rounded-md flex items-center justify-between">
             <div class="flex gap-3 items-center">
                 <img src="@public/img/home/header/Shopping Cart.svg" alt="">
