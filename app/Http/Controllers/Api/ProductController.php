@@ -32,7 +32,7 @@ class ProductController extends Controller
         $products = ProductResource::collection(Product::leftJoin('carts', 'products.id', '=', 'carts.productId')
         ->selectRaw("products.*")
         ->orderBy('carts.quantity', 'desc')
-        ->groupBy("products.id", "products.name", "products.price", "products.percent", "products.brand", "products.description", "products.quantity", "products.created_at", "products.updated_at") // Включаем все столбцы из таблицы products в GROUP BY
+        ->groupBy("products.id") // Включаем все столбцы из таблицы products в GROUP BY
         ->take(5)
         ->get());
         return response()->json([
