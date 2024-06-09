@@ -39,7 +39,7 @@
         })
         .then((result) => {
                 eventBus.emit('favorite', '')
-                console.log(props.product.isFavorite, response.data);       
+                console.log(props.product.isFavorite, result.data);       
                 
                 Swal.fire({
                 title: `${result.data.message}`,
