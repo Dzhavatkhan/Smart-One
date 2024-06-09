@@ -1,5 +1,5 @@
 <template>
-    <div class="productTabs flex flex-col gap-[55px] max-md:gap-[17px] max-sm:gap-[17px] max-md:px-5 max-md:w-screen max-md:mt-[55px] max-sm:px-5 max-sm:w-screen max-sm:mt-[55px]">
+    <div class="productTabs flex flex-col gap-[55px] max-md:gap-[17px] max-sm:gap-[17px] max-[400px]:px-[10px] max-md:px-5 max-md:w-screen max-md:mt-[55px] max-sm:px-5 max-sm:w-screen max-sm:mt-[55px]">
         <div class="flex w-full h-[46px] border-b-[3px] border-[#F5F7FA] gap-[110px] max-md:text-[16px] max-sm:text-[16px] max-md:gap-[38px] max-sm:gap-[38px] max-md:h-[30px] max-sm:h-[30px] max-md:border-b-2 max-sm:border-b-2">
             <div class="tab sptab cursor-pointer h-full " @click="openTab('specificationContent', $event)" id="defaultOpen">Характеристики</div>
             <div class="tab cursor-pointer max-md:h-full max-sm:h-full" @click.prevent="openTab('reviewsContent', $event)">Отзывы</div>
