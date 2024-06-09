@@ -8,11 +8,19 @@
             <img class="icon" src="@public/img/home/mobile/catalog.svg" alt="home">
             <div class="home">Каталог</div>
         </router-link>
-        <router-link class="flex flex-col items-center" to="/profile/cart">
+        <router-link  v-if="userStore.id != null" class="flex flex-col items-center" to="/login">
             <img class="icon" src="@public/img/home/mobile/Shopping Cart (1).svg" alt="home">
             <div class="home">Корзина</div>
         </router-link>
-        <router-link class="flex flex-col items-center" to="/profile/favorite">
+        <router-link v-else class="flex flex-col items-center" to="/profile/cart">
+            <img class="icon" src="@public/img/home/mobile/Shopping Cart (1).svg" alt="home">
+            <div class="home">Корзина</div>
+        </router-link>
+        <router-link v-if="userStore.id != null" class="flex flex-col items-center" to="/login">
+            <img class="icon" src="@public/img/home/mobile/Heart (1).svg" alt="home">
+            <div class="home">Избранное</div>
+        </router-link>
+        <router-link v-else class="flex flex-col items-center" to="/profile/favorite">
             <img class="icon" src="@public/img/home/mobile/Heart (1).svg" alt="home">
             <div class="home">Избранное</div>
         </router-link>
