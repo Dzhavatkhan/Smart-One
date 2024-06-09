@@ -12,7 +12,7 @@
                     <select v-if="userStore.id != null" v-model="myCity" @change="selectCity" name="" id="" class="city outline-none bg-transparent w-full">
                         <option v-for="(city, index) in cities" :key="index" :selected="city" >{{city}}</option>
                     </select>
-                    <select v-else v-model="myCity" @click="toProfile" name="" id="">
+                    <select v-else v-model="myCity" @click="toProfile" class="city outline-none bg-transparent w-full" id="">
                         <option v-for="(city, index) in cities" :key="index" :selected="city" >{{city}}</option>
                     </select>
                     <router-link to="/catalog" class="catalog">Каталог</router-link>

@@ -7,8 +7,8 @@
      </div>
      <div class="contentPad max-md:block hidden max-sm:hidden mobile">
         <div class="images">
-            <img ref="mobile" class="mob" src="@public/img/home/mobile/SliderMobile.jpg">
-            <img ref="mobile" class="mob" src="@public/img/home/mobile/Slider (1).jpg">
+            <img ref="mobile" class="pad" src="@public/img/home/mobile/SliderMobile.jpg">
+            <img ref="mobile" class="pad" src="@public/img/home/mobile/Slider (1).jpg">
         </div>
    </div>
 </template>
@@ -37,6 +37,21 @@
                         mob[indexValue -1].style.display = "block";
                     }
                     mobileSlide();
+                    function padSlider(){
+                      if (route.name === "home") {
+                        setTimeout(mobileSlide, 5000);
+                    }
+                    var x;
+                    mobile.value = document.querySelectorAll(".pad");
+                    const mob = document.querySelectorAll(".pad");
+                    for(x = 0; x < mob.length; x++){
+                        mob[x].style.display = "none";
+                        }
+                        indexValue++;
+                        if(indexValue > mob.length){indexValue = 1}
+                        mob[indexValue -1].style.display = "block";                      
+                    }
+                    padSlider();
             }
     })
 

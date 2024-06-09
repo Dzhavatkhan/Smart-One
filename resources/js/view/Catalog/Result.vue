@@ -1,6 +1,6 @@
 <template>
         <Header></Header>
-        <div class="w-full h-full pt-[139px] pb-[76px] px-[200px] flex gap-[169px] max-sm:flex-col max-sm:gap-10 max-sm:px-5 max-sm:py-10 max-sm:mb-32">
+        <div class="w-full h-full pt-[139px] pb-[76px] px-[200px] flex gap-[169px] max-sm:flex-col max-sm:gap-10 max-sm:px-5 max-sm:py-10 max-sm:mb-32 max-[400px]:px-[10px]">
             <button @click="show = !show" class="w-full h-12  hidden max-sm:block rounded-md text-white bg-[#151528]">Открыть фильтры</button>
 
             <div class="catalog fixed inset-0 m-auto bg-white z-30" v-show="show">

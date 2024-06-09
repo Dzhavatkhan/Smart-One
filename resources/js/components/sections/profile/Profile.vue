@@ -23,7 +23,7 @@
                     <div class="user-info-title text-[#5D5D64] font-[Roboto]">
                         Почта
                     </div>
-                    <div class="user-info-body text-[#151528] font-[Roboto]">
+                    <div class="user-info-body text-[#151528] overflow-hidden font-[Roboto]">
                         {{userStore.email}}
                     </div>
                 </div>
