@@ -172,7 +172,19 @@ class ProductController extends Controller
             "message" => "Добавлено в корзину!"
        ]);
     }
-
+    public function checkFav($id){
+        $isFavorite = false;
+        if(Favorite::where("productId", $id)->where("userId", Auth::id())->count() > 0){
+            $isFavorite = true;
+        } else if(Auth::id() == null){
+            $isFavorite = false;
+        } else{
+            $isFavorite = false;
+        }        
+        return response()->json([
+             "isFavorite" => $isFavorite
+        ]);
+    }
     public function addProductToFavorite($id)
     {
         if (Favorite::where("productId", $id)->where("userId", Auth::id())->count() != 0) {

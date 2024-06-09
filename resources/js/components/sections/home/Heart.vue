@@ -15,12 +15,19 @@
         product: Object
     })
     let isFavorite = ref([]);
-    isFavorite.value = props.product.isFavorite
 
     function isAuth(user){
         if (user.id == null) {
             location.href = "/login"
         }
+    }
+    async function checkFav(id){
+        let response = await axios.get(`/api/addProductToFavorite/id${id}`, {
+            headers: {
+                Authorization: `Bearer ${userStore.token}`,
+            }
+        })       
+        isFavorite.value = response.data.isFavorite 
     }
     async function favorite(id){
         isAuth(userStore);
@@ -57,6 +64,13 @@
                 })                
             });
     }
+
+    onMounted(async() => {
+        await checkFav(props.product.id)
+    })
+    eventBus.on('favorite', async()=>{
+            await checkFav();   
+        })  
 </script>
 
 <style scoped>

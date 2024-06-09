@@ -42,12 +42,12 @@ Route::get("getCategories", [AdminController::class, "getCategories"]);
 Route::get("getFilterData/{category}/{subcategory}", [ProductController::class, "getFilterData"]);
 Route::get("getFilterData/{category}", [ProductController::class, "getFilterData"]);
 Route::post("filter", [ProductController::class, "filter"]);
-if (!auth('sanctum')->check()) {
-    Route::get("getPopularProducts", [ProductController::class, "getPopularProducts"]);
-    Route::get("getNewProducts", [ProductController::class, "getNewProducts"]); 
-    Route::get("getProduct/id{id}", [ProductController::class, "show"]);
-    Route::get("getAccessories/{category}", [ProductController::class, "getAccessories"]);    
-}
+            if (!auth('sanctum')->check()) {
+                Route::get("getPopularProducts", [ProductController::class, "getPopularProducts"]);
+                Route::get("getNewProducts", [ProductController::class, "getNewProducts"]); 
+                Route::get("getProduct/id{id}", [ProductController::class, "show"]);
+                Route::get("getAccessories/{category}", [ProductController::class, "getAccessories"]);    
+            }
 
 
 
@@ -118,6 +118,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get("deleteProductFromCart/id{id}", [ProductController::class, "deleteProductFromCart"]);
 
     Route::get("addProductToFavorite/id{id}", [ProductController::class, "addProductToFavorite"]);
+    Route::get("checkFav/id{id}", [ProductController::class, "checkFav"]);
 
 
 
