@@ -1,5 +1,5 @@
 <template>
-    <img @click="show = !show" src="@public/img/home/header/SearchMobile.svg" alt="" class="hidden min-[400px]:w-3 min-[400px]:h-3 max-md:flex max-md:h-5 max-sm:flex max-sm:w-5 max-sm:h-5">
+    <img @click="show = !show" src="@public/img/home/header/SearchMobile.svg" alt="" class="hidden max-md:flex max-md:h-5 max-sm:flex max-sm:w-5 max-sm:h-5">
 
     <transition name="fade">
         <div v-if="show" class="fixed inset-0 m-auto bg-black bg-opacity-60 z-10">

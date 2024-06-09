@@ -1,5 +1,5 @@
 <template>
-    <div class="w-screen px-5 h-[70px] justify-between gap-3 items-center bg-white shadow-menu fixed bottom-0 z-20">
+    <div class="w-screen max-[400px]:px-3 px-5 h-[70px] justify-between gap-3 items-center bg-white shadow-menu fixed bottom-0 z-20">
         <router-link class="flex flex-col items-center" to="/">
             <img class="icon" src="@public/img/home/mobile/home.svg" alt="home">
             <div class="home">Главная</div>
