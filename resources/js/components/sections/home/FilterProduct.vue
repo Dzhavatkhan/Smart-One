@@ -28,7 +28,7 @@
 
             </div>
             <div class="np-price flex justify-between items-center pb-[9px]">
-                <div class="price font-semibold text-[24px] font-[Roboto] max-[400px]:text-[16px] max-md:text-[20px] max-sm:text-[20px]">{{product.price}}₽</div>
+                <div class="price font-semibold text-[24px]  font-[Roboto] max-[400px]:text-[16px] max-md:text-[20px] max-sm:text-[20px]">{{product.price}}₽</div>
                 <CartBtn :product="product"></CartBtn>
             </div>
         </div>
