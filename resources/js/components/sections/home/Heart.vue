@@ -31,8 +31,7 @@
     }
     async function favorite(id){
         isAuth(userStore);
-        console.log(id);
-        console.log(props.product.isFavorite);       
+        console.log(props.product.isFavorite, props.product.id);       
         let response = await axios.get(`/api/addProductToFavorite/id${id}`, {
             headers: {
                 Authorization: `Bearer ${userStore.token}`,
@@ -40,7 +39,7 @@
         })
         .then((result) => {
                 eventBus.emit('favorite', '')
-                console.log(props.product.isFavorite);       
+                console.log(props.product.isFavorite, response.data);       
                 
                 Swal.fire({
                 title: `${result.data.message}`,
