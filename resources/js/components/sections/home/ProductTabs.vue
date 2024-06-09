@@ -13,7 +13,7 @@
             </div>
         </div>
         <div id="reviewsContent" class="tabcontent">
-            <div class="flex gap-[167px] max-md:w-full max-md:flex-col max-md:items-center max-md:gap-10 max-sm:flex-col max-sm:items-center max-sm:gap-10">
+            <div class="flex gap-[167px] max-md:w-full max-md:flex-col max-md:items-center max-md:gap-10 max-[400px]:w-full max-sm:flex-col max-sm:items-center max-sm:gap-10">
                 <div class="statistic max-md:w-full max-sm:w-full">
                     <div class="flex gap-[22px] max-md:gap-[7px] max-sm:gap-[7px]">
                         <div class="flex gap-[6px] max-md:gap-[1px] max-sm:gap-[1px]">
