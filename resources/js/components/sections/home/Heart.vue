@@ -12,7 +12,7 @@
 
     const userStore = useUserStore();
     const props = defineProps({
-        product: Object
+        product: Boolean
     })
     let isFavorite = ref([]);
 
@@ -27,13 +27,12 @@
                 Authorization: `Bearer ${userStore.token}`,
             }
         })       
-        console.log(response.data );
         isFavorite.value = response.data.isFavorite 
     }
     async function favorite(id){
         isAuth(userStore);
         console.log(id);
-        console.log(isFavorite.value);       
+        console.log(props.product.isFavorite);       
         let response = await axios.get(`/api/addProductToFavorite/id${id}`, {
             headers: {
                 Authorization: `Bearer ${userStore.token}`,
@@ -41,7 +40,7 @@
         })
         .then((result) => {
                 eventBus.emit('favorite', '')
-                console.log(isFavorite.value);
+                console.log(props.product.isFavorite);       
                 
                 Swal.fire({
                 title: `${result.data.message}`,
