@@ -51,5 +51,10 @@
         font-family: "Roboto";
         font-size: 16px;
     }
+    @media (max-width: 400px){
+        div{
+            font-size: 12px;
+        }
+    }
 
 </style>
