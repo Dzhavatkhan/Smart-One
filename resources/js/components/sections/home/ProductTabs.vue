@@ -13,7 +13,7 @@
             </div>
         </div>
         <div id="reviewsContent" class="tabcontent">
-            <div class="flex gap-[167px] max-md:w-full max-md:flex-col max-md:items-center max-md:gap-10 max-[400px]:w-full max-sm:flex-col max-sm:items-center max-sm:gap-10">
+            <div class="flex gap-[167px] max-md:w-full max-md:flex-col max-md:items-center max-md:gap-10 max-[400px]:w-full max-[400px]:items-start max-sm:flex-col max-sm:items-center max-sm:gap-10">
                 <div class="statistic max-md:w-full max-sm:w-full">
                     <div class="flex gap-[22px] max-md:gap-[7px] max-sm:gap-[7px]">
                         <div class="flex gap-[6px] max-md:gap-[1px] max-sm:gap-[1px]">
@@ -24,34 +24,34 @@
                         <div class="reviewCount">{{reviewCount}}</div>
                     </div>
                     <div class="reviewRangeCont flex flex-col w-[199px] gap-[14px] max-md:w-full max-sm:w-full">
-                        <div class="range flex justify-between items-center">
+                        <div class="range flex justify-between items-center max=[400px]:text-[14px]">
                             <div class="number">5</div>
                             <div class="progressbar rounded-[10px] five bg-[#D9D9D9] w-[140px] h-[6px] max-md:w-[335px] max-sm:w-[335px]"></div>
                             <div v-if="isFractional(fivePercent)" class="percent text-center">{{fivePercent.toFixed(0)}}%</div>
                             <div v-else class="percent text-center">{{fivePercent}} %</div>
                         </div>
-                        <div class="range flex justify-between items-center">
+                        <div class="range flex justify-between items-center max=[400px]:text-[14px]">
                             <div class="number">4</div>
                             <div class="progressbar rounded-[10px] four bg-[#D9D9D9] w-[140px] h-[6px] max-md:w-[335px] max-sm:w-[335px]"></div>
                             <div v-if="isFractional(fourPercent)" class="percent text-center">{{fourPercent.toFixed(0)}}%</div>
                             <div v-else class="percent text-center">{{fourPercent}}%</div>
 
                         </div>
-                        <div class="range flex justify-between items-center">
+                        <div class="range flex justify-between items-center max=[400px]:text-[14px]">
                             <div class="number">3</div>
                             <div class="progressbar rounded-[10px] three bg-[#D9D9D9] w-[140px] h-[6px] max-md:w-[335px] max-sm:w-[335px]"></div>
                             <div v-if="isFractional(fourPercent)" class="percent text-center">{{threePercent}}%</div>
                             <div v-else class="percent text-center">{{threePercent}}%</div>
 
                         </div>
-                        <div class="range flex justify-between items-center">
+                        <div class="range flex justify-between items-center max=[400px]:text-[14px]">
                             <div class="number">2</div>
                             <div class="progressbar rounded-[10px] two bg-[#D9D9D9] w-[140px] h-[6px] max-md:w-[335px] max-sm:w-[335px]"></div>
                             <div v-if="isFractional(fourPercent)" class="percent text-center">{{twoPercent}}%</div>
                             <div v-else class="percent text-center">{{twoPercent}}%</div>
 
                         </div>
-                        <div class="range flex justify-between items-center">
+                        <div class="range flex justify-between items-center max=[400px]:text-[14px]">
                             <div class="number">1</div>
                             <div class="progressbar rounded-[10px] one bg-[#D9D9D9] w-[140px] h-[6px] max-md:w-[335px] max-sm:w-[335px]"></div>
                             <div v-if="isFractional(fourPercent)" class="percent text-center">{{onePercent}}%</div>
