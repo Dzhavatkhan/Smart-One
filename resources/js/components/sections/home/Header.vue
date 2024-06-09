@@ -42,7 +42,7 @@
     const userStore = useUserStore();
     const router = useRouter();
     let cities = ref([
-        "Москва", "Санкт-Петербург","Екатринбург","Казань"
+        "Москва", "Санкт-Петербург","Екатеринбург","Казань"
     ])
     let myCity = ref([])
     if (myCity.value.length == 0) {
