@@ -4,7 +4,7 @@
 </template>
 
 <script setup>
-    import { onMounted } from 'vue';
+    import { onMounted, ref } from 'vue';
     import { useUserStore } from '@/store/user-store';
     import eventBus from '@/eventBus'
     import axios from 'axios';
