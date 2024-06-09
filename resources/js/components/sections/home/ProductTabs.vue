@@ -112,7 +112,7 @@
                 </div>
             </div>
         </div>
-        <div v-if="accessories > 0 && accessories != null" id="accessoriesContent" class="tabcontent pb-5 w-full h-full gap-[38.07px] max-sm:gap-x-0 max-sm:gap-y-5 max-sm:justify-between flex flex-wrap">
+        <div v-if="accessories != null" id="accessoriesContent" class="tabcontent pb-5 w-full h-full gap-[38.07px] max-sm:gap-x-0 max-sm:gap-y-5 max-sm:justify-between flex flex-wrap">
             <div  v-for="accessory in accessories" :key="accessory.id" class="product w-[275.05px] max-h-[351px] duration-200 hover:shadow-lg bg-white shadow-md border-t border-gray-200 flex flex-col max-sm:w-[185px] max-sm:h-[274px]">
                 <div class="p-image w-full min-h-[186px] max-md:min-h-[98px] max-sm:min-h-[98px] flex justify-center items-center">
                     <img @click="toProduct(accessory.id)" class="max-h-full cursor-pointer pt-[11px] max-w-[185px] max-md:pt-4 max-md:w-[85px] max-sm:pt-[16px] max-sm:w-[85px]" :src="'/img/products/' + accessory.image" alt="">
