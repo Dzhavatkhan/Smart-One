@@ -191,6 +191,7 @@ class ProductController extends Controller
         if (Favorite::where("productId", $id)->where("userId", Auth::id())->count() != 0) {
             Favorite::where("productId", $id)->where("userId", Auth::id())->delete();
             return response()->json([
+                "isFavorite" => Favorite::where("productId", $id)->where("userId", Auth::id())->count(),
                 "message" => "Товар удален из избранного"
             ]);
         } else {
@@ -199,6 +200,7 @@ class ProductController extends Controller
                 "userId" => Auth::id()
             ]);
             return response()->json([
+                "isFavorite" => Favorite::where("productId", $id)->where("userId", Auth::id())->count(),                
                 "message" => "Товар добавлен в избранное"
             ]);
         }
