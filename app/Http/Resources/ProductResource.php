@@ -48,7 +48,11 @@ class ProductResource extends JsonResource
 
         $color = Color::where("productId", $this->id)->first();
         
-        $isFavorite = Favorite::where("productId", $this->id)->where("userId", Auth::id())->count() > 0;
+        if(Favorite::where("productId", $this->id)->where("userId", Auth::id())->count() > 0){
+            $isFavorite = true;
+        } else{
+            $isFavorite = false;
+        }
         // dd($isFavorite, Auth::user(), auth()->user());
 
         return [

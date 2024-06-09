@@ -45,12 +45,13 @@ Route::post("filter", [ProductController::class, "filter"]);
 if (!auth('sanctum')->check()) {
     Route::get("getPopularProducts", [ProductController::class, "getPopularProducts"]);
     Route::get("getNewProducts", [ProductController::class, "getNewProducts"]); 
+    Route::get("getProduct/id{id}", [ProductController::class, "show"]);
+    Route::get("getAccessories/{category}", [ProductController::class, "getAccessories"]);    
 }
 
 
 
-Route::get("getProduct/id{id}", [ProductController::class, "show"]);
-Route::get("getAccessories/{category}", [ProductController::class, "getAccessories"]);
+
 
 
 
@@ -70,7 +71,9 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get("getOrders", [AdminController::class, "getOrders"]);
     if (auth('sanctum')->check()) {
         Route::get("getPopularProducts", [ProductController::class, "getPopularProducts"]);
-        Route::get("getNewProducts", [ProductController::class, "getNewProducts"]); 
+        Route::get("getNewProducts", [ProductController::class, "getNewProducts"]);
+        Route::get("getProduct/id{id}", [ProductController::class, "show"]);
+        Route::get("getAccessories/{category}", [ProductController::class, "getAccessories"]);         
     }  
 
 
