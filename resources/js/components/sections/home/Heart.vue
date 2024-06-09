@@ -22,7 +22,7 @@
         }
     }
     async function checkFav(id){
-        let response = await axios.get(`/api/addProductToFavorite/id${id}`, {
+        let response = await axios.get(`/api/checkFav/id${id}`, {
             headers: {
                 Authorization: `Bearer ${userStore.token}`,
             }
