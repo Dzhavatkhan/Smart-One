@@ -61,7 +61,7 @@
                     </div>
                     <WriteReview :product="product"></WriteReview>
                 </div>
-                <div class="reviewsContainer flex flex-col gap-3">
+                <div class="reviewsContainer flex flex-col gap-3 max-[400px]:w-full">
                     <div v-show="review.dislikes < 10" v-for="review in reviews" :key="review.id" class="review flex flex-col gap-8 pb-[100px] max-sm:pb-[29px] max-sm:gap-0">
                         <div class="reviewHeader flex items-center gap-[9px] max-md:gap-[8px] max-sm:gap-[8px]">
                             <img :src="review.user.avatar" alt="" class="userAvatar rounded-full w-[50px] h-[50px] max-md:w-[38px] max-md:h-[38px] max-sm:w-[38px] max-sm:h-[38px]">
