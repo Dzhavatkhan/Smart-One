@@ -53,7 +53,6 @@ class ProductResource extends JsonResource
         } else{
             $isFavorite = false;
         }
-        dd($isFavorite, Auth::user(), auth()->user());
 
         return [
             "id" => $this->id,
