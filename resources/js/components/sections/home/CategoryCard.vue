@@ -42,7 +42,7 @@
                 <div class="category-image w-full h-[55px] max-[400px]:h-[50px] flex justify-center items-center bg-[#F4F4F4]">
                     <img src="@public/img/home/mobile/SmartPhoneMobile.png" alt="">
                 </div>
-                <div class="category-name text-[14px] font-[Roboto] flex items-center justify-center h-full w-full text-center">Смартфоны</div>
+                <div class="category-name max-[400px]:max-h-[22px] text-[14px] font-[Roboto] flex items-center justify-center h-full w-full text-center">Смартфоны</div>
             </router-link>
             <router-link :to="{path:'/catalog/Ноутбуки'}" class="category-card max-[400px]:w-[168px] max-[400px]:h-[172px] h-[112px] w-[185px] shadow-category px-[3px] pt-4 border-t border-gray-100 flex flex-col">
                 <div class="category-image w-full h-[55px] max-[400px]:h-[50px] flex justify-center items-center bg-[#F4F4F4]">
@@ -54,13 +54,13 @@
                 <div class="category-image w-full h-[55px] max-[400px]:h-[50px] flex justify-center items-center bg-[#F4F4F4]">
                     <img src="@public/img/home/mobile/Pad.png" alt="">
                 </div>
-                <div class="category-name text-[14px] max-h-[40px] font-[Roboto] flex items-center justify-center h-full w-full text-center">Планшеты</div>
+                <div class="category-name max-[400px]:max-h-[22px] text-[14px] max-h-[40px] font-[Roboto] flex items-center justify-center h-full w-full text-center">Планшеты</div>
             </router-link>
             <router-link :to="{path:'/catalog/Смарт-часы'}" class="category-card max-[400px]:w-[168px] max-[400px]:h-[172px] h-[112px] w-[185px] shadow-category px-[3px] pt-4 border-t border-gray-100 flex flex-col">
                 <div class="category-image w-full h-[55px] max-[400px]:h-[50px] flex justify-center items-center bg-[#F4F4F4]">
                     <img src="@public/img/home/mobile/Smartwatch screen digital device.png" alt="">
                 </div>
-                <div class="category-name text-[14px] font-[Roboto] flex items-center justify-center h-full w-full text-center">Смарт-часы</div>
+                <div class="category-name max-[400px]:max-h-[22px] text-[14px] font-[Roboto] flex items-center justify-center h-full w-full text-center">Смарт-часы</div>
               </router-link>
         </div>
     </section>
