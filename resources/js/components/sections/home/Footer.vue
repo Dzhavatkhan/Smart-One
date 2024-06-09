@@ -55,7 +55,7 @@
         </div>
     </div>
 
-    <div class="mobile text-white hidden pl-[23px] pt-[25px] pr-7 w-full h-[245px] bg-[#2C3238]  flex-col gap-[25px] max-md:flex max-sm:flex">
+    <div class="mobile text-white hidden pl-[23px] pt-[25px] pr-7 pb-10 w-full h-[245px] bg-[#2C3238]  flex-col gap-[25px] max-md:flex max-sm:flex">
         <div class="text-start text-[24px] title">
             Контакты
         </div>
