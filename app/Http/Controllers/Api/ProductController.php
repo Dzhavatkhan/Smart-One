@@ -32,7 +32,7 @@ class ProductController extends Controller
         $products = ProductResource::collection(Product::leftJoin('carts', 'products.id', '=', 'carts.productId')
         ->selectRaw("products.*")
         ->orderBy('carts.quantity', 'desc') // Используем агрегатную функцию MAX для упорядочивания
-        ->groupBy("products.id") // Включаем все столбцы из таблицы products в GROUP BY
+        ->groupBy("products.id", "carts.quantity") // Включаем все столбцы из таблицы products в GROUP BY
         ->take(5)
         ->get());
         return response()->json([
