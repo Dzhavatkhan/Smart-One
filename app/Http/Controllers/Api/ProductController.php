@@ -187,7 +187,6 @@ class ProductController extends Controller
     }
     public function addProductToFavorite($id)
     {
-        dd(Auth::id(), Favorite::where("productId", $id)->where("userId", Auth::id())->count());
         if (Favorite::where("productId", $id)->where("userId", Auth::id())->count() != 0) {
             Favorite::where("productId", $id)->where("userId", Auth::id())->delete();
             return response()->json([
