@@ -33,7 +33,8 @@ class ProductController extends Controller
         ->selectRaw("products.*")
         ->orderBy('MAX(carts.quantity)', 'desc') // Используем агрегатную функцию MAX для упорядочивания
         ->groupBy("products.id") // Включаем все столбцы из таблицы products в GROUP BY
-        ->take(5));
+        ->take(5)
+        ->get());
         return response()->json([
             "products" => $products
         ]);
