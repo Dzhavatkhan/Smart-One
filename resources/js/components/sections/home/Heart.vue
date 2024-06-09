@@ -27,6 +27,7 @@
                 Authorization: `Bearer ${userStore.token}`,
             }
         })       
+        console.log(response.data.isFavorite );
         isFavorite.value = response.data.isFavorite 
     }
     async function favorite(id){
