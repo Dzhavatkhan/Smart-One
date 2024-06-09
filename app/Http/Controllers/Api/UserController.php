@@ -83,7 +83,7 @@ class UserController extends Controller
         }
         User::findOrFail($id)
         ->update([
-                "avatar" => public_path("img/avatars/$avatar")
+                "avatar" => "/img/avatars/$avatar"
         ]);
         $request->file("avatar")->move(public_path("img/avatars"), $avatar);
         return response()->json([
