@@ -1,5 +1,5 @@
 <template>
-    <img class="cursor-pointer" @click="favorite(product.id)" v-if="product.isFavorite != true && userStore.id == null" src="@public/img/home/main/Favorite.svg" alt="">
+    <img class="cursor-pointer" @click="favorite(product.id)" v-if="product.isFavorite === false && userStore.id == null" src="@public/img/home/main/Favorite.svg" alt="">
     <img class="cursor-pointer" @click="favorite(product.id)" v-else src="@public/img/home/main/FavRed.svg" alt="">
 </template>
 
