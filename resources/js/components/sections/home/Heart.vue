@@ -12,7 +12,7 @@
 
     const userStore = useUserStore();
     const props = defineProps({
-        product: Boolean
+        product: Array
     })
     let isFavorite = ref([]);
 
