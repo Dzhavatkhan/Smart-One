@@ -31,7 +31,7 @@ class ProductController extends Controller
     public function getPopularProducts(){
         $products = ProductResource::collection(Product::leftJoin('carts', 'products.id', '=', 'carts.productId')
         ->selectRaw("products.*")
-        ->orderBy('MAX(carts.quantity)', 'desc') // Используем агрегатную функцию MAX для упорядочивания
+        ->orderBy('carts.quantity', 'desc') // Используем агрегатную функцию MAX для упорядочивания
         ->groupBy("products.id") // Включаем все столбцы из таблицы products в GROUP BY
         ->take(5)
         ->get());
