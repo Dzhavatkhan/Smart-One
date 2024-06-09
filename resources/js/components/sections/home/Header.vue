@@ -1,5 +1,5 @@
 <template>
-    <header class="header flex flex-col px-[200px] pt-[50px] w-full gap-[65px] max-md:shadow-lg max-md:flex-row max-md:justify-center max-md:h-max max-md:gap-0 max-md:py-0 max-md:px-5 max-sm:shadow-lg  max-sm:flex-row max-sm:h-[55px] max-sm:gap-0 max-sm:py-0 max-sm:px-5">
+    <header class="header flex flex-col px-[200px] pt-[50px] w-full gap-[65px] max-md:shadow-lg max-md:flex-row max-md:justify-center max-md:h-max max-md:gap-0 max-md:py-0 max-md:px-5 max-sm:shadow-lg  max-sm:flex-row max-sm:h-[55px] max-sm:gap-0 max-sm:py-0 max-sm:px-5 min-[400px]:px-[10px]">
         <div class="info flex justify-between text-[16px] font-[Roboto] max-md:hidden max-sm:hidden">
             <select v-if="userStore.id != null" v-model="myCity" @change="selectCity" name="" id="" class="city cursor-pointer outline-none w-[101px]">
                 <option v-for="(city, index) in cities" :key="index" :selected="userStore.city" >{{city}}</option>
@@ -9,7 +9,7 @@
             </select>
             <p class="phone">+7-961-816-85-84</p>
         </div>
-        <div class="header-content flex gap-[45px] justufy-between max-md:w-full max-md:justify-between max-md:items-center max-sm:w-full max-sm:gap-[88px] max-sm:items-center">
+        <div class="header-content flex gap-[45px] justufy-between max-md:w-full max-md:justify-between max-md:items-center max-[400px]:gap-0 max-sm:w-full max-sm:gap-0 max-sm:items-center">
             <Menu></Menu>
             <img @click="home" src="@public/img/home/header/Logo.svg" class="max-sm:w-[174px] cursor-pointer max-sm:h-full" alt="">
             <SearchMobile></SearchMobile>
