@@ -20,17 +20,12 @@
                                 </div>
                             </label>
                         </div>
-                        <div v-else-if="error != null" class="flex w-full h-full flex-col justify-center items-center text-red-500">
-                            <div @click="back()" class="bg-white duration-300 hover:scale-110 shadow-md relative top-0 left-36 rounded-full h-8 w-8 flex justify-center items-center">
-                                <img class="close down text-right cursor-pointer w-[20px] max-sm:max-h-[250px] z-10" src="@public/img/admin/Multiply.svg">
-                            </div>
-                            {{ error }}
-                        </div>
                         <div v-else class="flex flex-col max-sm:justify-center items-center py-5 w-full">
                             <div @click="removeImage(saveImage)" class="bg-white duration-300 hover:scale-110 shadow-md relative top-0 left-36 rounded-full h-8 w-8 flex justify-center items-center">
                                 <img class="close down text-right cursor-pointer w-[20px] max-sm:max-h-[250px] z-10" src="@public/img/admin/Multiply.svg">
                             </div>
                             <img class="max-sm:w-2/3 w-1/3" :src="saveImage" alt="">
+                            <div v-if="error">{{ error }}</div>
                         </div>
                         <button class="h-[70px] w-1/2 text-white rounded-md text-[24px] duration-300 bg-[#151528] hover:text-[#151528] hover:border hover:border-[#151528] hover:bg-white" @click="updateAvatar">
                             Отправить
@@ -78,13 +73,10 @@
     }
     function removeImage(){
         avatar.value = [];
-        saveImage.value = [];
-    }
-    function back(){
-        avatar.value = [];
         saveImage.value = [];   
-        error.value = null;     
+        error.value = null;   
     }
+
     async function updateAvatar(e){
         e.preventDefault();
         let formData = new FormData();
