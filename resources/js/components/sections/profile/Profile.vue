@@ -6,7 +6,7 @@
                 <div class="content flex items-center justify-between">
                     <div class="avatarName w-full flex gap-[18px] items-center">
                         <div class="avatar w-[90px] h-[90px] max-md:h-[58px] max-md:w-[58px] max-sm:h-[58px] max-sm:w-[58px]">
-                            <img class="w-full h-full rounded-full" :src="userStore.avatar" alt="">
+                            <img class="w-full h-full rounded-full" :src="'/img/avatars/default.png'" alt="">
                             <updateAvatar></updateAvatar>
                         </div>
                         <div class="name">
