@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AvatarRequest;
 use App\Http\Requests\ProductRequest;
 use App\Http\Resources\OrderResource;
 use App\Http\Resources\ProductResource;
@@ -73,7 +74,7 @@ class UserController extends Controller
             ]);
         }
     }
-    public function updateAvatar(Request $request, $id)
+    public function updateAvatar(AvatarRequest $request, $id)
     {
         $avatar = $request->file("avatar")->getClientOriginalName();
         $user = Auth::user();
