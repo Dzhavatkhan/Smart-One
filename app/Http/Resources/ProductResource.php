@@ -50,7 +50,6 @@ class ProductResource extends JsonResource
         
         if(Favorite::where("productId", $this->id)->where("userId", Auth::id())->count() > 0){
             $isFavorite = true;
-            return $isFavorite;
         } else{
             $isFavorite = false;
         }
@@ -76,6 +75,8 @@ class ProductResource extends JsonResource
             "avg" => $avg,
             "isFavorite" => $isFavorite,
             "quantityInCart" => $quantityInCart,
+            "info" => Auth::id(), 
+            "info2" => Favorite::where("productId", $this->id)->where("userId", Auth::id())->count()
         ];
     }
 }
