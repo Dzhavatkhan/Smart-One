@@ -97,8 +97,8 @@
             userStore.setUserDetails(result)
             eventBus.emit('updateAvatar', '')
         }).catch((err) => {
-            error.value = err.response.data.errors[0]
-            console.log(err.response.data.errors);
+            error.value = err.response.data.errors.avatar
+            console.log(err.response.data.errors.avatar);
 
         });
 
