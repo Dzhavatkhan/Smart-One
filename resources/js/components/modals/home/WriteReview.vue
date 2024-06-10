@@ -6,7 +6,7 @@
     <transition name="fade">
         <div v-show="show" class="fixed inset-0 m-auto bg-black bg-opacity-60 z-50">
             <div class="w-max fixed inset-0 m-auto z-20 flex justify-center items-center max-md:items-start max-sm:items-start">
-                <div class="bg-white shadow-md w-[695px] h-[900px] px-10 py-5 flex flex-col just gap-3 max-md:w-screen max-md:h-screen max-sm:w-screen max-[400px]:py-5 max-sm:h-screen max-md:overflow-auto max-sm:overflow-auto">
+                <div class="bg-white shadow-md w-[695px] h-[900px] px-10 py-5 flex flex-col just gap-3 max-md:w-screen max-md:h-screen max-sm:w-screen max-[400px]:h-screen max-[400px]:py-5 max-sm:h-screen max-md:overflow-auto max-sm:overflow-auto">
                     <div class="img flex w-full justify-end">
                         <img class="close down text-right cursor-pointer w-[20px]" @click="modal" src="@public/img/admin/Multiply.svg">
                    </div>
