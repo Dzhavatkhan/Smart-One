@@ -80,6 +80,7 @@
     import Header from "../../components/sections/home/Header.vue";
     import MobileMenu from "../../components/structure/Index.vue";
     import { useRouter } from "vue-router";
+    import eventBus from '@/eventBus'
     import { onMounted, ref } from "vue";
     import FilterProduct from "../../components/sections/home/FilterProduct.vue";
     import axios from "axios";
