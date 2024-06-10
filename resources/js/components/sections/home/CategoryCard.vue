@@ -16,7 +16,7 @@
               </li>
               <li class="card">
                 <div @click="location.href='/catalog/Зарядки'" class="img"><img src="@public/img/home/main/Charger and usb cable type c over orange background.jpg" alt="img" draggable="false"></div>
-                <router-link class="h2" :to="{path:'/catalog/Аксессуары/Зарядки'}">Зарядки</router-link>
+                <router-link class="h2" :to="{path:'/catalog/Аксессуары/Зарядные устройства'}">Зарядки</router-link>
               </li>
               <li class="card">
                 <div @click="location.href='/catalog/Планшеты'" class="img"><img src="@public/img/home/main/image 5.jpg" alt="img" draggable="false"></div>
