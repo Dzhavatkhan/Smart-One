@@ -41,6 +41,7 @@
     import {ref, onMounted} from "vue"
     import { useUserStore } from '@/store/user-store';
     import eventBus from '@/eventBus'
+    import Swal from "sweetalert2";
 
 
     let show = ref(false);
