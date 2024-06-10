@@ -56,44 +56,7 @@
         products.value = response.data.products
         isLoading.value = false;
         console.log(products.value);
-    }
-    function isAuth(user){
-        if (user.id == null) {
-            location.href = "/login"
-        }
-    }
-    async function favorite(id){
-        isAuth(userStore);
-        let response = await axios.get(`/api/addProductToFavorite/id${id}`, {
-            headers: {
-                Authorization: `Bearer ${userStore.token}`,
-            }
-        })
-        .then((result) => {
-                eventBus.emit('favorite', '')
-                
-                Swal.fire({
-                title: `${result.data.message}`,
-                icon: 'success',
-                toast: true,
-                position: "bottom-right",
-                timer: 3000,
-                showConfirmButton: false,
-                confirmButtonText: false
-            })
-            }).catch((err) => {
-                console.log(err);
-                Swal.fire({
-                    title: 'Произошла ошибка!',
-                    icon: 'error',
-                    toast: true,
-                    position: "bottom-right",
-                    timer: 3000,
-                    showConfirmButton: false,
-                    confirmButtonText: false
-                })                
-            });
-    }        
+    }   
 
     onMounted(async() => {
         await getNewProducts();

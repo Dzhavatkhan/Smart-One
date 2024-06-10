@@ -10,7 +10,7 @@
                         <img class="close down text-right cursor-pointer w-[20px]" @click="updateAvatarModal = !updateAvatarModal" src="@public/img/admin/Multiply.svg">
                     </div>
                     <form  class="flex flex-col h-full items-center justify-between gap-3">
-                        <div class="hero h-full w-full">
+                        <div v-if="saveImage.length == 0" class="hero h-full w-full">
                             <label for="input-file" class="" ref="inputFile" id="drop-area" @drop.prevent="onDrop">
                                 <input @change="getAvatar" type="file" name="avatar" id="input-file" hidden>
                                 <div ref="view" class="img-view py-5 cursor-pointer flex flex-col bg-white duration-200 hover:bg-[#DEFCFF] items-center justify-center w-full h-full rounded-md border border-[#151528]">
@@ -19,6 +19,12 @@
                                     <span class="duration-100">Загружайте изображение с рабочего стола</span>
                                 </div>
                             </label>
+                        </div>
+                        <div v-else class="flex justify-center items-center py-5 w-full">
+                            <div @click="removeImage(saveImage)" class="bg-white duration-300 hover:scale-110 shadow-md relative top-0 left-48 rounded-full h-8 w-8 flex justify-center items-center">
+                                <img class="close down text-right cursor-pointer w-[20px] max-sm:max-h-[250px]" src="@public/img/admin/Multiply.svg">
+                            </div>
+                            <img class="w-24 max-sm:w-20" :src="saveImage" alt="">
                         </div>
                         <button class="h-[70px] w-1/2 text-white rounded-md text-[24px] duration-300 bg-[#151528] hover:text-[#151528] hover:border hover:border-[#151528] hover:bg-white" @click="updateAvatar">
                             Отправить
@@ -55,26 +61,18 @@
     const emit = defineEmits(['files-dropped'])    
     let updateAvatarModal = ref(false);
     let avatar = ref(null);
-    const view = ref(null)
-
-
-
-
+    let saveImage = ref([]);
+    
     function getAvatar(e){
         avatar.value = e.target.files[0]
         const blob = new Blob([`${e.target.files[0]}`], { type: 'text/plain' });
-        let background = URL.createObjectURL(e.target.files[0])
-        view.value.style.backgroundRepeat = "no-repeat"
-        view.value.style.width = "100%";
-        view.value.style.backgroundSize = "100%";
-        view.value.style.backgroundImage = `url(${background})`
-        view.value.style.height = "100%";
-        view.value.style.padding = "0";
-        view.value.textContent= ''
-        console.log(background);
-        console.log(avatar.value);
-    }
+        saveImage.value = URL.createObjectURL(e.target.files[0])
 
+    }
+    function removeImage(){
+        avatar.value = [];
+        saveImage.value = [];
+    }
     async function updateAvatar(e){
         e.preventDefault();
         let formData = new FormData();
@@ -105,14 +103,9 @@
         emit('files-dropped', [...e.dataTransfer.files])
         const blob = new Blob([`${e.dataTransfer.files[0]}`], { type: 'text/plain' });
 
-        let background = URL.createObjectURL(e.dataTransfer.files[0])
+        saveImage.value = URL.createObjectURL(e.dataTransfer.files[0])
         avatar.value = e.dataTransfer.files[0];
-        view.value.style.backgroundImage = `url(${background})`
-        view.value.style.height = "100%";
-        view.value.style.padding = "0";
-        view.value.textContent= ''
-        console.log(avatar.value);
-        console.log(background);
+
     }
 
     function preventDefaults(e) {
