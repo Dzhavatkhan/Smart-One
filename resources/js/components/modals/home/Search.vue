@@ -9,7 +9,7 @@
             </div>
             <img src="@public/img/home/header/Search.svg" class="cursor-pointer duration-300 hover:opacity-90" alt="" srcset="">
         </div>
-        <div ref="searchDiv" class="bg-white absolute top-52 result z-20 hidden shadow-md w-[819px] max-h-[1200px]">
+        <div ref="searchDiv" class="bg-white absolute top-52 result z-20 hidden shadow-md w-[819px] max-h-[1200px] overflow-auto">
             <div v-if="results.categories == 0 && results.products == 0" class="w-full py-5 h-full flex flex-col">
                 <div class="Noresult h-full flex w-full justify-center items-center">Ничего не найдено.</div>
             </div>
