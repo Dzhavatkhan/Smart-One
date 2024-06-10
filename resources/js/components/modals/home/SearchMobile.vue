@@ -2,7 +2,7 @@
     <img @click="show = !show" src="@public/img/home/header/SearchMobile.svg" alt="" class="hidden max-md:flex max-md:h-5 max-sm:flex max-sm:w-5 max-sm:h-5">
 
     <transition name="fade">
-        <div v-if="show" class="fixed inset-0 m-auto bg-black bg-opacity-60 z-10">
+        <div v-if="show" class="fixed inset-0 m-auto bg-black bg-opacity-60 z-20">
             <div class="w-max fixed inset-0 m-auto z-30 flex justify-center items-center">
                 <div class="bg-white shadow-md w-screen h-full px-5 py-5 flex flex-col just gap-6">
                     <div class="img flex w-full justify-between">
