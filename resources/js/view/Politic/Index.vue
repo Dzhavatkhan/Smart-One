@@ -4,7 +4,7 @@
         <div class="title text-[32px]">
             Политика в отношении обработки персональных данных
         </div>
-        <div class="body">
+        <div class="body py-10">
 <p>
     1. Общие положения
     <br>

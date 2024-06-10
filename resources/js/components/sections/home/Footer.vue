@@ -25,9 +25,9 @@
                     </div>
                     <div class="lane w-full h-[1px] bg-[#5D5D64]"></div>
                     <div class="company-info flex flex-col gap-[14px] text-white text-[16px] font-[Roboto]">
-                        <div class="company-item flex">
+                        <router-link to="/rules" class="company-item flex cursor-pointer" >
                             Политика обработки персональных данных
-                        </div>
+                        </router-link>
                         <div class="company-item">
                             FAQ
                         </div>
