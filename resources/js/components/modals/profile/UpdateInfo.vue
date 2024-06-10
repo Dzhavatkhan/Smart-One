@@ -10,8 +10,8 @@
                     </div>
                     <div class="title text-[24px] flex justify-center">Редактировать профиль</div>
                     <form  class="flex flex-col h-full items-center justify-between gap-3 max-sm:mt-5">
-                        <input type="text"  v-model="name"  @input="inputChange" class="border-b w-full  bg-transparent outline-none focus:border-black text-[24px] border-[#A4A4A4] placeholder:text-[#A4A4A4] font-[Roboto]" placeholder="Имя">
-                        <select v-if="userStore.id != null" v-model="myCity" @change="selectCity" name="" id="" class="city cursor-pointer outline-none w-full">
+                        <input type="text"  v-model="name"  @input="inputChange" class="border-b w-full  outline-none focus:border-black text-[24px] border-[#A4A4A4] placeholder:text-[#A4A4A4] font-[Roboto]" placeholder="Имя">
+                        <select v-if="userStore.id != null" v-model="myCity" @change="selectCity" name="" id="" class="city bg-transparent cursor-pointer outline-none w-full">
                             <option v-for="(city, index) in cities" :key="index" :selected="city" >{{city}}</option>
                         </select>                        
                         <select v-else v-model="myCity" @click="toProfile" name="" id="" class="city bg-transparent cursor-pointer outline-none w-full">
