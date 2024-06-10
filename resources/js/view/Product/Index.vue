@@ -11,7 +11,9 @@
         </div>
         <div class="more flex flex-col mt-[34px] gap-[22px]">
             <p class="text-[#5D5D64]">артикул товара - {{product.id}}</p>
-            <button @click="favorite(product.id)" class="w-full rounded-[5px] bg-[#151528] h-10 text-white">В избранное</button>
+            <button v-if="isFavorite == false" @click="favorite(product.id)" class="w-full rounded-[5px] bg-[#151528] h-10 text-white">В избранное</button>
+            <button v-else @click="favorite(product.id)" class="w-full rounded-[5px] bg-[#151528] h-10 text-white">Удалить из избранно</button>
+
         </div>
         <div class="more flex flex-col mt-[17px] gap-[15px]">
             <p class="">{{product.description}}</p>
