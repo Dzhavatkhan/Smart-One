@@ -63,7 +63,7 @@
     let updateAvatarModal = ref(false);
     let avatar = ref(null);
     let saveImage = ref([]);
-    let error = ref([]);
+    let error = ref(null);
     
     function getAvatar(e){
         avatar.value = e.target.files[0]
