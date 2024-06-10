@@ -297,9 +297,11 @@
             await getProduct(props.id);   
         })
         eventBus.on('favorite', async()=>{
+            await getProduct(props.id);   
             await getAccessories();
         })  
         eventBus.on('addProductToCart', async()=>{
+            await getProduct(props.id);   
             await getAccessories();
         })              
         eventBus.on('dislike', async()=>{
