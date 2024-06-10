@@ -21,7 +21,7 @@
                             </label>
                         </div>
                         <div v-else-if="error != null" class="flex w-full h-full flex-col justify-center items-center text-red-500">
-                            <div @click="error == null" class="bg-white duration-300 hover:scale-110 shadow-md relative top-0 left-36 rounded-full h-8 w-8 flex justify-center items-center">
+                            <div @click="back()" class="bg-white duration-300 hover:scale-110 shadow-md relative top-0 left-36 rounded-full h-8 w-8 flex justify-center items-center">
                                 <img class="close down text-right cursor-pointer w-[20px] max-sm:max-h-[250px] z-10" src="@public/img/admin/Multiply.svg">
                             </div>
                             {{ error }}
@@ -79,6 +79,11 @@
     function removeImage(){
         avatar.value = [];
         saveImage.value = [];
+    }
+    function back(){
+        avatar.value = [];
+        saveImage.value = [];   
+        error.value = null;     
     }
     async function updateAvatar(e){
         e.preventDefault();
