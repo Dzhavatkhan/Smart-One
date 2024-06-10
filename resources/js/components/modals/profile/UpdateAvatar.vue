@@ -20,7 +20,7 @@
                                 </div>
                             </label>
                         </div>
-                        <div v-else-if="error" class="flex w-full justify-center items-center text-red-500">
+                        <div v-else-if="error" class="flex w-full h-full justify-center items-center text-red-500">
                             {{ error }}
                         </div>
                         <div v-else class="flex flex-col max-sm:justify-center items-center py-5 w-full">
@@ -97,8 +97,7 @@
             userStore.setUserDetails(result)
             eventBus.emit('updateAvatar', '')
         }).catch((err) => {
-            error.value = err.response.data.errors.avatar
-            console.log(err.response.data.errors.avatar[0]);
+            error.value = err.response.data.errors.avatar[0]
 
         });
 
