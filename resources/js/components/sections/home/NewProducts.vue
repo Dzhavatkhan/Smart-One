@@ -43,8 +43,9 @@
     import CartBtn from "./CartBtn.vue";
     import eventBus from '@/eventBus'
     import Loading from "../../structure/Loading.vue";
-
-
+    import { useUserStore } from '@/store/user-store';
+    
+    const userStore = useUserStore();
     let products = ref([]);
     let isLoading = ref(true)
 
