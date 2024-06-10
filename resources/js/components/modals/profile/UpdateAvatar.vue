@@ -15,8 +15,8 @@
                                 <input @change="getAvatar" type="file" name="avatar" id="input-file" hidden>
                                 <div ref="view" class="img-view py-5 cursor-pointer flex flex-col bg-white duration-200 hover:bg-[#DEFCFF] items-center justify-center w-full h-full rounded-md border border-[#151528]">
                                     <img src="@public/img/profile/Upload to the Cloud.svg" class="w-24" alt="">
-                                    <p class="text-center">Перетащите файл сюда или кликните <br>чтобы загрузить изображение</p>
-                                    <span class="duration-100">Загружайте изображение с рабочего стола</span>
+                                    <p class="text-center max-sm:hidden">Перетащите файл сюда или кликните <br>чтобы загрузить изображение</p>
+                                    <span class="duration-100 max-sm:hidden">Загружайте изображение с рабочего стола</span>
                                 </div>
                             </label>
                         </div>
