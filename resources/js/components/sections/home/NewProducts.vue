@@ -44,7 +44,7 @@
     import eventBus from '@/eventBus'
     import Loading from "../../structure/Loading.vue";
     import { useUserStore } from '@/store/user-store';
-    
+
     const userStore = useUserStore();
     let products = ref([]);
     let isLoading = ref(true)
@@ -65,7 +65,6 @@
     }
     async function favorite(id){
         isAuth(userStore);
-        console.log(props.product.isFavorite, props.product.id);       
         let response = await axios.get(`/api/addProductToFavorite/id${id}`, {
             headers: {
                 Authorization: `Bearer ${userStore.token}`,
@@ -73,12 +72,6 @@
         })
         .then((result) => {
                 eventBus.emit('favorite', '')
-                if (result.data.isFavorite == 1) {
-                    isFavorite.value = true;
-                } else{
-                    isFavorite.value = false;
-                }
-                console.log(props.product.isFavorite, result.data);       
                 
                 Swal.fire({
                 title: `${result.data.message}`,
