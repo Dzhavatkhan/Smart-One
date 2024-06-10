@@ -1,5 +1,5 @@
 <template>
-    <img class="cursor-pointer" @click="favorite(product.id)" v-if="isFavorite === false || userStore.id == null" src="@public/img/home/main/Favorite.svg" alt="">
+    <img class="cursor-pointer" @click="favorite(product.id)" v-if="product.isFavorite === false || userStore.id == null" src="@public/img/home/main/Favorite.svg" alt="">
     <img class="cursor-pointer" @click="favorite(product.id)" v-else src="@public/img/home/main/FavRed.svg" alt="">
 </template>
 
@@ -21,13 +21,6 @@
         if (user.id == null) {
             location.href = "/login"
         }
-    }
-    async function checkFav(id){
-        let response = await axios.get(`/api/checkFav/id${id}`, {
-            headers: {
-                Authorization: `Bearer ${userStore.token}`,
-            }
-        })       
     }
     async function favorite(id){
         isAuth(userStore);
@@ -70,11 +63,7 @@
     }
 
     onMounted(async() => {
-        await checkFav(props.product.id)
     })
-    eventBus.on('favorite', async()=>{
-            await checkFav(props.product.id);   
-        })  
 </script>
 
 <style scoped>
