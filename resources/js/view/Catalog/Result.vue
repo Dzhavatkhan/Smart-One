@@ -234,6 +234,7 @@
         await getFilterData(props.category, props.subcategory);
         eventBus.on('favorite', async()=>{
             await filter();   
+            await getFilterData(props.category, props.subcategory);
         })  
     })
 </script>
