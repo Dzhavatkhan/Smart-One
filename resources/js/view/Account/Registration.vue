@@ -47,7 +47,7 @@
                         <a @click="login" :class="!hiddenInput ? 'text-[16px] cursor-pointer underline' : 'hidden'">У меня есть аккаунт</a>
                         <label for="check" :class="!hiddenInput ? 'hidden' : 'text-[16px] font-[Roboto] max-md:text-justofy max-sm:text-justify '" >
                             <input type="checkbox" ref="check" @click="checking()" class="check w-4 " name="check" id="check">
-                            Согласен на обработку персональных данных
+                            <router-link class="cursor-pointer underline" to="/rules">Согласен на обработку персональных данных</router-link>
                         </label>
                     </div>
 
