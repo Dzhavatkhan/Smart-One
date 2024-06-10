@@ -104,7 +104,7 @@
         })   
         eventBus.on('favorite', async()=>{
             await getNewProducts();   
-            console.log("get");
+            console.log(products.value);
         })  
        
     })
