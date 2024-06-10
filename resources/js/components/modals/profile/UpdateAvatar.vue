@@ -98,7 +98,7 @@
             eventBus.emit('updateAvatar', '')
         }).catch((err) => {
             error.value = err.response.data.errors[0]
-            console.log(err);
+            console.log(err.response.data.errors[0]);
 
         });
 
