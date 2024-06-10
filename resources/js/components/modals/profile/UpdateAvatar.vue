@@ -5,7 +5,7 @@
     <transition name="fade">
         <div v-if="updateAvatarModal" class="fixed inset-0 m-auto bg-black bg-opacity-60 z-10">
             <div class="w-max fixed inset-0 m-auto z-20 flex justify-center items-center">
-                <div class="bg-white shadow-md w-[695px] h-[800px] px-5 py-5 flex flex-col just gap-6 max-sm:w-[400px]">
+                <div class="bg-white shadow-md w-[695px] max-sm:h-[600px] h-[800px] px-5 py-5 flex flex-col just gap-6 max-sm:w-[400px]">
                     <div class="img flex w-full justify-end">
                         <img class="close down text-right cursor-pointer w-[20px]" @click="updateAvatarModal = !updateAvatarModal" src="@public/img/admin/Multiply.svg">
                     </div>
