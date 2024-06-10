@@ -1,10 +1,10 @@
 <template>
     <Header></Header>
-    <div class="w-screen px-[200px] max-sm:px-5 gap-3 flex flex-col">
+    <div class="w-screen px-[200px] max-sm:px-5 gap-3 flex flex-col py-10">
         <div class="title text-[32px]">
             Политика в отношении обработки персональных данных
         </div>
-        <div class="body py-10">
+        <div class="body">
 <p>
     1. Общие положения
     <br>
