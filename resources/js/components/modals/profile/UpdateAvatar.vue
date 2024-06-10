@@ -20,7 +20,7 @@
                                 </div>
                             </label>
                         </div>
-                        <div v-else-if="error.length > 0" class="flex w-full justify-center text-red-500">
+                        <div v-else-if="error != null" class="flex w-full justify-center text-red-500">
                             {{ error }}
                         </div>
                         <div v-else class="flex flex-col max-sm:justify-center items-center py-5 w-full">
@@ -65,7 +65,7 @@
     let updateAvatarModal = ref(false);
     let avatar = ref(null);
     let saveImage = ref([]);
-    let error = ref([]);
+    let error = ref(null);
     
     function getAvatar(e){
         avatar.value = e.target.files[0]
@@ -90,7 +90,7 @@
                     Authorization: `Bearer ${userStore.token}`,
                 }
         }
-)
+        )
         .then((result) => {
             console.log(result);
             updateAvatarModal.value = false
