@@ -24,8 +24,8 @@
                             <div class="range-block flex flex-col gap-[31px] w-full h-[82px]">
                                 <div class="container">
                                     <div class="slider-trackMobile"></div>
-                                    <input type="range" :min="minVal" :max="maxVal" step="10" id="slider-3" @change="setRangerMobile" v-model.number="minPrice">
-                                    <input type="range" :min="minVal" :max="maxVal" step="10"  id="slider-4" @change="setRangerMobile" v-model.number="maxPrice">
+                                    <input type="range" :min="0" :max="maxVal" step="10" id="slider-3" @change="setRangerMobile" v-model.number="minPrice">
+                                    <input type="range" :min="0" :max="maxVal" step="10"  id="slider-4" @change="setRangerMobile" v-model.number="maxPrice">
                                 </div>
                                 <div class="val flex justify-between">
                                     <input :placeholder="minVal" class="w-[100px] h-10 px-2 border" type="number" @input="setRangerMobile" v-model="minPrice">
@@ -53,8 +53,8 @@
                 <div class="range-block flex flex-col gap-[31px] w-full h-[82px]">
                     <div class="container">
                         <div class="slider-track"></div>
-                        <input type="range" :min="minVal" :max="maxVal" id="slider-1" @change="setRanger" v-model.number="minPrice">
-                        <input type="range" :min="minVal" :max="maxVal"  id="slider-2" @change="setRanger" v-model.number="maxPrice">
+                        <input type="range" :min="0" :max="maxVal" id="slider-1" @change="setRanger" v-model.number="minPrice">
+                        <input type="range" :min="0" :max="maxVal"  id="slider-2" @change="setRanger" v-model.number="maxPrice">
                     </div>
                     <div class="val flex justify-between">
                         <input :placeholder="minVal" class="w-[100px] h-10 px-2 border" type="number" @input="setRanger" v-model="minPrice">
