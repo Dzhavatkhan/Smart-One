@@ -24,7 +24,7 @@
                             <div @click="removeImage(saveImage)" class="bg-white duration-300 hover:scale-110 shadow-md relative top-0 left-48 rounded-full h-8 w-8 flex justify-center items-center">
                                 <img class="close down text-right cursor-pointer w-[20px] max-sm:max-h-[250px] z-10" src="@public/img/admin/Multiply.svg">
                             </div>
-                            <img class="w-1/2" :src="saveImage" alt="">
+                            <img class="w-4/5" :src="saveImage" alt="">
                         </div>
                         <button class="h-[70px] w-1/2 text-white rounded-md text-[24px] duration-300 bg-[#151528] hover:text-[#151528] hover:border hover:border-[#151528] hover:bg-white" @click="updateAvatar">
                             Отправить
