@@ -137,7 +137,7 @@
                     </div>
                     <div class="p-price flex justify-between items-center pb-6 max-md:pb-[9px] max-sm:pb-[9px]">
                         <div class="price max-[400px]:text-[16px]  font-semibold text-[24px] font-[Roboto] max-md:text-[20px] max-sm:text-[20px]">{{accessory.price}}₽</div>
-                        <BuyBtn :product="accessory.id"></BuyBtn>
+                        <CartBtn :product="accessory"></CartBtn>
                     </div>
                 </div>
             </div>
