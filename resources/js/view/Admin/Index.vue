@@ -27,7 +27,7 @@
                     </router-link>
                 </nav>
                 <div class="admin flex flex-col items-center">
-                    <img class="w-[50px] h-[40px] rounded-lg " src="@public/img/avatars/default.png" alt="">
+                    <img class="w-[50px] h-[40px] rounded-lg " src="../../../../public/img/avatars/default.png" alt="">
                     <p>{{userStore.name}}</p>
                     <p class="text-red-600 cursor-pointer" @click="logout">Выйти</p>
                 </div>
