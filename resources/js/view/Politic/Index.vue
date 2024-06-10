@@ -1,5 +1,6 @@
 <template>
-    <div class="w-screen px-[200px] max-sm:px-5">
+    <Header></Header>
+    <div class="w-screen px-[200px] max-sm:px-5 gap-3 flex flex-col">
         <div class="title text-[32px]">
             Политика в отношении обработки персональных данных
         </div>
@@ -293,6 +294,9 @@
 </p>            
         </div>
     </div>
+    <Footer></Footer>
+    <MobileMenu class="hidden max-md:flex max-sm:flex"></MobileMenu>
+
 </template>
 
 <script setup>  
