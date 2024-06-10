@@ -62,6 +62,7 @@
     let updateAvatarModal = ref(false);
     let avatar = ref(null);
     let saveImage = ref([]);
+    let error = ref([]);
     
     function getAvatar(e){
         avatar.value = e.target.files[0]
@@ -94,6 +95,7 @@
             eventBus.emit('updateAvatar', '')
         }).catch((err) => {
             console.log(err);
+            error.value = err.response.data.error
         });
 
     }
