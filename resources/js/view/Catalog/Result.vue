@@ -234,10 +234,10 @@
     onMounted(async() => {
         await getFilterData(props.category, props.subcategory);
         eventBus.on('favorite', async()=>{
-            await getFilterData(props.category, props.subcategory);
+            await filter();
         })  
-        eventBus.on('addProductToCart', async()=>{
-            await getFilterData(props.category, props.subcategory);
+        eventBus.on('addProductTrt', async()=>{
+            await filter();
         })  
     })
 </script>
