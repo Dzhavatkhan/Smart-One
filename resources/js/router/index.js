@@ -10,6 +10,7 @@ import ProfileSection from "../components/sections/profile/Profile.vue"
 import FavoriteSection from "../components/sections/profile/Favorite.vue"
 import CartSection from "../components/sections/profile/Cart.vue"
 import Product from "../view/Product/Index.vue";
+import Politic from "../view/Politic/Index.vue";
 
 import AdminUsersSection from "../components/sections/admin/Users.vue";
 import AdminOrdersSection from "../components/sections/admin/Orders.vue";
@@ -114,6 +115,11 @@ let routes = [
         path: "/:patchMatch(.*)*",
         component: NotFound,
         name: "NotFound"
+    },
+    {
+        path: "/rules",
+        component: Politic,
+        name: "politic"
     },
 ]
 
