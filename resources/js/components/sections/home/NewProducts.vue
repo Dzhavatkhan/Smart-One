@@ -43,6 +43,7 @@
     import CartBtn from "./CartBtn.vue";
     import eventBus from '@/eventBus'
     import Loading from "../../structure/Loading.vue";
+    import Swal from 'sweetalert2';
     import { useUserStore } from '@/store/user-store';
 
     const userStore = useUserStore();
