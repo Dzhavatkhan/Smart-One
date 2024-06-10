@@ -18,7 +18,7 @@
                     <img src="@public/img/home/mobile/StarEmpty.svg" alt="">
                     <div class="revCount max-[400px]:text-[12px] text-[14px]">0</div>
                 </div>
-                <div class="name text-[20px] max-md:text-[14px] max-sm:text-[14px]">
+                <div class="name text-[20px] max-md:text-[14px] max-sm:text-[14px] overflow-hidden">
                     <router-link :to="{path: '/product/id' + product.id}" class="font-semibold font-[Roboto]">
                         {{product.name}}
                     </router-link>

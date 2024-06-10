@@ -17,7 +17,7 @@
                         <div class="revCount max-[400px]:text-[12px] text-[14px]">0</div>
                     </div>
                     <div class="name max-[400px]:text-[12px] text-[20px] max-sm:text-[14px]">
-                        <router-link :to="{path: '/product/id' + product.id}" class="font-semibold font-[Roboto]">
+                        <router-link :to="{path: '/product/id' + product.id}" class="font-semibold overflow-hidden font-[Roboto]">
                             {{product.name}}
                         </router-link>
                         {{product.description}}, {{product.color}}

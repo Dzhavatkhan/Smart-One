@@ -236,6 +236,9 @@
         eventBus.on('favorite', async()=>{
             await getFilterData(props.category, props.subcategory);
         })  
+        eventBus.on('addProductToCart', async()=>{
+            await getFilterData(props.category, props.subcategory);
+        })  
     })
 </script>
 
