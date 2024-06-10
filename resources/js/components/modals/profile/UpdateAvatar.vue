@@ -20,7 +20,7 @@
                                 </div>
                             </label>
                         </div>
-                        <div v-else-if="error != null" class="flex w-full justify-center text-red-500">
+                        <div v-else-if="error" class="flex w-full justify-center text-red-500">
                             {{ error }}
                         </div>
                         <div v-else class="flex flex-col max-sm:justify-center items-center py-5 w-full">
