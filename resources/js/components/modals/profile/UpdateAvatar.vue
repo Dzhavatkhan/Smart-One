@@ -5,7 +5,7 @@
     <transition name="fade">
         <div v-if="updateAvatarModal" class="fixed inset-0 m-auto bg-black bg-opacity-60 z-10">
             <div class="w-max fixed inset-0 m-auto z-20 flex justify-center items-center">
-                <div class="bg-white shadow-md w-[695px] h-[600px] px-5 py-5 flex flex-col just gap-6 max-sm:w-[400px]">
+                <div class="bg-white shadow-md w-[695px] h-[800px] px-5 py-5 flex flex-col just gap-6 max-sm:w-[400px]">
                     <div class="img flex w-full justify-end">
                         <img class="close down text-right cursor-pointer w-[20px]" @click="updateAvatarModal = !updateAvatarModal" src="@public/img/admin/Multiply.svg">
                     </div>
@@ -24,7 +24,7 @@
                             <div @click="removeImage(saveImage)" class="bg-white duration-300 hover:scale-110 shadow-md relative top-0 left-36 rounded-full h-8 w-8 flex justify-center items-center">
                                 <img class="close down text-right cursor-pointer w-[20px] max-sm:max-h-[250px] z-10" src="@public/img/admin/Multiply.svg">
                             </div>
-                            <img class="max-sm:w-2/3 max-sm:h-1/2 w-1/3 h-1/3" :src="saveImage" alt="">
+                            <img class="max-sm:w-2/3 max-sm:h-1/2 w-1/3" :src="saveImage" alt="">
                         </div>
                         <button class="h-[70px] w-1/2 text-white rounded-md text-[24px] duration-300 bg-[#151528] hover:text-[#151528] hover:border hover:border-[#151528] hover:bg-white" @click="updateAvatar">
                             Отправить
