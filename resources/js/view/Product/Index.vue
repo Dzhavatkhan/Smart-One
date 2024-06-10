@@ -221,7 +221,7 @@
             }
         })
         .then((result) => {
-                eventBus.emit('addProductToFavorite', '')
+                eventBus.emit('favorite', '')
                 console.log(isFavorite.value);
                 Swal.fire({
                 title: `${result.data.message}`,
