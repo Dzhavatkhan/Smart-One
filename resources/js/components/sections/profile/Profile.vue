@@ -9,6 +9,7 @@
                             <img class="w-full h-full rounded-full" :src="userStore.avatar" alt="">
                             <updateAvatar></updateAvatar>
                         </div>
+                        <img :src="'/img/avatars/default.png'" alt="">
                         <div class="name">
                             {{ userStore.name }}
                         </div>
