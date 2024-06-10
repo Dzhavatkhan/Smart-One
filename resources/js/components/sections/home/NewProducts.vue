@@ -6,7 +6,9 @@
     <div v-for="product in products" :key="product.id" class="new-product w-[275.05px] h-[351px] duration-200 hover:shadow-lg bg-white shadow-md border-t border-gray-200 flex flex-col max-[400px]:h-[247px] max-[400px]:w-[168px] max-sm:pt-4 max-sm:w-[185px] max-sm:h-[274px] max-md:pt-4 max-md:w-[190px] max-md:h-[294px]">
         <div class="np-image w-full min-h-[186px] flex justify-center items-center max-md:min-h-[98px] max-sm:min-h-[98px]">
             <img @click="getProduct(product.id)" class="max-h-full cursor-pointer pt-[11px] max-[400px]:w-[75px] max-[400px]:max-h-[88px] max-w-[185px] max-sm:w-[85px] max-sm:max-h-[98px] max-sm:p-0" :src="'/img/products/' + product.image" alt="">
-            <Heart class="relative left-[20px] bottom-12 max-md:left-[30px] max-sm:left-[30px] max-sm:bottom-5 max-md:bottom-5" :product="product"></Heart>
+            <img class="cursor-pointer relative left-[20px] bottom-12 max-md:left-[30px] max-sm:left-[30px] max-sm:bottom-5 max-md:bottom-5" @click="favorite(product.id)" v-if="product.isFavorite === false || userStore.id == null" src="@public/img/home/main/Favorite.svg" alt="">
+            <img class="cursor-pointer relative left-[20px] bottom-12 max-md:left-[30px] max-sm:left-[30px] max-sm:bottom-5 max-md:bottom-5" @click="favorite(product.id)" v-else src="@public/img/home/main/FavRed.svg" alt="">
+            <!-- <Heart class="relative left-[20px] bottom-12 max-md:left-[30px] max-sm:left-[30px] max-sm:bottom-5 max-md:bottom-5" :product="product"></Heart> -->
         </div>
         <div class="np-info justify-between pl-[19px] pr-[12px] w-full h-full flex flex-col max-sm:pl-2 max-sm:pr-[7px] max-sm:gap-[30px] max-md:pl-2 max-md:pr-[7px] max-md:gap-[30px]">
             <div class="np-name flex flex-col text-[20px] pt-2 cursor-pointer max-[400px]:text-[12px] max-md:text-[14px] max-md:h-[70px]  max-sm:text-[14px] max-sm:h-[70px]">
@@ -55,6 +57,50 @@
         isLoading.value = false;
         console.log(products.value);
     }
+    function isAuth(user){
+        if (user.id == null) {
+            location.href = "/login"
+        }
+    }
+    async function favorite(id){
+        isAuth(userStore);
+        console.log(props.product.isFavorite, props.product.id);       
+        let response = await axios.get(`/api/addProductToFavorite/id${id}`, {
+            headers: {
+                Authorization: `Bearer ${userStore.token}`,
+            }
+        })
+        .then((result) => {
+                eventBus.emit('favorite', '')
+                if (result.data.isFavorite == 1) {
+                    isFavorite.value = true;
+                } else{
+                    isFavorite.value = false;
+                }
+                console.log(props.product.isFavorite, result.data);       
+                
+                Swal.fire({
+                title: `${result.data.message}`,
+                icon: 'success',
+                toast: true,
+                position: "bottom-right",
+                timer: 3000,
+                showConfirmButton: false,
+                confirmButtonText: false
+            })
+            }).catch((err) => {
+                console.log(err);
+                Swal.fire({
+                    title: 'Произошла ошибка!',
+                    icon: 'error',
+                    toast: true,
+                    position: "bottom-right",
+                    timer: 3000,
+                    showConfirmButton: false,
+                    confirmButtonText: false
+                })                
+            });
+    }        
 
     onMounted(async() => {
         await getNewProducts();
