@@ -257,6 +257,9 @@
         eventBus.on('addProductToCart', async()=>{
             await getProduct(id);   
         })
+        eventBus.on('favorite', async()=>{
+            await getProduct(id);   
+        })
         eventBus.on('selectColor', async()=>{
             await getSlider();
         })
