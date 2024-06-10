@@ -1,7 +1,7 @@
 <template>
     <div class="w-screen px-[200px] max-sm:px-5">
-        <div class="title">
-
+        <div class="title text-[32px]">
+            Политика в отношении обработки персональных данных
         </div>
         <div class="body">
 <p>
