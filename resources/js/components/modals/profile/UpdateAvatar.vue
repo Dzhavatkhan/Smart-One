@@ -22,7 +22,7 @@
                         </div>
                         <div v-else class="flex justify-center items-center py-5 w-full">
                             <div @click="removeImage(saveImage)" class="bg-white duration-300 hover:scale-110 shadow-md relative top-0 left-48 rounded-full h-8 w-8 flex justify-center items-center">
-                                <img class="close down text-right cursor-pointer w-[20px] max-sm:max-h-[250px]" src="@public/img/admin/Multiply.svg">
+                                <img class="close down text-right cursor-pointer w-[20px] max-sm:max-h-[250px] z-10" src="@public/img/admin/Multiply.svg">
                             </div>
                             <img class="w-full" :src="saveImage" alt="">
                         </div>
