@@ -20,7 +20,7 @@
                                 </div>
                             </label>
                         </div>
-                        <div v-else class="flex flex-col justify-center items-center py-5 w-full">
+                        <div v-else class="flex flex-col max-sm:justify-center items-center py-5 w-full">
                             <div @click="removeImage(saveImage)" class="bg-white duration-300 hover:scale-110 shadow-md relative top-0 left-36 rounded-full h-8 w-8 flex justify-center items-center">
                                 <img class="close down text-right cursor-pointer w-[20px] max-sm:max-h-[250px] z-10" src="@public/img/admin/Multiply.svg">
                             </div>
